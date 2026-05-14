@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Bot Bán Hàng – Cách mạng hóa hỗ trợ khách hàng với AI</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -367,28 +368,38 @@ h2{
 /* ─── VIDEO DEMOS ─── */
 #video-demos{background:var(--white)}
 .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.video-placeholder{
-  border-radius:16px;overflow:hidden;
-  border:2px dashed var(--gray-200);
+.video-card{
   background:var(--gray-50);
-  transition:all .25s;aspect-ratio:16/9;
-  position:relative;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--gray-100);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:var(--shadow-sm);
 }
-.video-placeholder:hover{border-color:var(--orange);background:var(--orange-pale)}
-.video-inner{text-align:center;padding:24px}
-.video-play-btn{
-  width:64px;height:64px;border-radius:50%;
-  background:var(--orange);color:white;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 16px;
-  box-shadow:0 4px 20px rgba(255,87,34,0.3);
-  transition:transform .2s;
+.video-frame{
+  position:relative;
+  aspect-ratio:16/9;
+  border-radius:12px;
+  overflow:hidden;
+  background:#000;
+  margin-bottom:14px;
 }
-.video-placeholder:hover .video-play-btn{transform:scale(1.1)}
-.video-play-btn svg{width:28px;height:28px;color:white}
+.video-frame iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
 .video-label{font-size:15px;font-weight:700;color:var(--gray-800);margin-bottom:6px}
 .video-sub{font-size:12px;color:var(--gray-400)}
+.video-note{
+  margin-top:16px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:var(--orange-pale);
+  border:1px solid rgba(255,87,34,0.16);
+  font-size:13px;
+  color:var(--gray-700);
+}
 
 /* ─── AUDIT LOSS + PAIN POINTS ─── */
 #audit-loss{background:var(--gray-50)}
@@ -1273,23 +1284,33 @@ hr{border:none;border-top:1px solid var(--gray-100)}
   <h2 class="fu fu-d1">Xem AI hoạt động thực tế</h2>
   <p class="section-desc fu fu-d2">Xem trực tiếp cách Bot Bán Hàng tự động tư vấn, chốt đơn và bảo mật data trong thực tế.</p>
   <div class="video-grid fu">
-    <div class="video-placeholder">
-      <div class="video-inner">
-        <div class="video-play-btn">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="white" stroke-width="1.5" fill="none"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="white"/></svg>
-        </div>
-        <div class="video-label">Video 1 — Demo Bot Bán Hàng</div>
-        <div class="video-sub">Thêm link video vào đây</div>
+    <div class="video-card">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/1LizApvyujA"
+          title="Video 1 - Demo Bot Ban Hang"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
+      <div class="video-label">Video 1 — Demo Bot Bán Hàng</div>
+      <!-- <div class="video-sub">Video demo YouTube da duoc cap nhat.</div> -->
     </div>
-    <div class="video-placeholder">
-      <div class="video-inner">
-        <div class="video-play-btn">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="white" stroke-width="1.5" fill="none"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="white"/></svg>
-        </div>
-        <div class="video-label">Video 2 — Demo Bảo mật Data</div>
-        <div class="video-sub">Thêm link video vào đây</div>
+    <div class="video-card">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/Zr3R6YZQVzM"
+          title="Video 2 - Demo Bao mat Data"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
+      <div class="video-label">Video 2 — Demo Bảo mật Data</div>
+      <!-- <div class="video-sub">Video demo YouTube da duoc cap nhat.</div> -->
     </div>
   </div>
 </section>
@@ -1488,6 +1509,7 @@ hr{border:none;border-top:1px solid var(--gray-100)}
       <div class="footer-col-title">Công ty</div>
       <ul class="footer-links"><li><a href="#">Giới thiệu</a></li><li><a href="#">Blog</a></li><li><a href="#">Tuyển dụng</a></li><li><a href="#">Nhà đầu tư</a></li></ul>
     </div>
+    
   </div>
   <div class="footer-bottom">
     <span>© 2026 Bot Bán Hàng Vietnam JSC. All rights reserved.</span>
@@ -1568,5 +1590,14 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fu').forEach(el => io.observe(el));
 </script>
+<div
+  class="zalo-chat-widget"
+  data-oaid="1591257820328477563"
+  data-welcome-message="Xin chào"
+  data-autopopup="0"
+  data-width=""
+  data-height=""
+></div>
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
 </body>
 </html>
