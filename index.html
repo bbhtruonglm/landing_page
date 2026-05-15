@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bot Bán Hàng – Cách mạng hóa hỗ trợ khách hàng với AI</title>
+<script>
+window.TRACKING_CONFIG = {
+  gtmId: '',
+  ga4Id: '',
+  metaPixelId: ''
+};
+window.dataLayer = window.dataLayer || [];
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -99,8 +107,11 @@ nav a:hover{color:var(--gray-900)}
   background:var(--orange-pale);border-radius:6px;padding:3px 10px;
 }
 .hero-column-visual{
-  max-width:var(--max-w);
+  width:100vw;
+  max-width:none;
   margin:40px auto 0;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
   display:flex;
   flex-direction:column;
   gap:18px;
@@ -108,6 +119,7 @@ nav a:hover{color:var(--gray-900)}
 }
 .hero-cover-frame{
   width:100%;
+  max-width:100vw;
   border-radius:0;
   overflow:visible;
   border:none;
@@ -118,7 +130,7 @@ nav a:hover{color:var(--gray-900)}
   display:block;
   width:100%;
   height:auto;
-  max-height:none;
+  max-height:78vh;
   object-fit:contain;
 }
 .hero-cover-badges{
@@ -289,10 +301,14 @@ h2{
 .section-desc{font-size:16px;color:var(--gray-500);line-height:1.7;max-width:560px;margin-bottom:56px}
 
 /* ─── FEATURES TABS ─── */
-#features{background:var(--white)}
+#features{
+  background:var(--white);
+  padding:96px 0;
+  overflow:hidden;
+}
 .features-tabs-row{
   display:flex;gap:4px;border-bottom:2px solid var(--gray-100);
-  margin-bottom:48px;overflow-x:auto;padding-bottom:0;
+  margin-bottom:48px;padding-bottom:0;
 }
 .ftab{
   display:flex;align-items:center;gap:7px;
@@ -339,6 +355,186 @@ h2{
 .ftab-point-icon svg{width:11px;height:11px}
 .ftab-point-text{font-size:14px;font-weight:500;color:var(--gray-600);line-height:1.5}
 .ftab-point-text strong{color:var(--gray-900);font-weight:700}
+.features-shell{
+  margin-top:36px;
+}
+.features-head{
+  text-align:center;
+  margin-bottom:26px;
+  padding:0 var(--side);
+}
+.features-head h2{margin-bottom:8px}
+.features-head p{
+  font-size:16px;
+  color:var(--gray-500);
+}
+.features-tabs-row{
+  display:grid;
+  grid-template-columns:repeat(11,minmax(0,1fr));
+  gap:6px;
+  border-bottom:1px solid var(--gray-200);
+  margin-bottom:0;
+  width:min(1240px, calc(100% - (var(--side) * 2)));
+  margin-left:auto;
+  margin-right:auto;
+  padding:0 0 12px;
+}
+.features-tabs-row .ftab{
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  min-width:0;
+  padding:8px 8px 12px;
+  margin-bottom:-13px;
+  text-align:center;
+  color:#64748B;
+  border-bottom:4px solid transparent;
+  white-space:normal;
+  min-height:88px;
+}
+.features-tabs-row .ftab img{
+  width:24px;
+  height:24px;
+  object-fit:contain;
+  opacity:.78;
+  flex:0 0 24px;
+  display:block;
+  transition:opacity .2s ease;
+}
+.features-tabs-row .ftab span{
+  font-size:13px;
+  line-height:1.35;
+  min-height:35px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+}
+.features-tabs-row .ftab.active{
+  color:var(--green);
+  border-bottom-color:var(--green);
+}
+.features-tabs-row .ftab.active img,
+.features-tabs-row .ftab:hover img{
+  opacity:1;
+}
+.feature-stage-wrap{
+  position:relative;
+  margin-top:22px;
+  padding:0 88px;
+}
+.feature-stage{
+  background:#1F8B42;
+  border-radius:28px;
+  padding:22px calc(var(--side) - 1%);
+}
+.feature-panel{
+  display:grid;
+  grid-template-columns:minmax(280px, .92fr) minmax(0, 1.28fr);
+  gap:28px;
+  align-items:center;
+}
+.feature-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border:none;
+  background:transparent;
+  color:#64748B;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:2;
+  transition:color .2s ease, transform .2s ease;
+}
+.feature-nav svg{
+  width:26px;
+  height:26px;
+}
+.feature-nav:hover{
+  color:var(--green);
+}
+.feature-nav.prev{left:24px}
+.feature-nav.next{right:24px}
+.feature-copy{
+  color:var(--white);
+  padding:18px 16px;
+}
+.feature-copy h3{
+  font-family:var(--font-head);
+  font-size:clamp(34px,4vw,44px);
+  line-height:1.05;
+  font-weight:800;
+  letter-spacing:-1px;
+  margin-bottom:8px;
+}
+.feature-copy p{
+  font-size:15px;
+  line-height:1.7;
+  color:rgba(255,255,255,0.88);
+  margin-bottom:26px;
+}
+.feature-bullets{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  margin-bottom:30px;
+}
+.feature-bullet{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+}
+.feature-bullet-icon{
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  background:rgba(0,0,0,0.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.feature-bullet-icon svg{
+  width:20px;
+  height:20px;
+  color:var(--white);
+}
+.feature-bullet-text{
+  font-size:17px;
+  line-height:1.45;
+  font-weight:700;
+  color:var(--white);
+}
+.feature-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:212px;
+  padding:14px 24px;
+  border-radius:12px;
+  background:var(--white);
+  color:#1F8B42;
+  font-size:15px;
+  font-weight:800;
+  text-decoration:none;
+  box-shadow:0 8px 30px rgba(0,0,0,0.12);
+}
+.feature-visual{
+  border-radius:18px;
+  overflow:hidden;
+  border:6px solid rgba(235,239,255,0.55);
+  background:#EEF0FF;
+  box-shadow:0 18px 40px rgba(8,24,14,0.18);
+}
+.feature-visual img{
+  display:block;
+  width:100%;
+  height:auto;
+}
 .ftab-mockup{
   background:var(--gray-50);border-radius:16px;padding:24px;
   border:1px solid var(--gray-100);min-height:320px;
@@ -690,6 +886,93 @@ h2{
 }
 .btn-submit:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,87,34,0.4)}
 .btn-submit svg{width:16px;height:16px}
+.btn-submit:disabled{opacity:.78;cursor:wait;transform:none;box-shadow:0 4px 20px rgba(255,87,34,0.18)}
+.form-status{
+  display:none;
+  margin-top:2px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--green);
+  text-align:center;
+}
+.form-status.show{display:block}
+body.modal-open{overflow:hidden}
+.thankyou-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(13,13,13,0.56);
+  z-index:300;
+}
+.thankyou-modal.show{display:flex}
+.thankyou-dialog{
+  width:min(100%,520px);
+  background:var(--white);
+  border-radius:24px;
+  padding:32px 28px 26px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.22);
+  position:relative;
+  text-align:center;
+}
+.thankyou-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:36px;
+  height:36px;
+  border:none;
+  border-radius:50%;
+  background:var(--gray-100);
+  color:var(--gray-700);
+  font-size:18px;
+  cursor:pointer;
+}
+.thankyou-icon{
+  width:72px;
+  height:72px;
+  border-radius:22px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#FFF3F0,#FFE0D2);
+  color:var(--orange);
+  box-shadow:0 10px 30px rgba(255,87,34,0.16);
+}
+.thankyou-icon svg{width:32px;height:32px}
+.thankyou-title{
+  font-family:var(--font-head);
+  font-size:30px;
+  font-weight:800;
+  line-height:1.15;
+  letter-spacing:-.8px;
+  color:var(--gray-900);
+  margin-bottom:10px;
+}
+.thankyou-text{
+  font-size:15px;
+  color:var(--gray-500);
+  line-height:1.7;
+  margin-bottom:22px;
+}
+.thankyou-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:180px;
+  padding:13px 22px;
+  border:none;
+  border-radius:12px;
+  background:var(--orange);
+  color:var(--white);
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(255,87,34,0.24);
+}
 
 /* ─── FOOTER ─── */
 footer{background:var(--dark);padding:56px var(--side) 32px}
@@ -720,6 +1003,37 @@ hr{border:none;border-top:1px solid var(--gray-100)}
   :root{--side:5%}
   nav,.nav-actions .btn-ghost{display:none}
   h2{font-size:28px;letter-spacing:-.5px}
+  #features{padding:72px 0}
+  .features-tabs-row{
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:12px;
+    width:calc(100% - (var(--side) * 2));
+    padding:0 0 14px;
+  }
+  .features-tabs-row .ftab{
+    margin-bottom:0;
+    border-radius:16px;
+    border:1.5px solid transparent;
+    background:transparent;
+    min-height:84px;
+  }
+  .features-tabs-row .ftab.active{
+    background:rgba(0,185,107,0.1);
+    border-color:rgba(0,185,107,0.22);
+  }
+  .feature-stage-wrap{padding:0 64px}
+  .feature-stage{
+    padding:20px calc(var(--side) - .5%);
+    border-radius:24px;
+  }
+  .feature-nav{width:40px;height:40px}
+  .feature-nav svg{width:24px;height:24px}
+  .feature-nav.prev{left:18px}
+  .feature-nav.next{right:18px}
+  .feature-panel{grid-template-columns:1fr;gap:22px}
+  .feature-copy{padding:8px 6px 0}
+  .feature-copy h3{font-size:36px}
+  .feature-visual{max-width:100%}
   .hero-h1{font-size:clamp(34px,7vw,48px);letter-spacing:-1px}
   .hero-sub{font-size:15px}
   .hero-column-visual{margin-top:32px}
@@ -754,6 +1068,7 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 @media(max-width:560px){
   :root{--side:5%}
   section{padding:60px var(--side)}
+  #features{padding:60px 0}
   #logos{padding:24px 0}
   #stats{padding:48px var(--side)}
   #cta-section{padding:60px var(--side)}
@@ -777,6 +1092,57 @@ hr{border:none;border-top:1px solid var(--gray-100)}
   .hero-cover-badge{padding:14px 16px}
   .hero-cover-badge strong{font-size:20px}
   .hero-mockup{display:none}
+  .features-head{margin-bottom:20px}
+  .features-head p{font-size:14px}
+  .features-tabs-row{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+    width:calc(100% - (var(--side) * 2));
+    padding:0 0 12px;
+    margin-bottom:0;
+  }
+  .features-tabs-row .ftab{
+    padding:10px 12px 12px;
+    margin-bottom:0;
+    border-radius:16px;
+    background:transparent;
+    min-height:78px;
+  }
+  .features-tabs-row .ftab img{display:block;width:22px;height:22px}
+  .features-tabs-row .ftab span{font-size:12px}
+  .features-tabs-row .ftab.active{
+    background:rgba(0,185,107,0.12);
+    border:1.5px solid rgba(0,185,107,0.28);
+  }
+  .feature-stage-wrap{
+    margin-top:16px;
+    padding:0;
+  }
+  .feature-stage{
+    padding:18px var(--side);
+    border-radius:20px;
+  }
+  .feature-nav{
+    position:absolute;
+    top:auto;
+    bottom:-54px;
+    transform:none;
+    width:44px;
+    height:44px;
+    color:#64748B;
+  }
+  .feature-nav svg{width:24px;height:24px}
+  .feature-nav.prev{left:calc(50% - 50px)}
+  .feature-nav.next{right:calc(50% - 50px)}
+  .feature-copy h3{font-size:28px}
+  .feature-copy p{font-size:14px;margin-bottom:20px}
+  .feature-bullets{gap:14px;margin-bottom:22px}
+  .feature-bullet-icon{width:38px;height:38px}
+  .feature-bullet-text{font-size:15px}
+  .feature-cta{width:100%;min-width:0}
+  .feature-visual{border-width:4px;border-radius:14px}
+  .feature-panel{width:100%}
+  #features{padding-bottom:120px}
   /* Logos */
   .logos-label{padding:0 var(--side);font-size:12px}
   .logo-item{padding:4px 18px}
@@ -788,42 +1154,27 @@ hr{border:none;border-top:1px solid var(--gray-100)}
   .stat-number{font-size:32px;letter-spacing:-1px}
   .stat-label{font-size:12px}
   .stat-desc{display:none}
-  /* Features tabs mobile — scroll pill bar */
   .features-tabs-row{
-    overflow-x:scroll;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    border-bottom:none;
+    overflow:visible;
     gap:8px;
-    padding:4px 0 16px;
-    margin-bottom:24px;
-    flex-wrap:nowrap;
-  }
-  .features-tabs-row::-webkit-scrollbar{display:none}
-  .ftab{
-    flex-shrink:0;
-    padding:9px 16px;
-    font-size:13px;
-    font-weight:600;
-    white-space:nowrap;
-    border-bottom:none;
+    width:calc(100% - (var(--side) * 2));
+    padding:0 0 12px;
     margin-bottom:0;
-    border-radius:20px;
-    background:var(--gray-100);
-    color:var(--gray-600);
-    border:1.5px solid transparent;
-    min-height:40px;
-    min-width:auto;
-    display:inline-flex;
-    align-items:center;
-    -webkit-tap-highlight-color:transparent;
-    user-select:none;
   }
-  .ftab svg{display:none}
-  .ftab.active{
-    background:var(--orange);
-    color:white;
-    border-color:var(--orange);
+  .features-tabs-row .ftab{
+    min-width:0;
+    padding:10px 8px 12px;
+    white-space:normal;
+    border-bottom:3px solid transparent;
+    border-radius:14px;
+    background:transparent;
+    min-height:0;
+    min-height:78px;
+  }
+  .features-tabs-row .ftab.active{
+    background:rgba(0,185,107,0.12);
+    color:var(--green);
+    border:1.5px solid rgba(0,185,107,0.28);
   }
   .ftab-panel{grid-template-columns:1fr;gap:24px}
   .ftab-panel.active{grid-template-columns:1fr;gap:24px}
@@ -904,6 +1255,7 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 </style>
 </head>
 <body>
+<noscript id="gtm-noscript-anchor"></noscript>
 
 <!-- HEADER -->
 <header>
@@ -1017,6 +1369,215 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 <hr>
 
 <!-- FEATURES TABS -->
+<section id="features">
+  <div class="features-head fu">
+    <h2>Tính năng nổi bật</h2>
+    <p>Các tính năng được phát triển dựa trên AI</p>
+  </div>
+
+  <div class="features-shell fu fu-d1">
+    <div class="features-tabs-row">
+      <button class="ftab active" data-tab="ai" onclick="switchTab('ai', this)">
+        <img src="./Features_Icons/sparkles.svg" alt="" aria-hidden="true">
+        <span>AI</span>
+      </button>
+      <button class="ftab" data-tab="omnichannel" onclick="switchTab('omnichannel', this)">
+        <img src="./Features_Icons/chat-bubble-left-right.svg" alt="" aria-hidden="true">
+        <span>Đa kênh</span>
+      </button>
+      <button class="ftab" data-tab="notes" onclick="switchTab('notes', this)">
+        <img src="./Features_Icons/calendar-days.svg" alt="" aria-hidden="true">
+        <span>Ghi chú, Lập lịch</span>
+      </button>
+      <button class="ftab" data-tab="orders" onclick="switchTab('orders', this)">
+        <img src="./Features_Icons/shopping-bag.svg" alt="" aria-hidden="true">
+        <span>Đơn hàng</span>
+      </button>
+      <button class="ftab" data-tab="quickreply" onclick="switchTab('quickreply', this)">
+        <img src="./Features_Icons/code-bracket.svg" alt="" aria-hidden="true">
+        <span>Trả lời nhanh</span>
+      </button>
+      <button class="ftab" data-tab="slowreply" onclick="switchTab('slowreply', this)">
+        <img src="./Features_Icons/clock.svg" alt="" aria-hidden="true">
+        <span>Phản hồi chậm</span>
+      </button>
+      <button class="ftab" data-tab="emotion" onclick="switchTab('emotion', this)">
+        <img src="./Features_Icons/face-frown.svg" alt="" aria-hidden="true">
+        <span>Cảm xúc</span>
+      </button>
+      <button class="ftab" data-tab="media" onclick="switchTab('media', this)">
+        <img src="./Features_Icons/photo.svg" alt="" aria-hidden="true">
+        <span>Media sang chữ</span>
+      </button>
+      <button class="ftab" data-tab="translate" onclick="switchTab('translate', this)">
+        <img src="./Features_Icons/language.svg" alt="" aria-hidden="true">
+        <span>Dịch văn bản</span>
+      </button>
+      <button class="ftab" data-tab="report" onclick="switchTab('report', this)">
+        <img src="./Features_Icons/chart-bar.svg" alt="" aria-hidden="true">
+        <span>Báo cáo</span>
+      </button>
+      <button class="ftab" data-tab="integrations" onclick="switchTab('integrations', this)">
+        <img src="./Features_Icons/squares-plus.svg" alt="" aria-hidden="true">
+        <span>Tích hợp</span>
+      </button>
+    </div>
+
+    <div class="feature-stage-wrap">
+      <button class="feature-nav prev" type="button" aria-label="Tính năng trước" onclick="shiftFeatureTab(-1)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="feature-stage">
+        <div id="tab-ai" class="ftab-panel feature-panel active">
+          <div class="feature-copy">
+            <h3>AI</h3>
+            <p>Trợ lý ảo AI hỗ trợ đội ngũ bán hàng phản hồi nhanh, chuẩn hóa nội dung tư vấn và giảm phụ thuộc vào từng cá nhân.</p>
+            <div class="feature-bullets">
+              <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Tư vấn tự động theo kịch bản và dữ liệu thực tế của doanh nghiệp</div></div>
+              <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Rút ngắn thời gian phản hồi, tăng tỷ lệ giữ chân và chốt khách</div></div>
+            </div>
+            <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+          </div>
+          <div class="feature-visual"><img src="./Features/image_virtual_assistant.webp" alt="Tính năng trợ lý AI"></div>
+        </div>
+        <div id="tab-omnichannel" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Đa kênh</h3>
+          <p>Quản lý tập trung hội thoại từ nhiều nguồn, giúp đội ngũ phản hồi nhanh và không bỏ sót khách hàng tiềm năng.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Tập trung dữ liệu từ nhiều kênh vào một nơi</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Giảm thất thoát lead và tăng tốc xử lý hội thoại</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_omnichannel.webp" alt="Tính năng đa kênh"></div>
+      </div>
+
+      <div id="tab-notes" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Ghi chú, Lập lịch</h3>
+          <p>Ghi nhớ thông tin khách hàng, tạo nhắc việc và sắp xếp lịch chăm sóc ngay trong luồng làm việc hằng ngày.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 4v4M17 4v4M5 10h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="4" y="6" width="16" height="14" rx="3" stroke="currentColor" stroke-width="2"/></svg></div><div class="feature-bullet-text">Lưu ghi chú nội bộ theo từng khách hàng</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/></svg></div><div class="feature-bullet-text">Lập lịch hẹn và nhắc việc tự động cho đội sale</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_schedule.webp" alt="Tính năng ghi chú và lập lịch"></div>
+      </div>
+
+      <div id="tab-orders" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Đơn hàng</h3>
+          <p>Theo dõi trạng thái đơn, cập nhật luồng xử lý và đồng bộ vận hành bán hàng liền mạch trong một giao diện.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 11H7L6 8zM9 8V6a3 3 0 116 0v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Quản lý tiến trình đơn hàng theo thời gian thực</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Giúp sale và vận hành phối hợp chính xác hơn</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_order.webp" alt="Tính năng quản lý đơn hàng"></div>
+      </div>
+
+      <div id="tab-quickreply" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Trả lời nhanh</h3>
+          <p>Tạo bộ phản hồi mẫu, chèn nhanh vào hội thoại và chuẩn hóa nội dung tư vấn để đội ngũ xử lý đồng đều.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h10M5 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Lưu kịch bản trả lời theo từng tình huống bán hàng</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 7l4-4 4 4M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Rút ngắn thời gian phản hồi và tăng tỷ lệ chốt đơn</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_command.webp" alt="Tính năng trả lời nhanh"></div>
+      </div>
+
+      <div id="tab-slowreply" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Phản hồi chậm</h3>
+          <p>Phát hiện hội thoại bị bỏ quên hoặc phản hồi quá muộn để quản lý kịp thời can thiệp và giữ chân khách.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 8v4l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Cảnh báo hội thoại chậm phản hồi theo ngưỡng thiết lập</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10.3 4.3L2.7 18a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 4.3a2 2 0 00-3.4 0z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Không để trôi lead trong giờ cao điểm hoặc ngoài giờ</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_slow_response.webp" alt="Tính năng phát hiện phản hồi chậm"></div>
+      </div>
+
+      <div id="tab-emotion" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Cảm xúc</h3>
+          <p>Phân tích cảm xúc khách hàng trong hội thoại để ưu tiên xử lý các trường hợp nóng, dễ khiếu nại hoặc có khả năng mua cao.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 14c1 .9 2.3 1.4 4 1.4s3-.5 4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 10h.01M15 10h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/></svg></div><div class="feature-bullet-text">Nhận biết khách đang hài lòng, băn khoăn hay khó chịu</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Ưu tiên chăm sóc đúng thời điểm để tăng chuyển đổi</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_emotion.webp" alt="Tính năng phân tích cảm xúc"></div>
+      </div>
+
+      <div id="tab-media" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Media sang chữ</h3>
+          <p>Chuyển đổi hình ảnh, ghi âm hoặc video thành nội dung văn bản để AI và nhân viên xử lý nhanh hơn.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M10 9l4 2.5-4 2.5V9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Trích xuất nội dung từ media để không bỏ lỡ thông tin quan trọng</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18h12M8 14V8M12 14V6M16 14v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Phục vụ audit, tìm kiếm và đào tạo nội bộ dễ dàng hơn</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_media_to_text.webp" alt="Tính năng media sang chữ"></div>
+      </div>
+
+      <div id="tab-translate" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Dịch văn bản</h3>
+          <p>Hỗ trợ dịch nhanh nội dung hội thoại, giúp doanh nghiệp phục vụ khách hàng đa ngôn ngữ linh hoạt hơn.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h9M8.5 6c0 5-2 8-5 10M8 10c1.2 1.8 2.8 3.4 4.8 4.5M15 6l5 12M17 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Dịch nội dung ngay trong giao diện làm việc</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Giữ trải nghiệm tư vấn nhất quán với khách quốc tế</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_translate.webp" alt="Tính năng dịch văn bản"></div>
+      </div>
+
+      <div id="tab-report" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Báo cáo</h3>
+          <p>Theo dõi hiệu suất đội ngũ, chất lượng hội thoại và các chỉ số vận hành trong cùng một dashboard trực quan.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18V9M12 18V6M18 18v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Báo cáo thời gian thực cho quản lý và lãnh đạo</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feature-bullet-text">Ra quyết định nhanh hơn nhờ dữ liệu rõ ràng</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_report.webp" alt="Tính năng báo cáo"></div>
+      </div>
+
+        <div id="tab-integrations" class="ftab-panel feature-panel">
+        <div class="feature-copy">
+          <h3>Tích hợp</h3>
+          <p>Tích hợp liền mạch dữ liệu doanh nghiệp trên Retion và mở rộng khả năng vận hành ngay trong màn hình chat.</p>
+          <div class="feature-bullets">
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l3 3 3-3M12 15V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="17" width="16" height="3" rx="1.5" stroke="currentColor" stroke-width="2"/></svg></div><div class="feature-bullet-text">Tài liệu tích hợp API</div></div>
+            <div class="feature-bullet"><div class="feature-bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 8h8M8 16h8M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feature-bullet-text">Tạo ứng dụng riêng của doanh nghiệp ngay trong màn hình Chat</div></div>
+          </div>
+          <a href="#cta-section" class="feature-cta">Bắt đầu miễn phí</a>
+        </div>
+        <div class="feature-visual"><img src="./Features/image_app_integration.webp" alt="Tính năng tích hợp"></div>
+        </div>
+      </div>
+      <button class="feature-nav next" type="button" aria-label="Tính năng tiếp theo" onclick="shiftFeatureTab(1)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<hr>
 
 <!-- VIDEO DEMOS -->
 <section id="video-demos">
@@ -1124,19 +1685,49 @@ hr{border:none;border-top:1px solid var(--gray-100)}
     <div class="section-eyebrow" style="justify-content:center">Box Đăng ký chiến lược</div>
     <h2 style="margin-bottom:10px">Đăng ký <span style="color:var(--orange)">Demo &</span><br>dùng thử miễn phí</h2>
     <p class="section-desc" style="margin:0 auto 40px">Điền thông tin để nhận tư vấn miễn phí cùng demo thực tế theo ngành hàng của doanh nghiệp bạn<strong style="color:var(--orange)"></strong></p>
-    <div class="cta-form-new">
-      <div class="form-group"><label class="form-label-new">Họ và tên</label><input type="text" class="form-input-new" placeholder="Nhập họ và tên của bạn"></div>
-      <div class="form-group"><label class="form-label-new">Số điện thoại</label><input type="tel" class="form-input-new" placeholder="Nhập số điện thoại"></div>
-      <div class="form-group"><label class="form-label-new">Lĩnh vực kinh doanh</label><input type="text" class="form-input-new" placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..."></div>
-     
-      <button class="btn-submit">
+    <form
+      id="lead-form"
+      class="cta-form-new"
+      action="https://docs.google.com/forms/d/e/1FAIpQLScnGSLH6qC9NYtTnaL4aKsgY2XCjgfETqkM_LGI5smCFhbXkg/formResponse"
+      method="POST"
+      target="lead-form-target"
+      accept-charset="UTF-8"
+    >
+      <div class="form-group"><label class="form-label-new" for="lead-name">Họ và tên</label><input id="lead-name" name="entry.2092238618" type="text" class="form-input-new" placeholder="Nhập họ và tên của bạn" required></div>
+      <div class="form-group"><label class="form-label-new" for="lead-phone">Số điện thoại</label><input id="lead-phone" name="entry.1556369182" type="tel" class="form-input-new" placeholder="Nhập số điện thoại" required></div>
+      <div class="form-group"><label class="form-label-new" for="lead-business">Lĩnh vực kinh doanh</label><input id="lead-business" name="entry.479301265" type="text" class="form-input-new" placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..." required></div>
+      <input type="hidden" name="fvv" value="1">
+      <input type="hidden" name="partialResponse" value="[null,null,&quot;6097880855499910288&quot;]">
+      <input type="hidden" name="pageHistory" value="0">
+      <input type="hidden" name="fbzx" value="6097880855499910288">
+      <input type="hidden" name="submissionTimestamp" value="-1">
+      <button type="submit" class="btn-submit">
         <svg viewBox="0 0 16 16" fill="none"><path d="M8 2c0 0-4 3-4 6a4 4 0 008 0C12 5 8 2 8 2z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12v3M6.5 15h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
         DEMO & DÙNG THỬ MIỄN PHÍ 🚀
       </button>
+      <div id="lead-form-status" class="form-status" role="status" aria-live="polite"></div>
       <p style="text-align:center;font-size:12px;color:var(--gray-400)">Chỉ còn <strong style="color:var(--orange)">10 suất tư vấn 1-1 chiến lược AI trực tiếp</strong></p>
-    </div>
+    </form>
+    <iframe
+      name="lead-form-target"
+      id="lead-form-target"
+      title="Lead form submit target"
+      style="display:none"
+    ></iframe>
   </div>
 </section>
+
+<div id="thankyou-modal" class="thankyou-modal" aria-hidden="true">
+  <div class="thankyou-dialog" role="dialog" aria-modal="true" aria-labelledby="thankyou-title">
+    <button type="button" class="thankyou-close" id="thankyou-close" aria-label="Đóng">×</button>
+    <div class="thankyou-icon">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h3 id="thankyou-title" class="thankyou-title">Cảm ơn bạn đã đăng ký</h3>
+    <p class="thankyou-text">Thông tin của bạn đã được ghi nhận thành công. Đội ngũ Bot Bán Hàng sẽ liên hệ với bạn sớm để tư vấn và demo thực tế.</p>
+    <button type="button" class="thankyou-btn" id="thankyou-confirm">Đã hiểu</button>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1173,6 +1764,136 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 </footer>
 
 <script>
+function isTrackingIdReady(value, prefix) {
+  return typeof value === 'string' && value.trim() && value.indexOf(prefix) === 0;
+}
+
+function loadScript(src, id) {
+  if (id && document.getElementById(id)) return;
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = src;
+  if (id) script.id = id;
+  document.head.appendChild(script);
+}
+
+function initTracking() {
+  var config = window.TRACKING_CONFIG || {};
+  var gtmId = (config.gtmId || '').trim();
+  var ga4Id = (config.ga4Id || '').trim();
+  var metaPixelId = (config.metaPixelId || '').trim();
+
+  if (isTrackingIdReady(gtmId, 'GTM-')) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    loadScript('https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(gtmId), 'gtm-script');
+
+    var noScriptAnchor = document.getElementById('gtm-noscript-anchor');
+    if (noScriptAnchor && !document.getElementById('gtm-noscript-frame')) {
+      noScriptAnchor.innerHTML = '<iframe id="gtm-noscript-frame" src="https://www.googletagmanager.com/ns.html?id=' +
+        encodeURIComponent(gtmId) +
+        '" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
+    }
+  }
+
+  if (isTrackingIdReady(ga4Id, 'G-')) {
+    loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ga4Id), 'ga4-script');
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', ga4Id);
+  }
+
+  if (metaPixelId) {
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq) return;
+      n=f.fbq=function(){n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);};
+      if(!f._fbq) f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', metaPixelId);
+    fbq('track', 'PageView');
+  }
+}
+
+function trackConversion(eventName, payload) {
+  var params = Object.assign({
+    page_path: window.location.pathname,
+    page_title: document.title
+  }, payload || {});
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(Object.assign({ event: eventName }, params));
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+
+  if (typeof window.fbq === 'function') {
+    if (eventName === 'generate_lead') {
+      window.fbq('track', 'Lead', params);
+    } else {
+      window.fbq('trackCustom', eventName, params);
+    }
+  }
+}
+
+function bindConversionTracking() {
+  document.querySelectorAll('a[href="#cta-section"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      trackConversion('cta_click', {
+        cta_text: (link.textContent || '').trim(),
+        cta_target: '#cta-section'
+      });
+    });
+  });
+
+  var submitBtn = document.querySelector('.btn-submit');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function() {
+      var fields = Array.from(document.querySelectorAll('.cta-form-new .form-input-new'));
+      var filledCount = fields.filter(function(input) {
+        return input.value && input.value.trim();
+      }).length;
+
+      trackConversion('generate_lead', {
+        form_name: 'cta_demo_form',
+        filled_fields: filledCount
+      });
+    });
+  }
+}
+
+var leadForm = document.getElementById('lead-form');
+var leadFormFrame = document.getElementById('lead-form-target');
+var leadFormStatus = document.getElementById('lead-form-status');
+var leadFormSubmitted = false;
+var thankyouModal = document.getElementById('thankyou-modal');
+var thankyouClose = document.getElementById('thankyou-close');
+var thankyouConfirm = document.getElementById('thankyou-confirm');
+
+function openThankyouModal() {
+  if (!thankyouModal) return;
+  thankyouModal.classList.add('show');
+  thankyouModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+}
+
+function closeThankyouModal() {
+  if (!thankyouModal) return;
+  thankyouModal.classList.remove('show');
+  thankyouModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
+
 function renderPartnerLogos() {
   var track = document.getElementById('logos-marquee-track');
   if (!track) return;
@@ -1244,8 +1965,27 @@ function switchTab(id, btn) {
   }
 }
 
+function shiftFeatureTab(direction) {
+  var tabs = Array.from(document.querySelectorAll('#features .ftab[data-tab]'));
+  if (!tabs.length) return;
+
+  var activeIndex = tabs.findIndex(function(tab) {
+    return tab.classList.contains('active');
+  });
+
+  if (activeIndex < 0) activeIndex = 0;
+
+  var nextIndex = (activeIndex + direction + tabs.length) % tabs.length;
+  var nextTab = tabs[nextIndex];
+  if (!nextTab) return;
+
+  switchTab(nextTab.getAttribute('data-tab'), nextTab);
+}
+
 // Attach click handlers directly to each tab button (most reliable on iOS)
 document.addEventListener('DOMContentLoaded', function() {
+  initTracking();
+  bindConversionTracking();
   renderPartnerLogos();
   document.querySelectorAll('.ftab[data-tab]').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
@@ -1289,11 +2029,62 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.fu').forEach(el => io.observe(el));
+
+if (thankyouClose) {
+  thankyouClose.addEventListener('click', closeThankyouModal);
+}
+
+if (thankyouConfirm) {
+  thankyouConfirm.addEventListener('click', closeThankyouModal);
+}
+
+if (thankyouModal) {
+  thankyouModal.addEventListener('click', function(e) {
+    if (e.target === thankyouModal) closeThankyouModal();
+  });
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeThankyouModal();
+});
+
+if (leadForm) {
+  leadForm.addEventListener('submit', function() {
+    var submitButton = leadForm.querySelector('.btn-submit');
+
+    leadFormSubmitted = true;
+    if (submitButton) submitButton.disabled = true;
+    if (leadFormStatus) {
+      leadFormStatus.textContent = 'Đang gửi thông tin...';
+      leadFormStatus.classList.add('show');
+    }
+  });
+}
+
+if (leadFormFrame) {
+  leadFormFrame.addEventListener('load', function() {
+    if (!leadFormSubmitted || !leadForm) return;
+
+    var submitButton = leadForm.querySelector('.btn-submit');
+
+    leadForm.reset();
+
+    if (leadFormStatus) {
+      leadFormStatus.textContent = 'Đã gửi thành công. Dữ liệu đã được lưu vào Google Sheet.';
+      leadFormStatus.classList.add('show');
+    }
+
+    openThankyouModal();
+
+    if (submitButton) submitButton.disabled = false;
+    leadFormSubmitted = false;
+  });
+}
 </script>
 <script src="https://chatbox-embed-sdk.botbanhang.vn/dist/sdk.min.js"></script>
 <script>
   BBH.init({
-    page_id: '388339911461476',
+    page_id: '4aa9fb0c619f42bc94240a4d441ba654',
   })
 </script>
 </body>

@@ -1413,23 +1413,18 @@ hr{border:none;border-top:1px solid var(--gray-100)}
       class="cta-form-new"
       action="https://docs.google.com/forms/d/e/1FAIpQLScnGSLH6qC9NYtTnaL4aKsgY2XCjgfETqkM_LGI5smCFhbXkg/formResponse"
       method="POST"
+      target="lead-form-target"
+      accept-charset="UTF-8"
     >
       <div class="form-group"><label class="form-label-new" for="lead-name">Họ và tên</label><input id="lead-name" name="entry.2092238618" type="text" class="form-input-new" placeholder="Nhập họ và tên của bạn" required></div>
       <div class="form-group"><label class="form-label-new" for="lead-phone">Số điện thoại</label><input id="lead-phone" name="entry.1556369182" type="tel" class="form-input-new" placeholder="Nhập số điện thoại" required></div>
       <div class="form-group"><label class="form-label-new" for="lead-business">Lĩnh vực kinh doanh</label><input id="lead-business" name="entry.479301265" type="text" class="form-input-new" placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..." required></div>
-      <div class="form-group">
-        <label class="form-label-new">Số lượng tin nhắn / ngày</label>
-        <div class="radio-row">
-          <div class="radio-pill" data-value="Dưới 10 tin nhắn" onclick="pickRadio(this)">Dưới 10 tin</div>
-          <div class="radio-pill" data-value="10 - 50 tin nhắn" onclick="pickRadio(this)">10 - 50 tin</div>
-          <div class="radio-pill" data-value="50 - 100 tin nhắn" onclick="pickRadio(this)">50 - 100 tin</div>
-          <div class="radio-pill active" data-value="Trên 100 tin nhắn" onclick="pickRadio(this)">Trên 100 tin</div>
-        </div>
-      </div>
-      <input type="hidden" id="message-volume-input" name="entry.1753222212" value="Trên 100 tin nhắn">
+      <input type="hidden" name="entry.1753222212" value="Trên 100 tin nhắn">
       <input type="hidden" name="fvv" value="1">
+      <input type="hidden" name="partialResponse" value="[null,null,&quot;6097880855499910288&quot;]">
       <input type="hidden" name="pageHistory" value="0">
-      <input type="hidden" name="fbzx" value="3865249642966858604">
+      <input type="hidden" name="fbzx" value="6097880855499910288">
+      <input type="hidden" name="submissionTimestamp" value="-1">
       <button type="submit" class="btn-submit">
         <svg viewBox="0 0 16 16" fill="none"><path d="M8 2c0 0-4 3-4 6a4 4 0 008 0C12 5 8 2 8 2z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12v3M6.5 15h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
         NHẬN DEMO BẢO MẬT DATA TUYỆT ĐỐI 🚀
@@ -1437,6 +1432,12 @@ hr{border:none;border-top:1px solid var(--gray-100)}
       <div id="lead-form-status" class="form-status" role="status" aria-live="polite"></div>
       <p style="text-align:center;font-size:12px;color:var(--gray-400)">Chỉ còn <strong style="color:var(--orange)">10 vị trí</strong> tư vấn trực tiếp bởi chuyên gia</p>
     </form>
+    <iframe
+      name="lead-form-target"
+      id="lead-form-target"
+      title="Lead form submit target"
+      style="display:none"
+    ></iframe>
   </div>
 </section>
 
@@ -1513,14 +1514,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-function pickRadio(el) {
-  el.closest('.radio-row').querySelectorAll('.radio-pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  var messageVolumeInput = document.getElementById('message-volume-input');
-  if (messageVolumeInput) {
-    messageVolumeInput.value = el.dataset.value || el.textContent.trim();
-  }
-}
 function countUp(el) {
   const t = parseInt(el.dataset.target); if (!t) return;
   const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
@@ -1554,13 +1547,7 @@ var leadFormSubmitted = false;
 
 if (leadForm) {
   leadForm.addEventListener('submit', function() {
-    var activeVolume = leadForm.querySelector('.radio-pill.active');
-    var messageVolumeInput = document.getElementById('message-volume-input');
     var submitButton = leadForm.querySelector('.btn-submit');
-
-    if (activeVolume && messageVolumeInput) {
-      messageVolumeInput.value = activeVolume.dataset.value || activeVolume.textContent.trim();
-    }
 
     leadFormSubmitted = true;
     if (submitButton) submitButton.disabled = true;
@@ -1578,15 +1565,6 @@ if (leadFormFrame) {
     var submitButton = leadForm.querySelector('.btn-submit');
 
     leadForm.reset();
-    leadForm.querySelectorAll('.radio-pill').forEach(function(pill) {
-      pill.classList.remove('active');
-    });
-
-    var defaultPill = leadForm.querySelector('.radio-pill[data-value="Trên 100 tin nhắn"]');
-    var messageVolumeInput = document.getElementById('message-volume-input');
-
-    if (defaultPill) defaultPill.classList.add('active');
-    if (messageVolumeInput) messageVolumeInput.value = 'Trên 100 tin nhắn';
 
     if (leadFormStatus) {
       leadFormStatus.textContent = 'Đã gửi thành công. Dữ liệu đã được lưu vào Google Sheet.';
