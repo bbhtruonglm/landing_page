@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Bot Bán Hàng – Cách mạng hóa hỗ trợ khách hàng với AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --orange:#FF5722;
+  --orange-light:#FF7043;
+  --orange-pale:#FFF3F0;
+  --green:#00B96B;
+  --dark:#0D0D0D;
+  --gray-50:#F9F9F9;
+  --gray-100:#F0F0F0;
+  --gray-200:#E0E0E0;
+  --gray-300:#C8C8C8;
+  --gray-400:#9E9E9E;
+  --gray-500:#6B6B6B;
+  --gray-700:#333;
+  --gray-900:#0D0D0D;
+  --white:#fff;
+  --max-w:1160px;
+  --side:max(5%,calc((100% - var(--max-w))/2));
+  --font-body:'Be Vietnam Pro',sans-serif;
+  --font-head:'Plus Jakarta Sans',sans-serif;
+  --radius:12px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.07);
+  --shadow-md:0 4px 20px rgba(0,0,0,0.09);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.12);
+}
+body{font-family:var(--font-body);background:var(--white);color:var(--gray-900);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ─── HEADER ─── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--gray-100);
+  height:60px;padding:0 var(--side);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{display:flex;align-items:center;gap:8px;font-family:var(--font-head);font-weight:800;font-size:18px;color:var(--gray-900);text-decoration:none}
+.logo-icon{width:32px;height:32px;border-radius:8px;background:var(--orange);display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:18px;height:18px}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:14px;font-weight:500;color:var(--gray-500);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--gray-900)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.btn-ghost{font-size:14px;font-weight:600;color:var(--gray-700);background:none;border:none;cursor:pointer;padding:8px 16px;border-radius:8px;transition:background .2s;text-decoration:none}
+.btn-ghost:hover{background:var(--gray-100)}
+.btn-cta{font-size:14px;font-weight:700;color:var(--white);background:var(--orange);border:none;cursor:pointer;padding:9px 20px;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-cta:hover{background:var(--orange-light);transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,87,34,0.3)}
+
+/* ─── HERO ─── */
+#hero{
+  padding:140px var(--side) 80px;
+  text-align:center;
+  background:var(--white);
+  position:relative;overflow:hidden;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--orange-pale);border:1px solid rgba(255,87,34,0.2);
+  border-radius:100px;padding:5px 14px;margin-bottom:24px;
+  font-size:13px;font-weight:600;color:var(--orange);
+}
+.hero-eyebrow .live-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:live-pulse 1.4s infinite}
+@keyframes live-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero-h1{
+  font-family:var(--font-head);
+  font-size:clamp(40px,5.5vw,72px);
+  font-weight:800;line-height:1.1;
+  letter-spacing:-2px;
+  margin-bottom:16px;
+  color:var(--gray-900);
+}
+.hero-h1 .accent{color:var(--orange)}
+.hero-sub{
+  font-size:clamp(15px,1.8vw,18px);color:var(--gray-500);
+  max-width:560px;margin:0 auto 36px;line-height:1.7;
+}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.btn-hero{
+  font-size:15px;font-weight:700;color:var(--white);
+  background:var(--orange);border:none;cursor:pointer;
+  padding:14px 28px;border-radius:10px;
+  transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 4px 20px rgba(255,87,34,0.32);
+}
+.btn-hero:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,87,34,0.4)}
+.btn-hero svg{width:16px;height:16px}
+.hero-note{font-size:13px;color:var(--gray-400);margin-bottom:72px}
+.hero-urgency{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;color:var(--orange);
+  background:var(--orange-pale);border-radius:6px;padding:3px 10px;
+}
+
+/* ─── HERO MOCKUP ─── */
+.hero-mockup{
+  max-width:900px;margin:0 auto;
+  position:relative;
+  overflow:visible;
+}
+.mockup-window{
+  background:var(--white);border-radius:16px;
+  border:1px solid var(--gray-200);
+  box-shadow:0 24px 80px rgba(0,0,0,0.12),0 4px 16px rgba(0,0,0,0.06);
+  overflow:hidden;
+}
+.mockup-bar{
+  background:var(--gray-50);border-bottom:1px solid var(--gray-100);
+  padding:10px 16px;display:flex;align-items:center;gap:8px;
+}
+.mockup-dot{width:10px;height:10px;border-radius:50%}
+.mockup-dot:nth-child(1){background:#FF5F57}
+.mockup-dot:nth-child(2){background:#FFBD2E}
+.mockup-dot:nth-child(3){background:#28C840}
+.mockup-url{
+  flex:1;background:var(--white);border:1px solid var(--gray-200);
+  border-radius:6px;padding:4px 12px;
+  font-size:12px;color:var(--gray-400);margin-left:8px;
+}
+.mockup-body{
+  display:grid;grid-template-columns:240px 1fr;min-height:420px;overflow:hidden;
+}
+.mockup-sidebar{
+  background:var(--gray-50);border-right:1px solid var(--gray-100);
+  padding:16px 12px;
+}
+.sidebar-logo{display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:0 4px}
+.sidebar-logo-icon{width:28px;height:28px;border-radius:6px;background:var(--orange);display:flex;align-items:center;justify-content:center}
+.sidebar-logo-text{font-weight:700;font-size:14px;color:var(--gray-900)}
+.sidebar-channel{
+  display:flex;align-items:center;gap:10px;padding:8px 10px;
+  border-radius:8px;margin-bottom:4px;cursor:pointer;transition:background .15s;
+  font-size:13px;font-weight:500;color:var(--gray-600);
+}
+.sidebar-channel:hover,.sidebar-channel.active{background:var(--white);color:var(--gray-900);box-shadow:var(--shadow-sm)}
+.sidebar-channel-icon{width:20px;height:20px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px}
+.ch-fb{background:#1877F2;color:white}
+.ch-zalo{background:#0068FF;color:white}
+.ch-ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:white}
+.ch-shop{background:#EE4D2D;color:white}
+.ch-tiktok{background:#000;color:white}
+.ch-wa{background:#25D366;color:white}
+.sidebar-badge{margin-left:auto;background:var(--orange);color:white;border-radius:10px;padding:1px 7px;font-size:10px;font-weight:700}
+.mockup-main{padding:20px;display:flex;flex-direction:column;gap:0}
+.mockup-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.mockup-title{font-size:14px;font-weight:700;color:var(--gray-900)}
+.mockup-tabs{display:flex;gap:2px;background:var(--gray-100);border-radius:8px;padding:3px}
+.mockup-tab{font-size:11px;font-weight:600;padding:4px 12px;border-radius:6px;color:var(--gray-500);cursor:pointer;transition:all .15s}
+.mockup-tab.active{background:var(--white);color:var(--gray-900);box-shadow:var(--shadow-sm)}
+.mockup-conversations{display:flex;flex-direction:column;gap:1px}
+.conv-item{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-radius:8px;cursor:pointer;transition:background .15s;
+}
+.conv-item:hover{background:var(--gray-50)}
+.conv-item.active{background:rgba(255,87,34,0.06)}
+.conv-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white}
+.conv-info{flex:1;min-width:0}
+.conv-name{font-size:13px;font-weight:600;color:var(--gray-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv-msg{font-size:11px;color:var(--gray-400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv-time{font-size:10px;color:var(--gray-400);flex-shrink:0}
+.conv-unread{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0}
+/* Floating callout tags */
+.mockup-tag{
+  position:absolute;background:white;border-radius:10px;
+  padding:8px 14px;box-shadow:var(--shadow-md);
+  border:1px solid var(--gray-100);font-size:12px;font-weight:600;color:var(--gray-700);
+  display:flex;align-items:center;gap:6px;
+  animation:tag-float ease-in-out 4s infinite;
+}
+.mockup-tag.left{left:-100px;top:100px;animation-delay:0s}
+.mockup-tag.right{right:-100px;top:80px;animation-delay:1.5s}
+.mockup-tag.right2{right:-100px;bottom:80px;animation-delay:0.8s}
+@keyframes tag-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.tag-icon{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px}
+
+/* ─── LOGO STRIP ─── */
+#logos{
+  padding:36px 0;
+  border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);
+  background:var(--white);text-align:center;overflow:hidden;
+}
+.logos-label{font-size:13px;font-weight:700;color:var(--gray-400);letter-spacing:.5px;margin-bottom:28px;padding:0 var(--side)}
+.logos-marquee-wrap{
+  overflow:hidden;position:relative;
+  mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
+}
+.logos-marquee{
+  display:flex;align-items:center;gap:0;
+  animation:marquee-scroll 50s linear infinite;
+  width:max-content;
+}
+.logos-marquee:hover{animation-play-state:paused}
+.logo-item{
+  padding:4px 28px;border-right:1px solid var(--gray-100);
+  display:flex;align-items:center;justify-content:center;
+  opacity:.62;transition:opacity .2s;flex-shrink:0;
+  height:56px;
+}
+.logo-item:hover{opacity:1}
+.logo-item:last-child{border-right:none}
+.dashboard-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.logos-label{font-size:12px;font-weight:600;color:var(--gray-400);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+
+
+/* ─── SHARED SECTION ─── */
+section{padding:96px var(--side)}
+.section-eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-eyebrow::before{content:'';display:inline-block;width:20px;height:2px;background:var(--orange);border-radius:2px}
+h2{
+  font-family:var(--font-head);font-size:clamp(28px,3.5vw,44px);
+  font-weight:800;line-height:1.15;letter-spacing:-1px;
+  color:var(--gray-900);margin-bottom:14px;
+}
+.section-desc{font-size:16px;color:var(--gray-500);line-height:1.7;max-width:560px;margin-bottom:56px}
+
+/* ─── FEATURES TABS ─── */
+#features{background:var(--white)}
+.features-tabs-row{
+  display:flex;gap:4px;border-bottom:2px solid var(--gray-100);
+  margin-bottom:48px;overflow-x:auto;padding-bottom:0;
+}
+.ftab{
+  display:flex;align-items:center;gap:7px;
+  padding:10px 18px 12px;font-size:13px;font-weight:600;
+  color:var(--gray-500);cursor:pointer;border:none;background:none;
+  border-bottom:2px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.ftab svg{width:15px;height:15px;flex-shrink:0}
+.ftab:hover{color:var(--gray-900)}
+.ftab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.ftab-panel{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+  /* hide inactive panels — use opacity+pointer-events instead of display:none
+     so browser doesn't collapse layout and iOS Safari handles it correctly */
+  opacity:0;
+  visibility:hidden;
+  height:0;
+  overflow:hidden;
+  pointer-events:none;
+  transition:opacity .25s ease;
+}
+.ftab-panel.active{
+  opacity:1;
+  visibility:visible;
+  height:auto;
+  overflow:visible;
+  pointer-events:auto;
+  animation:tab-in .3s ease;
+}
+@keyframes tab-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ftab-text h3{font-family:var(--font-head);font-size:24px;font-weight:800;margin-bottom:12px;color:var(--gray-900)}
+.ftab-text p{font-size:15px;color:var(--gray-500);line-height:1.7;margin-bottom:28px}
+.ftab-points{display:flex;flex-direction:column;gap:14px}
+.ftab-point{display:flex;align-items:flex-start;gap:12px}
+.ftab-point-icon{
+  width:22px;height:22px;border-radius:50%;background:rgba(255,87,34,0.1);
+  border:1.5px solid rgba(255,87,34,0.25);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+}
+.ftab-point-icon svg{width:11px;height:11px}
+.ftab-point-text{font-size:14px;font-weight:500;color:var(--gray-600);line-height:1.5}
+.ftab-point-text strong{color:var(--gray-900);font-weight:700}
+.ftab-mockup{
+  background:var(--gray-50);border-radius:16px;padding:24px;
+  border:1px solid var(--gray-100);min-height:320px;
+  display:flex;flex-direction:column;gap:12px;
+  position:relative;overflow:hidden;
+}
+.ftab-mockup::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,87,34,0.06) 0%,transparent 70%);
+}
+
+/* chat mockup */
+.chat-row{display:flex;gap:8px;align-items:flex-end}
+.chat-row.right{flex-direction:row-reverse}
+.chat-bubble-ui{
+  max-width:72%;padding:10px 14px;border-radius:12px;
+  font-size:13px;line-height:1.5;font-weight:500;
+}
+.chat-bubble-ui.user{background:var(--white);color:var(--gray-800);border:1px solid var(--gray-200);border-bottom-left-radius:4px}
+.chat-bubble-ui.bot{background:var(--orange);color:white;border-bottom-right-radius:4px}
+.chat-bubble-ui.success{background:var(--green);color:white;border-bottom-right-radius:4px}
+.chat-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white}
+.chat-av.bot-av{background:var(--orange)}
+.chat-av.user-av{background:var(--gray-300)}
+.chat-speed-tag{
+  align-self:flex-end;background:rgba(0,185,107,0.1);border:1px solid rgba(0,185,107,0.25);
+  border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--green);
+  display:inline-flex;align-items:center;gap:5px;
+}
+
+/* ─── STATS BANNER ─── */
+#stats{
+  background:var(--orange);padding:64px var(--side);
+  position:relative;overflow:hidden;
+}
+#stats::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 100% at 80% 50%,rgba(255,255,255,0.06) 0%,transparent 60%);
+}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  position:relative;z-index:1;
+}
+.stat-item{
+  padding:0 32px;border-right:1px solid rgba(255,255,255,0.2);
+  text-align:center;
+}
+.stat-item:first-child{padding-left:0}
+.stat-item:last-child{border-right:none}
+.stat-number{
+  font-family:var(--font-head);font-size:52px;font-weight:800;
+  line-height:1;letter-spacing:-2px;color:white;margin-bottom:8px;
+}
+.stat-label{font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:4px}
+.stat-desc{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5}
+
+/* ─── AI FIRST (two-col feature) ─── */
+#ai-first{background:var(--white)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.twocol.reverse{direction:rtl}
+.twocol.reverse > *{direction:ltr}
+.feature-list{display:flex;flex-direction:column;gap:0}
+.feature-row{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 0;border-bottom:1px solid var(--gray-100);cursor:pointer;
+  transition:all .2s;
+}
+.feature-row:last-child{border-bottom:none}
+.feature-row:hover .feature-row-icon{background:var(--orange-pale);border-color:rgba(255,87,34,0.3)}
+.feature-row-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--gray-50);border:1px solid var(--gray-200);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .2s;
+}
+.feature-row-icon svg{width:18px;height:18px;color:var(--orange)}
+.feature-row-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+.feature-row-desc{font-size:13px;color:var(--gray-500);line-height:1.5}
+.visual-card{
+  background:var(--gray-50);border-radius:20px;
+  border:1px solid var(--gray-100);padding:28px;
+  box-shadow:var(--shadow-md);overflow:hidden;position:relative;
+}
+
+/* ─── VIDEO DEMOS ─── */
+#video-demos{background:var(--white)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.video-card{
+  background:var(--gray-50);
+  border:1px solid var(--gray-100);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:var(--shadow-sm);
+}
+.video-frame{
+  position:relative;
+  aspect-ratio:16/9;
+  border-radius:12px;
+  overflow:hidden;
+  background:#000;
+  margin-bottom:14px;
+}
+.video-frame iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+.video-label{font-size:15px;font-weight:700;color:var(--gray-800);margin-bottom:6px}
+.video-sub{font-size:12px;color:var(--gray-400)}
+.video-note{
+  margin-top:16px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:var(--orange-pale);
+  border:1px solid rgba(255,87,34,0.16);
+  font-size:13px;
+  color:var(--gray-700);
+}
+
+/* ─── AUDIT LOSS + PAIN POINTS ─── */
+#audit-loss{background:var(--gray-50)}
+.audit-loss-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray-200);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md)}
+.al-card{background:var(--white);padding:32px 24px;transition:background .2s;position:relative;overflow:hidden}
+.al-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),#FF9A60);opacity:0;transition:opacity .2s}
+.al-card:hover{background:var(--off-white, #FAFAF8)}
+.al-card:hover::after{opacity:1}
+.al-pct{font-family:var(--font-head);font-size:48px;font-weight:800;letter-spacing:-2px;line-height:1;color:var(--orange);margin-bottom:10px}
+.al-pct.al-green{color:#00B96B}
+.al-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+.al-desc{font-size:13px;color:var(--gray-500);line-height:1.6}
+
+#pain-points{background:var(--white)}
+.pain-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.pain-pt-card{
+  background:var(--gray-50);border:1.5px solid var(--gray-100);
+  border-radius:16px;padding:28px 24px;
+  transition:all .25s;
+}
+.pain-pt-card:hover{border-color:rgba(255,87,34,.25);transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,87,34,.09)}
+.pain-pt-icon{width:48px;height:48px;border-radius:12px;background:var(--orange-pale);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.pain-pt-icon svg{width:24px;height:24px}
+.pain-pt-title{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+.pain-pt-desc{font-size:13px;color:var(--gray-500);line-height:1.6}
+.pain-cta{text-align:center}
+
+/* ─── BEFORE AFTER ─── */
+#before-after{background:var(--gray-50)}
+.ba-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ba-col-new{
+  background:var(--white);border-radius:16px;padding:36px 32px;
+  border:1.5px solid var(--gray-100);
+}
+.ba-col-new.after-col{
+  background:linear-gradient(145deg,#FFF8F6,#FFFAF9);
+  border-color:rgba(255,87,34,0.18);
+  box-shadow:0 8px 32px rgba(255,87,34,0.08);
+}
+.ba-col-tag{
+  display:inline-block;padding:4px 12px;border-radius:6px;
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:28px;
+}
+.ba-col-tag.before{background:rgba(232,53,53,0.08);color:#E83535;border:1px solid rgba(232,53,53,0.18)}
+.ba-col-tag.after{background:var(--orange-pale);color:var(--orange);border:1px solid rgba(255,87,34,0.2)}
+.ba-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.ba-row:last-child{margin-bottom:0}
+.ba-icon-x{
+  width:22px;height:22px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:rgba(232,53,53,0.1);display:flex;align-items:center;justify-content:center;
+}
+.ba-icon-check{
+  width:22px;height:22px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:rgba(255,87,34,0.1);display:flex;align-items:center;justify-content:center;
+}
+.ba-row-title{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:3px}
+.ba-row-text{font-size:13px;color:var(--gray-500);line-height:1.5}
+
+/* ─── PROCESS ─── */
+#process{background:var(--white)}
+
+/* ─── PAIN → SOLUTION ─── */
+#pain-solution{background:var(--white)}
+.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.ps-card{border-radius:20px;padding:40px 36px;height:100%}
+.ps-card.pain-card-new{
+  background:var(--gray-50);
+  border:1.5px solid var(--gray-200);
+}
+.ps-card.solution-card{
+  background:linear-gradient(145deg,#FFF5F2,#FFF9F7);
+  border:1.5px solid rgba(255,87,34,0.18);
+  box-shadow:0 8px 40px rgba(255,87,34,0.09);
+  position:relative;overflow:hidden;
+}
+.ps-card.solution-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,87,34,0.08) 0%,transparent 70%);
+}
+.ps-card-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 13px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+  margin-bottom:22px;
+}
+.ps-card-tag.tag-pain{background:rgba(232,53,53,0.08);color:#D63030;border:1px solid rgba(232,53,53,0.18)}
+.ps-card-tag.tag-sol{background:rgba(255,87,34,0.1);color:var(--orange);border:1px solid rgba(255,87,34,0.22)}
+.ps-card-tag svg{width:12px;height:12px}
+.ps-title{font-family:var(--font-head);font-size:20px;font-weight:800;color:var(--gray-900);margin-bottom:8px;line-height:1.25}
+.ps-sub{font-size:13px;color:var(--gray-500);margin-bottom:24px;line-height:1.6}
+.ps-list{display:flex;flex-direction:column;gap:12px}
+.ps-item{display:flex;align-items:flex-start;gap:12px}
+.ps-item-icon{
+  width:22px;height:22px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+}
+.ps-item-icon.x-icon{background:rgba(232,53,53,0.1);color:#D63030}
+.ps-item-icon.check-icon{background:rgba(255,87,34,0.12);color:var(--orange)}
+.ps-item-icon svg{width:10px;height:10px}
+.ps-item-text{font-size:13.5px;font-weight:500;color:var(--gray-700);line-height:1.55}
+.ps-item-text strong{color:var(--gray-900);font-weight:700}
+.ps-result{
+  margin-top:24px;padding:14px 16px;border-radius:10px;
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;font-weight:600;line-height:1.5;
+}
+.ps-result.pain-result{
+  background:rgba(232,53,53,0.06);border:1px solid rgba(232,53,53,0.14);
+  color:#B02020;
+}
+.ps-result.sol-result{
+  background:rgba(255,87,34,0.07);border:1px solid rgba(255,87,34,0.2);
+  color:var(--orange);
+}
+.ps-result svg{width:16px;height:16px;flex-shrink:0;margin-top:1px}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.process-grid::before{
+  content:'';position:absolute;top:36px;left:calc(12.5% + 8px);right:calc(12.5% + 8px);
+  height:1px;background:linear-gradient(90deg,var(--gray-200),var(--orange),var(--orange),var(--gray-200));
+  z-index:0;
+}
+.proc-step{text-align:center;padding:0 20px;position:relative;z-index:1}
+.proc-num{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 20px;
+  background:var(--white);border:2px solid var(--gray-200);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-size:20px;font-weight:800;color:var(--gray-400);
+  box-shadow:var(--shadow-md);transition:all .3s;
+}
+.proc-step.active .proc-num{background:var(--orange);border-color:var(--orange);color:white}
+.proc-step-icon{font-size:0;margin-bottom:12px}
+.proc-step-icon svg{width:24px;height:24px;color:var(--orange)}
+.proc-title{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
+.proc-text{font-size:13px;color:var(--gray-500);line-height:1.55}
+
+/* ─── WHO IS IT FOR ─── */
+#target{background:var(--gray-50)}
+.target-grid-new{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.target-card-new{
+  background:var(--white);border:1.5px solid var(--gray-100);
+  border-radius:14px;padding:0 0 20px;overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:all .25s;
+}
+.target-card-new:hover{border-color:rgba(255,87,34,0.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(255,87,34,0.1)}
+.target-img{width:100%;height:110px;object-fit:cover;background:linear-gradient(135deg,#FFE8DC,#FFD4BC)}
+.target-body{padding:14px 16px 0}
+.target-icon-new{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--orange-pale);display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;
+}
+.target-icon-new svg{width:18px;height:18px}
+.target-title-new{font-size:13px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
+.target-text-new{font-size:12px;color:var(--gray-500);line-height:1.5}
+
+/* ─── TESTIMONIALS ─── */
+#testimonials{background:var(--white)}
+.testi-grid-new{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card-new{
+  background:var(--gray-50);border:1.5px solid var(--gray-100);
+  border-radius:16px;padding:28px;transition:all .25s;
+}
+.testi-card-new:hover{border-color:rgba(255,87,34,0.2);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.testi-stars{display:flex;gap:2px;margin-bottom:14px}
+.star{width:14px;height:14px;color:var(--orange)}
+.testi-quote-new{font-size:14px;line-height:1.75;color:var(--gray-600);font-style:italic;margin-bottom:20px}
+.testi-result{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,185,107,0.08);border:1px solid rgba(0,185,107,0.2);
+  border-radius:20px;padding:3px 10px;
+  font-size:11px;font-weight:700;color:var(--green);margin-bottom:18px;
+}
+.testi-author-new{display:flex;align-items:center;gap:10px;padding-top:16px;border-top:1px solid var(--gray-100)}
+.testi-av-new{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--orange-light));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15px;color:white;flex-shrink:0;overflow:hidden;
+}
+.testi-av-new img{width:100%;height:100%;object-fit:cover}
+.testi-name-new{font-size:14px;font-weight:700;color:var(--gray-900)}
+.testi-role-new{font-size:11px;color:var(--gray-400)}
+
+/* ─── CEO ─── */
+#ceo{background:var(--gray-50)}
+.ceo-grid{display:grid;grid-template-columns:280px 1fr;gap:64px;align-items:center;max-width:900px}
+.ceo-photo{
+  width:200px;height:200px;border-radius:24px;
+  background:linear-gradient(135deg,#FFE8DC,#FFD4BC);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-size:52px;font-weight:800;color:var(--orange);
+  border:2px solid rgba(255,87,34,0.15);box-shadow:var(--shadow-lg);
+}
+.ceo-badge{display:inline-block;background:var(--orange-pale);border:1px solid rgba(255,87,34,0.2);border-radius:5px;padding:3px 10px;font-size:11px;font-weight:700;color:var(--orange);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.ceo-name{font-family:var(--font-head);font-size:32px;font-weight:800;letter-spacing:-0.5px;color:var(--gray-900);margin-bottom:16px}
+.ceo-bio{font-size:15px;color:var(--gray-500);line-height:1.8}
+
+/* ─── FINAL CTA ─── */
+#cta-section{
+  background:var(--white);padding:96px var(--side);
+  text-align:center;
+}
+.cta-box{
+  max-width:680px;margin:0 auto;
+  background:var(--gray-50);border-radius:24px;
+  padding:56px 48px;border:1.5px solid var(--gray-100);
+  box-shadow:var(--shadow-lg);
+}
+.cta-box h2{margin-bottom:10px}
+.cta-box .section-desc{margin:0 auto 40px}
+.cta-form-new{display:flex;flex-direction:column;gap:14px;text-align:left}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-label-new{font-size:13px;font-weight:600;color:var(--gray-600)}
+.form-input-new{
+  background:var(--white);border:1.5px solid var(--gray-200);border-radius:10px;
+  padding:12px 16px;font-family:var(--font-body);font-size:14px;color:var(--gray-900);
+  outline:none;transition:border-color .2s;
+}
+.form-input-new::placeholder{color:var(--gray-400)}
+.form-input-new:focus{border-color:var(--orange)}
+.radio-row{display:flex;flex-wrap:wrap;gap:8px}
+.radio-pill{
+  background:var(--white);border:1.5px solid var(--gray-200);
+  border-radius:8px;padding:7px 14px;font-size:13px;
+  cursor:pointer;transition:all .2s;color:var(--gray-500);user-select:none;
+}
+.radio-pill:hover,.radio-pill.active{border-color:var(--orange);color:var(--orange);background:var(--orange-pale)}
+.btn-submit{
+  width:100%;background:var(--orange);color:white;border:none;
+  border-radius:10px;padding:15px;font-family:var(--font-body);
+  font-weight:700;font-size:15px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .2s;box-shadow:0 4px 20px rgba(255,87,34,0.3);
+  margin-top:4px;
+}
+.btn-submit:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,87,34,0.4)}
+.btn-submit svg{width:16px;height:16px}
+.btn-submit:disabled{opacity:.78;cursor:wait;transform:none;box-shadow:0 4px 20px rgba(255,87,34,0.18)}
+.form-status{
+  display:none;
+  text-align:center;
+  font-size:13px;
+  font-weight:600;
+  color:var(--green);
+  background:rgba(0,185,107,0.08);
+  border:1px solid rgba(0,185,107,0.18);
+  border-radius:10px;
+  padding:10px 14px;
+}
+.form-status.show{display:block}
+
+/* ─── FOOTER ─── */
+footer{background:var(--dark);padding:56px var(--side) 32px}
+.footer-grid{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-family:var(--font-head);font-weight:800;font-size:18px;color:white;text-decoration:none}
+.footer-logo-icon{width:30px;height:30px;border-radius:7px;background:var(--orange);display:flex;align-items:center;justify-content:center}
+.footer-logo-icon svg{width:16px;height:16px}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:260px;margin-bottom:20px}
+.footer-col-title{font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--orange)}
+.footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,0.3)}
+.footer-socials{display:flex;gap:10px}
+.footer-social{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);text-decoration:none;font-size:12px;transition:all .2s}
+.footer-social:hover{border-color:var(--orange);color:var(--orange)}
+
+/* ─── FADE UP ─── */
+.fu{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fu.in{opacity:1;transform:none}
+.fu-d1{transition-delay:.08s}.fu-d2{transition-delay:.16s}.fu-d3{transition-delay:.24s}.fu-d4{transition-delay:.32s}
+
+/* ─── DIVIDER ─── */
+hr{border:none;border-top:1px solid var(--gray-100)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  :root{--side:5%}
+  nav,.nav-actions .btn-ghost{display:none}
+  h2{font-size:28px;letter-spacing:-.5px}
+  .hero-h1{font-size:clamp(34px,7vw,48px);letter-spacing:-1px}
+  .hero-sub{font-size:15px}
+  /* Mockup: hide sidebar, show only conversations */
+  .mockup-tag{display:none}
+  .mockup-body{grid-template-columns:1fr}
+  .mockup-sidebar{display:none}
+  .mockup-window{border-radius:12px}
+  .mockup-main{padding:16px}
+  .mockup-topbar{flex-wrap:wrap;gap:8px}
+  .mockup-tabs{overflow-x:auto}
+  .conv-item{padding:8px 10px}
+  /* Stats */
+  .stats-grid{grid-template-columns:1fr 1fr;gap:0}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);padding:24px 16px}
+  .stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
+  /* Layouts */
+  .twocol,.ftab-panel.active{grid-template-columns:1fr;gap:32px}
+  .twocol.reverse{direction:ltr}
+  .ba-columns{grid-template-columns:1fr;gap:16px}
+  .process-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .process-grid::before{display:none}
+  .target-grid-new{grid-template-columns:repeat(3,1fr);gap:12px}
+  .testi-grid-new{grid-template-columns:1fr;gap:16px}
+  .ceo-grid{grid-template-columns:1fr;gap:28px;text-align:center}
+  .ceo-photo{margin:0 auto}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .cta-box{padding:36px 24px}
+}
+
+@media(max-width:560px){
+  :root{--side:5%}
+  section{padding:60px var(--side)}
+  #logos{padding:24px 0}
+  #stats{padding:48px var(--side)}
+  #cta-section{padding:60px var(--side)}
+  /* Typography */
+  h2{font-size:24px}
+  .section-desc{font-size:14px;margin-bottom:28px}
+  .section-eyebrow{font-size:10px}
+  /* Header */
+  header{height:52px}
+  .logo{font-size:15px}
+  .btn-cta{padding:7px 13px;font-size:12px}
+  /* Hero */
+  .hero-h1{font-size:clamp(28px,9vw,38px);letter-spacing:-1px;margin-bottom:12px}
+  .hero-sub{font-size:14px;margin-bottom:20px}
+  .hero-eyebrow{font-size:11px;padding:4px 12px;margin-bottom:16px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .btn-hero{justify-content:center;padding:13px;font-size:14px}
+  .hero-note{font-size:12px}
+  .hero-mockup{display:none}
+  /* Logos */
+  .logos-label{padding:0 var(--side);font-size:12px}
+  .logo-item{padding:4px 18px}
+  /* Stats */
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-item{padding:18px 10px;border-bottom:1px solid rgba(255,255,255,0.12)}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(255,255,255,0.12)}
+  .stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
+  .stat-number{font-size:32px;letter-spacing:-1px}
+  .stat-label{font-size:12px}
+  .stat-desc{display:none}
+  /* Features tabs mobile — scroll pill bar */
+  .features-tabs-row{
+    overflow-x:scroll;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-bottom:none;
+    gap:8px;
+    padding:4px 0 16px;
+    margin-bottom:24px;
+    flex-wrap:nowrap;
+  }
+  .features-tabs-row::-webkit-scrollbar{display:none}
+  .ftab{
+    flex-shrink:0;
+    padding:9px 16px;
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+    border-bottom:none;
+    margin-bottom:0;
+    border-radius:20px;
+    background:var(--gray-100);
+    color:var(--gray-600);
+    border:1.5px solid transparent;
+    min-height:40px;
+    min-width:auto;
+    display:inline-flex;
+    align-items:center;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+  }
+  .ftab svg{display:none}
+  .ftab.active{
+    background:var(--orange);
+    color:white;
+    border-color:var(--orange);
+  }
+  .ftab-panel{grid-template-columns:1fr;gap:24px}
+  .ftab-panel.active{grid-template-columns:1fr;gap:24px}
+  .ftab-text h3{font-size:18px;margin-bottom:10px}
+  .ftab-text p{font-size:14px;margin-bottom:20px}
+  .ftab-mockup{padding:16px;min-height:auto;border-radius:14px}
+  /* AI-First */
+  .twocol{grid-template-columns:1fr!important;gap:20px}
+  .twocol.reverse{direction:ltr}
+  .visual-card{padding:18px;border-radius:12px}
+  .feature-row{padding:12px 0}
+  .feature-row-title{font-size:13px}
+  .feature-row-desc{font-size:12px}
+  /* Audit loss + pain points */
+  .audit-loss-grid{grid-template-columns:1fr 1fr;gap:1px}
+  .al-pct{font-size:36px}
+  .pain-cards-grid{grid-template-columns:1fr;gap:14px}
+  /* Video */
+  .video-grid{grid-template-columns:1fr;gap:16px}
+  /* Before/After */
+  .ba-columns{grid-template-columns:1fr;gap:10px}
+  .ba-col-new{padding:22px 18px;border-radius:12px}
+  .ba-row{margin-bottom:16px}
+  .ba-row-title{font-size:13px}
+  .ba-row-text{font-size:12px}
+  /* Pain → Solution */
+  .ps-grid{grid-template-columns:1fr;gap:16px}
+  .ps-card{padding:28px 22px;border-radius:16px}
+  /* Process */
+  .process-grid{grid-template-columns:1fr;gap:0}
+  .process-grid::before{display:none}
+  .proc-step{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--gray-100);text-align:left}
+  .proc-step:last-child{border-bottom:none}
+  .proc-num{width:44px;height:44px;font-size:15px;flex-shrink:0;margin:0}
+  .proc-step-icon{display:none}
+  .proc-title{font-size:13px;margin-bottom:3px}
+  .proc-text{font-size:12px}
+  /* Target */
+  .target-grid-new{grid-template-columns:1fr 1fr;gap:10px}
+  .target-img{height:80px}
+  .target-body{padding:10px 10px 0}
+  .target-icon-new{width:28px;height:28px;border-radius:6px;margin-bottom:6px}
+  .target-title-new{font-size:12px;margin-bottom:4px}
+  .target-text-new{font-size:11px}
+  /* Testimonials */
+  .testi-grid-new{grid-template-columns:1fr;gap:12px}
+  .testi-card-new{padding:20px 16px;border-radius:12px}
+  .testi-quote-new{font-size:13px}
+  .testi-result{font-size:10px}
+  .testi-name-new{font-size:13px}
+  .testi-role-new{font-size:11px}
+  /* CEO */
+  .ceo-grid{grid-template-columns:1fr;gap:20px;text-align:center}
+  .ceo-photo{width:130px;height:130px;border-radius:16px;font-size:36px;margin:0 auto}
+  .ceo-badge{font-size:10px}
+  .ceo-name{font-size:22px}
+  .ceo-bio{font-size:13px}
+  /* CTA */
+  .cta-box{padding:24px 16px;border-radius:16px}
+  .cta-form-new{gap:12px}
+  .form-label-new{font-size:12px}
+  .form-input-new{font-size:14px;padding:11px 13px;border-radius:8px}
+  .radio-row{gap:7px}
+  .radio-pill{padding:6px 10px;font-size:12px}
+  .btn-submit{font-size:13px;padding:13px;border-radius:8px}
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:24px}
+  .footer-logo{font-size:16px}
+  .footer-desc{font-size:13px}
+  .footer-col-title{font-size:10px}
+  .footer-links a{font-size:13px}
+  .footer-bottom{flex-direction:column;gap:12px;font-size:11px}
+  .footer-social{width:30px;height:30px;font-size:11px}
+  .dashboard-mini-grid{grid-template-columns:1fr!important}
+  /* CRITICAL: force all .fu visible on mobile — no IntersectionObserver delay */
+  .fu{opacity:1!important;transform:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 18 18" fill="none"><path d="M3 9C3 5.7 5.7 3 9 3s6 2.7 6 6v2a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" fill="white"/><circle cx="6.5" cy="8.5" r="1.5" fill="#FF5722"/><circle cx="11.5" cy="8.5" r="1.5" fill="#FF5722"/></svg>
+    </div>
+    Bot Bán Hàng
+  </a>
+  <nav>
+    <a href="#features">Tính năng</a>
+    <a href="#stats">Hiệu quả</a>
+    <a href="#target">Đối tượng</a>
+    <a href="#testimonials">Khách hàng</a>
+  </nav>
+  <div class="nav-actions">
+    <a href="#cta-section" class="btn-cta">Trải nghiệm hệ thống ngay </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">
+    <span class="live-dot"></span>
+    Tăng 200% hiệu quả chăm sóc khách hàng và tối ưu hóa quy trình
+  </div>
+  <h1 class="hero-h1"><span class="accent">80% khách hàng</span> rời đi nếu bạn trả lời chậm quá 5 phút</h1>
+  <p class="hero-sub">Năm 2026: Chậm 1 giây = mất 1 khách. AI Chatbot tự trả lời – chốt đơn – xin số điện thoại trong 0.1s. Quản trị doanh nghiệp không điểm mù.</p>
+  <div class="hero-actions">
+    <a href="#cta-section" class="btn-hero">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-.5L8 2z" fill="white"/></svg>
+      Trải nghiệm hệ thống ngay →
+    </a>
+  </div>
+  <p class="hero-note">
+    <span class="hero-urgency">Chỉ còn 10 vị trí tư vấn trực tiếp</span>
+    &nbsp;&nbsp;🔥 Hơn 233 người đang xem trang này
+  </p>
+  
+</section>
+
+<!-- PARTNER LOGOS -->
+<div id="logos">
+  <div class="logos-label">Trên 50.000++ khách hàng tin dùng</div>
+  <div class="logos-marquee-wrap">
+    <div class="logos-marquee">
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#E60012">VIETTEL</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="8" fill="#E60012">POST</text><line x1="4" y1="39" x2="80" y2="39" stroke="#E60012" stroke-width="1.5"/><text x="4" y="46" font-family="Arial,sans-serif" font-size="5.5" fill="#E60012">Mạng chuyển phát nhanh rộng nhất</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="8" y="34" font-family="Arial,sans-serif" font-weight="900" font-size="30" fill="#00B14F">Grab</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 130 48" width="130" height="48"><text x="6" y="30" font-family="Georgia,serif" font-weight="400" font-size="16" fill="#8B6914" letter-spacing="1">ngoc</text><text x="52" y="30" font-family="Georgia,serif" font-style="italic" font-size="16" fill="#C4961A">dung</text><text x="6" y="42" font-family="Arial,sans-serif" font-size="7" fill="#9B7B20" letter-spacing="2">BEAUTY CENTER</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#006EB7">Pepsi</text><text x="68" y="28" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#E31837">co</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="32" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#1A1A1A" letter-spacing="2">BI LUXURY</text><text x="4" y="43" font-family="Arial,sans-serif" font-size="7" fill="#555" letter-spacing="3">ALL FOR MEN</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="#1A1A1A" letter-spacing="3">TORANO</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><circle cx="22" cy="24" r="20" fill="#C8102E"/><text x="22" y="20" font-family="Arial Black,sans-serif" font-weight="900" font-size="9" fill="white" text-anchor="middle">PIZZA</text><text x="22" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="9" fill="white" text-anchor="middle">HOME</text><text x="60" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="14" fill="#C8102E">Pizza</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="24" fill="#1A1A1A">20AGAIN</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 80 48" width="80" height="48"><text x="4" y="36" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="#1A1A1A">360</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 90 48" width="90" height="48"><text x="4" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">Vin</text><text x="46" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#1A6FBF">ID</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">VN</text><text x="42" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#004B9B">PAY</text><text x="4" y="40" font-family="Arial,sans-serif" font-size="7.5" fill="#555">Simplifying the life</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 130 48" width="130" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#1A1A1A" letter-spacing="-1">TECHFEST</text><text x="4" y="42" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="#1A1A1A" letter-spacing="4">VIETNAM</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="32" font-family="Arial Black,sans-serif" font-weight="900" font-size="26" fill="#00A550" text-anchor="middle">Yo<tspan fill="#006633">Fresh</tspan></text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#FF0090">Hi</text><text x="34" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#005BAC">PP</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><circle cx="20" cy="24" r="18" fill="#1A1A1A"/><text x="20" y="21" font-family="Arial,sans-serif" font-weight="700" font-size="7" fill="#C89B3C" text-anchor="middle">CHA GO</text><text x="20" y="30" font-family="Arial,sans-serif" font-size="5.5" fill="#C89B3C" text-anchor="middle">TEA &amp; CAFÉ</text><text x="48" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#1A1A1A">Cha Go</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="30" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="22" fill="#C89B3C">saffran</text><text x="4" y="43" font-family="Arial,sans-serif" font-size="7" fill="#888" letter-spacing="2">VIETNAM</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="22" font-family="Arial,sans-serif" font-weight="900" font-size="12" fill="#00A550">Cốc</text><text x="4" y="36" font-family="Arial,sans-serif" font-weight="900" font-size="12" fill="#00A550">Cốc</text><circle cx="55" cy="22" r="16" fill="#00A550" opacity=".15"/><text x="55" y="27" font-family="Arial Black,sans-serif" font-size="10" fill="#00A550" text-anchor="middle">c</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="18" fill="#1A1A1A" letter-spacing="1">ARISTINO</text><text x="4" y="41" font-family="Arial,sans-serif" font-size="10" fill="#888">®</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><circle cx="22" cy="24" r="20" fill="#E31837"/><text x="22" y="27" font-family="Arial Black,sans-serif" font-weight="900" font-size="7.5" fill="white" text-anchor="middle">DẦM SEN</text><text x="50" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="10" fill="#E31837">Đầm Sen</text><text x="50" y="36" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="#1A1A1A">WATER PARK</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 130 48" width="130" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#E31837">BIBO MART</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="7" fill="#555">Hệ thống cửa hàng Mẹ &amp; Bé</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="24" font-family="Arial Black,sans-serif" font-weight="900" font-size="18" fill="#006EB7" text-anchor="middle">VOSO</text><text x="50" y="38" font-family="Arial,sans-serif" font-size="12" fill="#006EB7" text-anchor="middle">.vn</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#00A550">VTC</text><text x="52" y="22" font-family="Arial,sans-serif" font-weight="700" font-size="10" fill="#1A1A1A">online</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="7" fill="#00A550">Cuộc sống tươi đẹp</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#006EB7">OCEAN</text><text x="80" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#E31837">EDU</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="33" font-family="Arial,sans-serif" font-weight="900" font-size="24" fill="#E31837">Anlene</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="26" fill="#1A1A1A">yody</text><text x="4" y="44" font-family="Arial,sans-serif" font-size="7" fill="#888">look good · feel good</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#8B1A1A" text-anchor="middle">SAKUKO</text><text x="50" y="40" font-family="Arial,sans-serif" font-size="7" fill="#888" text-anchor="middle">JAPANESE STORE</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#009245">Vin</text><text x="36" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#E31837">Mart</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="8" fill="#E8A000">★ VinMart</text></svg></div>
+      <!-- Duplicate set for seamless loop -->
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#E60012">VIETTEL</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="8" fill="#E60012">POST</text><line x1="4" y1="39" x2="80" y2="39" stroke="#E60012" stroke-width="1.5"/></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="8" y="34" font-family="Arial,sans-serif" font-weight="900" font-size="30" fill="#00B14F">Grab</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#006EB7">Pepsi</text><text x="68" y="28" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#E31837">co</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="#1A1A1A" letter-spacing="3">TORANO</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 90 48" width="90" height="48"><text x="4" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">Vin</text><text x="46" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#1A6FBF">ID</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">VN</text><text x="42" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#004B9B">PAY</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="32" font-family="Arial Black,sans-serif" font-weight="900" font-size="26" fill="#00A550" text-anchor="middle">Yo<tspan fill="#006633">Fresh</tspan></text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#FF0090">Hi</text><text x="34" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#005BAC">PP</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="18" fill="#1A1A1A">ARISTINO</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="33" font-family="Arial,sans-serif" font-weight="900" font-size="24" fill="#E31837">Anlene</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="26" fill="#1A1A1A">yody</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#E31837">BIBO MART</text></svg></div>
+      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#006EB7">OCEAN</text><text x="80" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#E31837">EDU</text></svg></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- BẢNG KIỂM TOÁN TỔN THẤT -->
+<section id="audit-loss" style="background:var(--gray-50)">
+  <div class="section-eyebrow fu">Bảng kiểm toán tổn thất</div>
+  <h2 class="fu fu-d1">Con số biết nói</h2>
+  <p class="section-desc fu fu-d2">Đây là những gì đang xảy ra mỗi ngày tại hàng nghìn doanh nghiệp — kể cả của bạn.</p>
+  <div class="audit-loss-grid fu">
+    <div class="al-card">
+      <div class="al-pct">80%</div>
+      <div class="al-title">Ngân sách lãng phí</div>
+      <div class="al-desc">Chậm phản hồi 5 phút là dâng khách cho đối thủ. AI phản hồi trong 0.1 giây để giữ chân khách ngay lập tức.</div>
+    </div>
+    <div class="al-card">
+      <div class="al-pct al-green">100%</div>
+      <div class="al-title">Soi sáng "vùng tối"</div>
+      <div class="al-desc">Loại bỏ tình trạng "mù" thông tin. AI kiểm soát nội dung tư vấn, đảm bảo quy trình luôn chuẩn xác.</div>
+    </div>
+    <div class="al-card">
+      <div class="al-pct">70%</div>
+      <div class="al-title">Quỹ lương tối ưu</div>
+      <div class="al-desc">Thay vì đội ngũ đông đảo, chỉ cần nhân sự tinh hoa kết hợp AI để xử lý khối lượng việc gấp 100 lần.</div>
+    </div>
+    <div class="al-card">
+      <div class="al-pct al-green">0%</div>
+      <div class="al-title">Bảo mật tài sản tuyệt đối</div>
+      <div class="al-desc">Chấm dứt nỗi lo nhân viên nghỉ việc mang theo data. Dữ liệu khách hàng nằm an toàn trong hệ thống.</div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- CHẤT VẤN NHÀ QUẢN TRỊ -->
+<section id="pain-points" style="background:var(--white)">
+  <div class="section-eyebrow fu">Chất vấn nhà quản trị</div>
+  <h2 class="fu fu-d1">Đã bao giờ doanh nghiệp rơi vào tình trạng <span style="color:var(--orange)">"vận hành bằng niềm tin"</span>?</h2>
+  <p class="section-desc fu fu-d2">Những nỗi đau này có quen thuộc với bạn không?</p>
+  <div class="pain-cards-grid fu">
+    <div class="pain-pt-card">
+      <div class="pain-pt-icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#FF5722" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#FF5722" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="pain-pt-title">Áp lực trực chiến 24/7</div>
+      <div class="pain-pt-desc">Phải giám sát nhân viên liên tục, lo sợ kịch bản tư vấn bị sai lệch làm mất khách hàng.</div>
+    </div>
+    <div class="pain-pt-card">
+      <div class="pain-pt-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 17l4-6 4 3.5 4-7 4 5" stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pain-pt-title">Doanh số trồi sụt thất thường</div>
+      <div class="pain-pt-desc">Doanh số phụ thuộc vào cảm xúc và thái độ của đội ngũ Telesale mỗi ngày.</div>
+    </div>
+    <div class="pain-pt-card">
+      <div class="pain-pt-icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M3 10h18M8 6V4m8 2V4" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="pain-pt-title">Nguy cơ mất sạch data</div>
+      <div class="pain-pt-desc">Dữ liệu khách hàng — tài sản quý giá nhất — bị thất thoát khi có sự thay đổi nhân sự.</div>
+    </div>
+  </div>
+  <div class="pain-cta fu">
+    <a href="#cta-section" class="btn-hero" style="display:inline-flex">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Tìm giải pháp ở đây
+    </a>
+  </div>
+</section>
+
+<hr>
+
+<!-- FEATURES TABS -->
+<section id="features">
+  <div class="section-eyebrow fu">Tính năng nổi bật</div>
+  <h2 class="fu fu-d1">Các tính năng được phát triển dựa trên AI</h2>
+  <p class="section-desc fu fu-d2">Từ bot bán hàng đến hậu kiểm tự động — mọi công cụ bạn cần để vận hành doanh nghiệp mà không cần có mặt 24/7.</p>
+  <div class="features-tabs-row fu fu-d2">
+    <button class="ftab active" data-tab="bot">
+      <svg viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 13c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Nhân viên AI
+    </button>
+    <button class="ftab" data-tab="omni">
+      <svg viewBox="0 0 15 15" fill="none"><rect x="1" y="1" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+      Đa kênh
+    </button>
+    <button class="ftab" data-tab="security">
+      <svg viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5L2 4v4.5C2 11.5 4.5 14 7.5 14S13 11.5 13 8.5V4L7.5 1.5z" stroke="currentColor" stroke-width="1.5"/></svg>
+      Bảo mật data
+    </button>
+    <button class="ftab" data-tab="audit">
+      <svg viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 7.5l2 2 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Hậu kiểm AI
+    </button>
+    <button class="ftab" data-tab="report">
+      <svg viewBox="0 0 15 15" fill="none"><path d="M2 12l3-4 3 2.5 3-5 2 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Báo cáo
+    </button>
+  </div>
+
+  <div id="tab-omni" class="ftab-panel">
+    <div class="ftab-text">
+      <h3>Omnichannel — Tất cả kênh trong một nơi</h3>
+      <p>Quản lý toàn bộ tin nhắn từ Facebook, Zalo, Instagram, TikTok, Shopee trong một giao diện duy nhất.</p>
+      <div class="ftab-points">
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text"><strong>6+ kênh nhắn tin</strong> kết nối trực tiếp</div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Không cần chuyển tab, <strong>tiết kiệm 70% thời gian</strong></div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phân loại hội thoại tự động theo <strong>trạng thái &amp; ưu tiên</strong></div></div>
+      </div>
+    </div>
+    <div class="ftab-mockup">
+      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px">KÊNH KẾT NỐI</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-fb" style="width:24px;height:24px;border-radius:6px">f</div><span style="font-size:13px;font-weight:600;flex:1">Facebook</span><span style="font-size:11px;font-weight:700;color:var(--orange);background:var(--orange-pale);padding:2px 8px;border-radius:10px">24 tin nhắn</span></div>
+        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-zalo" style="width:24px;height:24px;border-radius:6px">Z</div><span style="font-size:13px;font-weight:600;flex:1">Zalo OA</span><span style="font-size:11px;font-weight:700;color:var(--green);background:rgba(0,185,107,0.1);padding:2px 8px;border-radius:10px">Online</span></div>
+        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-ig" style="width:24px;height:24px;border-radius:6px">ig</div><span style="font-size:13px;font-weight:600;flex:1">Instagram</span><span style="font-size:11px;font-weight:700;color:var(--orange);background:var(--orange-pale);padding:2px 8px;border-radius:10px">8 tin nhắn</span></div>
+        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-tiktok" style="width:24px;height:24px;border-radius:6px">T</div><span style="font-size:13px;font-weight:600;flex:1">TikTok</span><span style="font-size:11px;font-weight:700;color:var(--green);background:rgba(0,185,107,0.1);padding:2px 8px;border-radius:10px">Online</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-bot" class="ftab-panel active">
+    <div class="ftab-text">
+      <h3>AI tự chat, chốt đơn, xin số trong 0.1 giây</h3>
+      <p>Bot Bán Hàng tự tạo nội dung tư vấn sắc sảo, chạm đúng tâm lý khách hàng. Không cần nhân sự thường trực.</p>
+      <div class="ftab-points">
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phản hồi tự động <strong>trong 0.1 giây</strong>, 24/7</div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text"><strong>Tự chốt đơn và xin số điện thoại</strong> khách hàng</div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Kịch bản tư vấn <strong>theo ngành hàng</strong> của bạn</div></div>
+      </div>
+    </div>
+    <div class="ftab-mockup">
+      <div class="chat-row"><div class="chat-av user-av">K</div><div class="chat-bubble-ui user">Cho hỏi son lì màu đất nào phù hợp da ngăm không ạ?</div></div>
+      <div class="chat-row right"><div class="chat-bubble-ui bot">Dạ chào chị! Da ngăm hợp tone đất ấm: Caramel Nude hoặc Berry Rose ạ. Chị tìm son lì hay bóng?</div><div class="chat-av bot-av">AI</div></div>
+      <div class="chat-row"><div class="chat-av user-av">K</div><div class="chat-bubble-ui user">Son lì ạ, dưới 300k</div></div>
+      <div class="chat-row right"><div class="chat-bubble-ui bot">Em có Son Lì Velvet #07 Terracotta — 249k, bán chạy nhất tháng! Cho em giữ 1 hộp không ạ? 🧡</div><div class="chat-av bot-av">AI</div></div>
+      <div class="chat-row right"><div class="chat-bubble-ui success">Đặt hàng thành công! Cho em xin số điện thoại xác nhận nhé chị ✓</div><div class="chat-av bot-av" style="background:var(--green)">AI</div></div>
+      <div class="chat-speed-tag">⚡ Phản hồi trong 0.1 giây</div>
+    </div>
+  </div>
+
+  <div id="tab-security" class="ftab-panel">
+    <div class="ftab-text">
+      <h3>Ẩn số điện thoại — Bảo mật data tuyệt đối</h3>
+      <p>Sales tư vấn và chốt đơn "điên cuồng" nhưng hoàn toàn không thấy số điện thoại khách hàng. Chấm dứt nỗi lo nhân viên nghỉ việc mang theo data quý giá.</p>
+      <div class="ftab-points">
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text"><strong>Số điện thoại ẩn</strong> hoàn toàn với nhân viên</div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Nhân viên nghỉ việc — <strong>data vẫn nguyên vẹn</strong></div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phân quyền truy cập <strong>theo vai trò</strong> chi tiết</div></div>
+      </div>
+    </div>
+    <div class="ftab-mockup">
+      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:12px">KHÁCH HÀNG — BẢO MẬT</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:white;border-radius:8px;padding:12px 14px;border:1px solid var(--gray-100)"><div style="font-size:12px;color:var(--gray-400);margin-bottom:4px">Số điện thoại</div><div style="font-size:14px;font-weight:700;color:var(--gray-900);display:flex;align-items:center;gap:8px"><span style="letter-spacing:2px">090 •••• ••78</span><span style="font-size:10px;background:var(--orange-pale);color:var(--orange);padding:2px 8px;border-radius:6px;font-weight:700">Ẩn với sales</span></div></div>
+        <div style="background:white;border-radius:8px;padding:12px 14px;border:1px solid var(--gray-100)"><div style="font-size:12px;color:var(--gray-400);margin-bottom:4px">Ghi chú nội bộ</div><div style="font-size:13px;font-weight:600;color:var(--gray-900)">Nguyễn Thị Mai — VIP khách</div></div>
+        <div style="background:rgba(0,185,107,0.06);border-radius:8px;padding:10px 14px;border:1px solid rgba(0,185,107,0.15);display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L3 4.5v4C3 11 5 14 8 14s5-3 5-5.5v-4L8 2z" fill="rgba(0,185,107,0.2)" stroke="#00B96B" stroke-width="1.2"/></svg><span style="font-size:12px;font-weight:600;color:var(--green)">Data an toàn trong hệ thống</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-audit" class="ftab-panel">
+    <div class="ftab-text">
+      <h3>Hậu kiểm tự động — Báo lỗi Telesale ngay lập tức</h3>
+      <p>AI tự động soi lỗi tư vấn, báo cáo tức thì, kiểm soát 100% chất lượng hội thoại. Lãnh đạo biết ngay khi có sai phạm — không cần trực chiến 24/7.</p>
+      <div class="ftab-points">
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">AI kiểm soát <strong>100% nội dung hội thoại</strong></div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Báo cáo lỗi <strong>tức thì qua thông báo</strong> cho quản lý</div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Không cần <strong>ngồi trực 24/7</strong> để giám sát</div></div>
+      </div>
+    </div>
+    <div class="ftab-mockup">
+      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:12px">BÁO CÁO CHẤT LƯỢNG HÔM NAY</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:white;border-radius:8px;padding:10px 14px;border:1px solid var(--gray-100);display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div><span style="font-size:13px;font-weight:600;flex:1">Nguyễn Sales A</span><span style="font-size:12px;color:var(--green);font-weight:700">98% chuẩn xác</span></div>
+        <div style="background:rgba(255,87,34,0.06);border-radius:8px;padding:10px 14px;border:1px solid rgba(255,87,34,0.15);display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:50%;background:var(--orange)"></div><span style="font-size:13px;font-weight:600;flex:1">Trần Sales B</span><span style="font-size:12px;color:var(--orange);font-weight:700">⚠ Báo giá sai 2 lần</span></div>
+        <div style="background:white;border-radius:8px;padding:10px 14px;border:1px solid var(--gray-100);display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div><span style="font-size:13px;font-weight:600;flex:1">Lê Sales C</span><span style="font-size:12px;color:var(--green);font-weight:700">96% chuẩn xác</span></div>
+        <div style="background:rgba(0,185,107,0.06);border-radius:8px;padding:8px 14px;border:1px solid rgba(0,185,107,0.15);font-size:12px;color:var(--green);font-weight:600">✓ 847 hội thoại kiểm tra hôm nay</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-report" class="ftab-panel">
+    <div class="ftab-text">
+      <h3>Báo cáo thông minh — Quyết định dựa trên dữ liệu</h3>
+      <p>Dashboard real-time giúp lãnh đạo nắm toàn bộ tình hình mà không cần ngồi trực.</p>
+      <div class="ftab-points">
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Dashboard <strong>real-time</strong> cập nhật liên tục</div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phân tích <strong>hiệu suất từng nhân viên</strong></div></div>
+        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Xuất báo cáo <strong>PDF/Excel</strong> tự động</div></div>
+      </div>
+    </div>
+    <div class="ftab-mockup">
+      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:12px">THÁNG NÀY</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Tổng hội thoại</div><div style="font-size:24px;font-weight:800;color:var(--gray-900);letter-spacing:-1px">24,831</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ 32%</div></div>
+        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Tỷ lệ chốt đơn</div><div style="font-size:24px;font-weight:800;color:var(--orange);letter-spacing:-1px">68%</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ 21%</div></div>
+        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Lead mới</div><div style="font-size:24px;font-weight:800;color:var(--gray-900);letter-spacing:-1px">3,241</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ 18%</div></div>
+        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Phản hồi TB</div><div style="font-size:24px;font-weight:800;color:var(--green);letter-spacing:-1px">0.1s</div><div style="font-size:11px;color:var(--green);font-weight:600">↓ 99%</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<hr>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat-item fu"><div class="stat-number" data-target="300" data-prefix="+" data-suffix="%">+300%</div><div class="stat-label">Hiệu suất vận hành</div><div class="stat-desc">Hệ thống xử lý hàng vạn inbox/cuộc gọi cùng lúc, không trôi lead, không sót khách</div></div>
+    <div class="stat-item fu fu-d1"><div class="stat-number" data-target="70" data-prefix="-" data-suffix="%">-70%</div><div class="stat-label">Chi phí nhân sự</div><div class="stat-desc">Loại bỏ tác vụ lặp lại, tập trung nhân sự tinh hoa</div></div>
+    <div class="stat-item fu fu-d2"><div class="stat-number" data-target="3" data-prefix="×">×3</div><div class="stat-label">Tỷ lệ chuyển đổi</div><div class="stat-desc">Phản hồi trong 0.1 giây – Chốt đơn ngay thời điểm khách hàng có nhu cầu cao nhất</div></div>
+    <div class="stat-item fu fu-d3"><div class="stat-number">1,200+</div><div class="stat-label">Doanh nghiệp tin dùng</div><div class="stat-desc">Quy trình minh bạch, tự động báo cáo lỗi Sales. Lãnh đạo tập trung chiến lược vĩ mô</div></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- AI FIRST -->
+<section id="ai-first">
+  <div class="section-eyebrow fu">Siêu tính năng AI – Vũ khí độc quyền</div>
+  <h2 class="fu fu-d1">AI tự chat – Ẩn số điện thoại –<br>Báo lỗi Telesale</h2>
+  <p class="section-desc fu fu-d2">Tối ưu kịch bản chớp mắt, hậu kiểm tự động 100%, bảo mật dữ liệu tuyệt đối — mọi công cụ bạn cần để vận hành doanh nghiệp mà không cần có mặt 24/7.</p>
+  <div class="twocol fu">
+    <div class="feature-list">
+      <div class="feature-row"><div class="feature-row-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="3.5" stroke="#FF5722" stroke-width="1.5"/><path d="M3 16c0-3 2.5-5 6-5s6 2 6 5" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="feature-row-title">Chăm sóc khách hàng tự động</div><div class="feature-row-desc">Bot tư vấn 24/7, không nghỉ lễ, không cần training lại từ đầu.</div></div></div>
+      <div class="feature-row"><div class="feature-row-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#FF5722" stroke-width="1.5"/><path d="M6 9l2.5 2.5 4-4" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feature-row-title">Tối ưu hiệu suất làm việc</div><div class="feature-row-desc">AI xử lý 80% câu hỏi lặp lại, nhân viên tập trung vào việc sáng tạo giá trị.</div></div></div>
+      <div class="feature-row"><div class="feature-row-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M3 13l3-4 3 2.5 3-5 3 3.5" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feature-row-title">Báo cáo lãnh đạo thông minh</div><div class="feature-row-desc">Tự động tổng hợp dữ liệu, phân tích xu hướng và đề xuất hành động tối ưu.</div></div></div>
+    </div>
+    <div class="visual-card">
+      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:14px">HIỆU SUẤT HÔM NAY</div>
+      <div class="dashboard-mini-grid" style="margin-bottom:14px">
+        <div style="background:var(--white);border-radius:10px;padding:16px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400)">Tin nhắn xử lý</div><div style="font-size:28px;font-weight:800;color:var(--gray-900);letter-spacing:-1px;line-height:1.1;margin:4px 0">4,823</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ +28%</div></div>
+        <div style="background:var(--white);border-radius:10px;padding:16px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400)">Đơn chốt bởi AI</div><div style="font-size:28px;font-weight:800;color:var(--orange);letter-spacing:-1px;line-height:1.1;margin:4px 0">312</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ +41%</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:12px;font-weight:600;color:var(--gray-700)">Bot xử lý</span><span style="font-size:12px;font-weight:700;color:var(--orange)">82%</span></div><div style="height:6px;background:var(--gray-100);border-radius:3px"><div style="height:6px;background:var(--orange);border-radius:3px;width:82%"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:12px;font-weight:600;color:var(--gray-700)">Tỷ lệ hài lòng</span><span style="font-size:12px;font-weight:700;color:var(--green)">96%</span></div><div style="height:6px;background:var(--gray-100);border-radius:3px"><div style="height:6px;background:var(--green);border-radius:3px;width:96%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- BEFORE AFTER -->
+<section id="before-after" style="background:var(--gray-50)">
+  <div class="section-eyebrow fu">Trước &amp; Sau khi có AI</div>
+  <h2 class="fu fu-d1">Mọi thứ thay đổi sau khi AI xuất hiện</h2>
+  <p class="section-desc fu fu-d2">Sự khác biệt không chỉ về tốc độ — mà là cả cách vận hành, bảo vệ doanh nghiệp và giải phóng năng lực lãnh đạo.</p>
+  <div class="ba-columns fu">
+    <div class="ba-col-new">
+      <div class="ba-col-tag before">✕ Trước khi có AI</div>
+      <div class="ba-row"><div class="ba-icon-x"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#E83535" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="ba-row-title">Phản hồi chậm</div><div class="ba-row-text">Khách rời đi nếu không được trả lời trong 5 phút đầu.</div></div></div>
+      <div class="ba-row"><div class="ba-icon-x"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#E83535" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="ba-row-title">Lãng phí ngân sách</div><div class="ba-row-text">80% chi phí Marketing đổ sông đổ biển vì dâng cơ hội cho đối thủ.</div></div></div>
+      <div class="ba-row"><div class="ba-icon-x"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#E83535" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="ba-row-title">Mù tịt thông tin</div><div class="ba-row-text">Không kiểm soát được nội dung tư vấn, nhiều vùng tối trong hội thoại.</div></div></div>
+      <div class="ba-row"><div class="ba-icon-x"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#E83535" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="ba-row-title">Phụ thuộc nhân sự</div><div class="ba-row-text">Mất 3–6 tháng đào tạo, rủi ro mất trắng data khi nhân viên nghỉ.</div></div></div>
+    </div>
+    <div class="ba-col-new after-col">
+      <div class="ba-col-tag after">✓ Sau khi có AI</div>
+      <div class="ba-row"><div class="ba-icon-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ba-row-title">Phản hồi tức thì</div><div class="ba-row-text">Tự động trả lời, chốt đơn, xin số điện thoại trong 0.1 giây.</div></div></div>
+      <div class="ba-row"><div class="ba-icon-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ba-row-title">Quản trị không điểm mù</div><div class="ba-row-text">Soi sáng 100% nội dung tư vấn và mọi cuộc hội thoại.</div></div></div>
+      <div class="ba-row"><div class="ba-icon-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ba-row-title">Hệ thống hóa kỹ năng</div><div class="ba-row-text">Nhân viên mới chỉ cần 3 ngày để chuyên nghiệp như 3 năm kinh nghiệm.</div></div></div>
+      <div class="ba-row"><div class="ba-icon-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ba-row-title">Ổn định vĩnh cửu</div><div class="ba-row-text">Kỹ năng chốt đơn là tài sản hệ thống, không lo biến động nhân sự.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- VIDEO DEMOS -->
+<section id="video-demos">
+  <div class="section-eyebrow fu">Video Demo</div>
+  <h2 class="fu fu-d1">Xem AI hoạt động thực tế</h2>
+  <p class="section-desc fu fu-d2">Xem trực tiếp cách Bot Bán Hàng tự động tư vấn, chốt đơn và bảo mật data trong thực tế.</p>
+  <div class="video-grid fu">
+    <div class="video-card">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/1LizApvyujA"
+          title="Video 1 - Demo Bot Ban Hang"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="video-label">Video 1 — Demo Bot Bán Hàng</div>
+      <!-- <div class="video-sub">Video demo YouTube da duoc cap nhat.</div> -->
+    </div>
+    <div class="video-card">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/Zr3R6YZQVzM"
+          title="Video 2 - Demo Bao mat Data"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="video-label">Video 2 — Demo Bảo mật Data</div>
+      <!-- <div class="video-sub">Video demo YouTube da duoc cap nhat.</div> -->
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-eyebrow fu">Chứng minh hiệu quả</div>
+  <h2 class="fu fu-d1">Triển khai trong 3 ngày,<br>hiệu quả ngay lập tức</h2>
+  <p class="section-desc fu fu-d2">Không cần kỹ thuật, không cần đào tạo dài hạn — đội ngũ chúng tôi setup toàn bộ cho bạn.</p>
+  <div class="process-grid fu">
+    <div class="proc-step"><div class="proc-num">01</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="proc-title">Tư vấn &amp; Phân tích</div><div class="proc-text">Chuyên gia phân tích quy trình bán hàng và xác định điểm tối ưu hóa.</div></div>
+    <div class="proc-step active"><div class="proc-num">02</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#FF5722" stroke-width="1.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="proc-title">Cấu hình hệ thống</div><div class="proc-text">Setup kịch bản AI, kết nối fanpage/Zalo, cài đặt bảo mật data trong 24 giờ.</div></div>
+    <div class="proc-step active"><div class="proc-num">03</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M7 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2h-2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="proc-title">Kiểm thử &amp; Tinh chỉnh</div><div class="proc-text">Chạy thử nghiệm, tinh chỉnh kịch bản theo ngành hàng cụ thể.</div></div>
+    <div class="proc-step"><div class="proc-num">04</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="proc-title">Vận hành &amp; Bứt phá</div><div class="proc-text">Hệ thống chạy 24/7, báo cáo real-time, hỗ trợ kỹ thuật liên tục.</div></div>
+  </div>
+</section>
+
+<hr>
+
+<!-- TARGET -->
+<section id="target" style="background:var(--gray-50)">
+  <div class="section-eyebrow fu">Đối tượng phù hợp</div>
+  <h2 class="fu fu-d1">Ai cần chuyển đổi sang Hybrid Sales?</h2>
+  <p class="section-desc fu fu-d2">Giải pháp được thiết kế riêng cho các doanh nghiệp SME Việt Nam đang muốn bứt phá — kiểm soát hệ thống chính xác mà không cần có mặt 24/7.</p>
+  <div class="target-grid-new fu">
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFE8DC,#FFD4BC)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2C6 2 4 4 4 7c0 4 5 9 5 9s5-5 5-9c0-3-2-5-5-5z" stroke="#FF5722" stroke-width="1.5" fill="none"/><circle cx="9" cy="7" r="2" stroke="#FF5722" stroke-width="1.5"/></svg></div><div class="target-title-new">Spa &amp; Thẩm mỹ viện</div><div class="target-text-new">Tự động đặt lịch, phân loại nhu cầu và giữ chân khách hàng tức thì.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF0E8,#FFE0CC)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M5 2l1 4H3l2 12h10l2-12h-3l1-4z" stroke="#FF5722" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div><div class="target-title-new">Shop Thời trang</div><div class="target-text-new">Xử lý hàng nghìn inbox khi Livestream/Ads; chốt đơn trong 0.1 giây.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFE8DC,#FFDDD0)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><rect x="6" y="2" width="6" height="14" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M7 4h4M7 7h4M7 10h4" stroke="#FF5722" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="target-title-new">Hệ thống Mỹ phẩm</div><div class="target-text-new">Quản lý đại lý và CTV hiệu quả; bảo mật tuyệt đối data khách hàng.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF8F0,#FFE8D5)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M2 9L9 3l7 6" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 8v7a1 1 0 001 1h3v-4h4v4h3a1 1 0 001-1V8" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="target-title-new">Gia dụng &amp; Đời sống</div><div class="target-text-new">Chuẩn hóa quy trình; nhân viên mới chuyên nghiệp chỉ sau 3 ngày.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF3EE,#FFE4D6)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="5" width="14" height="10" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M6 5V4a2 2 0 014 0v1M7 10h4" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="target-title-new">Doanh nghiệp Online SME</div><div class="target-text-new">Kiểm soát chính xác, tốc độ cao mà không cần có mặt 24/7.</div></div></div>
+  </div>
+</section>
+
+<hr>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-eyebrow fu">Câu chuyện thành công</div>
+  <h2 class="fu fu-d1">Họ đã làm được — bạn thì sao?</h2>
+  <p class="section-desc fu fu-d2">Những kết quả thực tế từ các chủ doanh nghiệp đã tin tưởng và triển khai hệ thống.</p>
+  <div class="testi-grid-new fu">
+    <div class="testi-card-new">
+      <div class="testi-stars"><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg></div>
+      <div class="testi-quote-new">"Từ khi áp dụng Bot Bán Hàng, hệ thống tự động trả lời và chốt đơn, mình cắt giảm được 60% chi phí nhân sự mà doanh số vẫn tăng đều. AI không đòi tăng lương, không nghỉ phép, và quan trọng nhất là làm việc chính xác 24/7."</div>
+      <div class="testi-result">✓ Giảm 60% chi phí nhân sự</div>
+      <div class="testi-author-new"><div class="testi-av-new">M</div><div><div class="testi-name-new">Chị Mai</div><div class="testi-role-new">Chủ chuỗi thời trang thiết kế</div></div></div>
+    </div>
+    <div class="testi-card-new">
+      <div class="testi-stars"><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg></div>
+      <div class="testi-quote-new">"Nỗi sợ lớn nhất của dân bán Mỹ phẩm là nhân sự nghỉ việc mang theo toàn bộ danh sách khách hàng sang đối thủ — đó là bài học xương máu của tôi. Giờ đây với hệ thống ẩn số điện thoại, nhân viên vẫn tư vấn nhiệt tình nhưng data vẫn nằm an toàn tuyệt đối. Tôi tập trung hoàn toàn vào mở rộng quy mô."</div>
+      <div class="testi-result">✓ 0% rủi ro mất data</div>
+      <div class="testi-author-new"><div class="testi-av-new">H</div><div><div class="testi-name-new">Anh Hoàng</div><div class="testi-role-new">CEO hệ thống phân phối Mỹ phẩm</div></div></div>
+    </div>
+    <div class="testi-card-new">
+      <div class="testi-stars"><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg></div>
+      <div class="testi-quote-new">"Làm ngành Spa &amp; Clinic, cảm xúc của khách là quan trọng nhất. Tính năng phát hiện cảm xúc của hệ thống đã thay đổi hoàn toàn cách tôi quản lý. Chỉ cần nhìn vào báo cáo, tôi biết ngay khách nào đang không hài lòng để xử lý kịp thời, không đợi đến khi họ 'một đi không trở lại'. Tỷ lệ khách quay lại tăng 40% nhờ sự tinh tế này."</div>
+      <div class="testi-result">✓ Tăng 40% khách quay lại</div>
+      <div class="testi-author-new"><div class="testi-av-new">L</div><div><div class="testi-name-new">Chị Lan</div><div class="testi-role-new">Giám đốc hệ thống Spa &amp; Clinic</div></div></div>
+    </div>
+  </div>
+</section>
+
+
+<hr>
+
+<!-- PAIN → SOLUTION -->
+<section id="pain-solution">
+  <div class="section-eyebrow fu">Vấn đề thực tế</div>
+  <h2 class="fu fu-d1">Muốn ứng dụng AI nhưng đang gặp vấn đề?</h2>
+  <p class="section-desc fu fu-d2">Hầu hết doanh nghiệp SME đều gặp phải những rào cản này khi bắt đầu với AI — và chúng tôi ở đây để giải quyết từng điểm một.</p>
+
+  <div class="ps-grid fu">
+
+    <!-- PAIN CARD -->
+    <div class="ps-card pain-card-new">
+      <div class="ps-card-tag tag-pain">
+        <svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#D63030" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5v.5" stroke="#D63030" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Nhiều doanh nghiệp đang gặp phải
+      </div>
+      <div class="ps-title">Có AI nhưng vẫn chưa bán được hàng</div>
+      <div class="ps-sub">Tự mua tool AI về nhưng không biết cách làm cho nó thực sự hoạt động với ngành của mình.</div>
+      <div class="ps-list">
+        <div class="ps-item">
+          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="ps-item-text">Muốn dùng AI nhưng <strong>không biết bắt đầu từ đâu</strong></div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="ps-item-text">Đã dùng AI nhưng <strong>trả lời chưa hiệu quả, thiếu thực tế</strong></div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="ps-item-text">AI <strong>không hiểu sản phẩm</strong>, tư vấn sai hoặc không chốt được khách</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="ps-item-text">Mất nhiều thời gian setup nhưng <strong>hiệu quả thấp</strong></div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="ps-item-text"><strong>Không có đội ngũ kỹ thuật</strong> để tối ưu và vận hành</div>
+        </div>
+      </div>
+      <div class="ps-result pain-result">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 3v3.5M8 11h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Kết quả: Tốn chi phí nhưng AI vẫn chưa hỗ trợ được bán hàng thực tế.
+      </div>
+    </div>
+
+    <!-- SOLUTION CARD -->
+    <div class="ps-card solution-card">
+      <div class="ps-card-tag tag-sol">
+        <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Giải pháp của chúng tôi
+      </div>
+      <div class="ps-title">Chúng tôi không chỉ cung cấp công cụ AI</div>
+      <div class="ps-sub">Mà trực tiếp đồng hành — từ huấn luyện đến vận hành — để AI thực sự hoạt động với doanh nghiệp của bạn.</div>
+      <div class="ps-list">
+        <div class="ps-item">
+          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ps-item-text"><strong>Huấn luyện AI</strong> theo đúng sản phẩm, ngành hàng và văn phong doanh nghiệp</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ps-item-text"><strong>Setup quy trình thực tế</strong> cho bán hàng và chăm sóc khách hàng</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ps-item-text"><strong>Test, tối ưu và đồng hành</strong> trong suốt quá trình triển khai</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="ps-item-text"><strong>Hỗ trợ vận hành</strong> kể cả khi không có chuyên môn kỹ thuật</div>
+        </div>
+      </div>
+      <div class="ps-result sol-result">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-.5L8 2z" fill="currentColor" opacity=".3"/><path d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        Giúp doanh nghiệp ứng dụng AI hiệu quả, thực tế và dễ sử dụng hơn.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr>
+
+<!-- CTA -->
+<section id="cta-section">
+  <div class="cta-box fu">
+    <div class="section-eyebrow" style="justify-content:center">Box Đăng ký chiến lược</div>
+    <h2 style="margin-bottom:10px">Đừng để <span style="color:var(--orange)">mất khách</span><br>vào tay đối thủ</h2>
+    <p class="section-desc" style="margin:0 auto 40px">Điền thông tin để nhận demo bảo mật data tuyệt đối — hoàn toàn miễn phí. Chỉ còn <strong style="color:var(--orange)">10 vị trí</strong> được tư vấn trực tiếp bởi chuyên gia.</p>
+    <form
+      id="lead-form"
+      class="cta-form-new"
+      action="https://docs.google.com/forms/d/e/1FAIpQLScnGSLH6qC9NYtTnaL4aKsgY2XCjgfETqkM_LGI5smCFhbXkg/formResponse"
+      method="POST"
+    >
+      <div class="form-group"><label class="form-label-new" for="lead-name">Họ và tên</label><input id="lead-name" name="entry.2092238618" type="text" class="form-input-new" placeholder="Nhập họ và tên của bạn" required></div>
+      <div class="form-group"><label class="form-label-new" for="lead-phone">Số điện thoại</label><input id="lead-phone" name="entry.1556369182" type="tel" class="form-input-new" placeholder="Nhập số điện thoại" required></div>
+      <div class="form-group"><label class="form-label-new" for="lead-business">Lĩnh vực kinh doanh</label><input id="lead-business" name="entry.479301265" type="text" class="form-input-new" placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..." required></div>
+      <div class="form-group">
+        <label class="form-label-new">Số lượng tin nhắn / ngày</label>
+        <div class="radio-row">
+          <div class="radio-pill" data-value="Dưới 10 tin nhắn" onclick="pickRadio(this)">Dưới 10 tin</div>
+          <div class="radio-pill" data-value="10 - 50 tin nhắn" onclick="pickRadio(this)">10 - 50 tin</div>
+          <div class="radio-pill" data-value="50 - 100 tin nhắn" onclick="pickRadio(this)">50 - 100 tin</div>
+          <div class="radio-pill active" data-value="Trên 100 tin nhắn" onclick="pickRadio(this)">Trên 100 tin</div>
+        </div>
+      </div>
+      <input type="hidden" id="message-volume-input" name="entry.1753222212" value="Trên 100 tin nhắn">
+      <input type="hidden" name="fvv" value="1">
+      <input type="hidden" name="pageHistory" value="0">
+      <input type="hidden" name="fbzx" value="3865249642966858604">
+      <button type="submit" class="btn-submit">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2c0 0-4 3-4 6a4 4 0 008 0C12 5 8 2 8 2z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12v3M6.5 15h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        NHẬN DEMO BẢO MẬT DATA TUYỆT ĐỐI 🚀
+      </button>
+      <div id="lead-form-status" class="form-status" role="status" aria-live="polite"></div>
+      <p style="text-align:center;font-size:12px;color:var(--gray-400)">Chỉ còn <strong style="color:var(--orange)">10 vị trí</strong> tư vấn trực tiếp bởi chuyên gia</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">
+        <div class="footer-logo-icon"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" fill="white"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        Bot Bán Hàng
+      </a>
+      <p class="footer-desc">Hệ thống AI bán hàng tự động thế hệ mới — giải phóng năng lực lãnh đạo, bảo vệ tài sản số, đưa hiệu suất bán hàng của người Việt vươn tầm quốc tế.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Giải pháp</div>
+      <ul class="footer-links"><li><a href="#">Bot Bán Hàng</a></li><li><a href="#">Chatbot AI</a></li><li><a href="#">Quản lý Zalo</a></li><li><a href="#">Tích hợp API</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Hỗ trợ</div>
+      <ul class="footer-links"><li><a href="#">Tài liệu</a></li><li><a href="#">Hướng dẫn</a></li><li><a href="#">FAQ</a></li><li><a href="#">Liên hệ</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Công ty</div>
+      <ul class="footer-links"><li><a href="#">Giới thiệu</a></li><li><a href="#">Blog</a></li><li><a href="#">Tuyển dụng</a></li><li><a href="#">Nhà đầu tư</a></li></ul>
+    </div>
+    
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Bot Bán Hàng Vietnam JSC. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="#" class="footer-social">X</a>
+      <a href="#" class="footer-social">in</a>
+      <a href="#" class="footer-social">f</a>
+      <a href="#" class="footer-social">yt</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  // Hide all panels
+  document.querySelectorAll('.ftab-panel').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  // Remove active from all tabs
+  document.querySelectorAll('.ftab').forEach(function(t) {
+    t.classList.remove('active');
+  });
+  // Show target panel
+  var panel = document.getElementById('tab-' + id);
+  if (panel) panel.classList.add('active');
+  // Mark tab active
+  if (btn) {
+    btn.classList.add('active');
+    // Scroll tab into view on mobile
+    try {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } catch(e) {}
+  }
+}
+
+// Attach click handlers directly to each tab button (most reliable on iOS)
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.ftab[data-tab]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      switchTab(btn.getAttribute('data-tab'), btn);
+    });
+    // Also handle touchend for iOS responsiveness
+    btn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      switchTab(btn.getAttribute('data-tab'), btn);
+    }, { passive: false });
+  });
+});
+
+function pickRadio(el) {
+  el.closest('.radio-row').querySelectorAll('.radio-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  var messageVolumeInput = document.getElementById('message-volume-input');
+  if (messageVolumeInput) {
+    messageVolumeInput.value = el.dataset.value || el.textContent.trim();
+  }
+}
+function countUp(el) {
+  const t = parseInt(el.dataset.target); if (!t) return;
+  const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+  let s; const d = 1400;
+  requestAnimationFrame(function step(ts) {
+    if (!s) s = ts;
+    const p = Math.min((ts-s)/d,1), e = 1-Math.pow(1-p,3);
+    el.textContent = pre + Math.round(e*t) + suf;
+    if (p < 1) requestAnimationFrame(step);
+  });
+}
+// On mobile, immediately show all .fu elements to avoid blank sections
+if (window.innerWidth <= 560) {
+  document.querySelectorAll('.fu').forEach(el => { el.style.opacity='1'; el.style.transform='none'; });
+}
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in'), i * 70);
+      entry.target.querySelectorAll && entry.target.querySelectorAll('[data-target]').forEach(countUp);
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fu').forEach(el => io.observe(el));
+
+var leadForm = document.getElementById('lead-form');
+var leadFormFrame = document.getElementById('lead-form-target');
+var leadFormStatus = document.getElementById('lead-form-status');
+var leadFormSubmitted = false;
+
+if (leadForm) {
+  leadForm.addEventListener('submit', function() {
+    var activeVolume = leadForm.querySelector('.radio-pill.active');
+    var messageVolumeInput = document.getElementById('message-volume-input');
+    var submitButton = leadForm.querySelector('.btn-submit');
+
+    if (activeVolume && messageVolumeInput) {
+      messageVolumeInput.value = activeVolume.dataset.value || activeVolume.textContent.trim();
+    }
+
+    leadFormSubmitted = true;
+    if (submitButton) submitButton.disabled = true;
+    if (leadFormStatus) {
+      leadFormStatus.textContent = 'Đang gửi thông tin...';
+      leadFormStatus.classList.add('show');
+    }
+  });
+}
+
+if (leadFormFrame) {
+  leadFormFrame.addEventListener('load', function() {
+    if (!leadFormSubmitted || !leadForm) return;
+
+    var submitButton = leadForm.querySelector('.btn-submit');
+
+    leadForm.reset();
+    leadForm.querySelectorAll('.radio-pill').forEach(function(pill) {
+      pill.classList.remove('active');
+    });
+
+    var defaultPill = leadForm.querySelector('.radio-pill[data-value="Trên 100 tin nhắn"]');
+    var messageVolumeInput = document.getElementById('message-volume-input');
+
+    if (defaultPill) defaultPill.classList.add('active');
+    if (messageVolumeInput) messageVolumeInput.value = 'Trên 100 tin nhắn';
+
+    if (leadFormStatus) {
+      leadFormStatus.textContent = 'Đã gửi thành công. Dữ liệu đã được lưu vào Google Sheet.';
+      leadFormStatus.classList.add('show');
+    }
+
+    if (submitButton) submitButton.disabled = false;
+    leadFormSubmitted = false;
+  });
+}
+</script>
+<div
+  class="zalo-chat-widget"
+  data-oaid="1591257820328477563"
+  data-welcome-message="Xin chào"
+  data-autopopup="0"
+  data-width=""
+  data-height=""
+></div>
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+</body>
+</html>

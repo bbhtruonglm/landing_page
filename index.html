@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Bot Bán Hàng – Cách mạng hóa hỗ trợ khách hàng với AI</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -98,6 +97,57 @@ nav a:hover{color:var(--gray-900)}
   display:inline-flex;align-items:center;gap:6px;
   font-size:12px;font-weight:600;color:var(--orange);
   background:var(--orange-pale);border-radius:6px;padding:3px 10px;
+}
+.hero-column-visual{
+  max-width:var(--max-w);
+  margin:40px auto 0;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+}
+.hero-cover-frame{
+  width:100%;
+  border-radius:0;
+  overflow:visible;
+  border:none;
+  box-shadow:none;
+  background:transparent;
+}
+.hero-cover-image{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+}
+.hero-cover-badges{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.hero-cover-badge{
+  background:var(--white);
+  border:1px solid var(--gray-100);
+  border-radius:16px;
+  padding:16px 18px;
+  text-align:left;
+  box-shadow:var(--shadow-sm);
+}
+.hero-cover-badge strong{
+  display:block;
+  margin-bottom:6px;
+  font-family:var(--font-head);
+  font-size:24px;
+  font-weight:800;
+  color:var(--gray-900);
+}
+.hero-cover-badge span{
+  display:block;
+  font-size:13px;
+  line-height:1.55;
+  color:var(--gray-500);
 }
 
 /* ─── HERO MOCKUP ─── */
@@ -203,11 +253,20 @@ nav a:hover{color:var(--gray-900)}
 .logo-item{
   padding:4px 28px;border-right:1px solid var(--gray-100);
   display:flex;align-items:center;justify-content:center;
-  opacity:.62;transition:opacity .2s;flex-shrink:0;
+  opacity:.92;transition:opacity .2s;flex-shrink:0;
   height:56px;
 }
 .logo-item:hover{opacity:1}
 .logo-item:last-child{border-right:none}
+.logo-item img{
+  display:block;
+  height:40px;
+  width:auto;
+  max-width:152px;
+  object-fit:contain;
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:high-quality;
+}
 .dashboard-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -369,19 +428,16 @@ h2{
 #video-demos{background:var(--white)}
 .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .video-card{
-  background:var(--gray-50);
+  border-radius:18px;
+  overflow:hidden;
   border:1px solid var(--gray-100);
-  border-radius:16px;
-  padding:14px;
-  box-shadow:var(--shadow-sm);
+  background:var(--gray-50);
+  box-shadow:var(--shadow-md);
 }
 .video-frame{
   position:relative;
   aspect-ratio:16/9;
-  border-radius:12px;
-  overflow:hidden;
   background:#000;
-  margin-bottom:14px;
 }
 .video-frame iframe{
   width:100%;
@@ -389,17 +445,12 @@ h2{
   border:0;
   display:block;
 }
-.video-label{font-size:15px;font-weight:700;color:var(--gray-800);margin-bottom:6px}
-.video-sub{font-size:12px;color:var(--gray-400)}
-.video-note{
-  margin-top:16px;
-  padding:12px 14px;
-  border-radius:12px;
-  background:var(--orange-pale);
-  border:1px solid rgba(255,87,34,0.16);
-  font-size:13px;
-  color:var(--gray-700);
+.video-meta{
+  padding:16px 18px 18px;
+  background:var(--white);
 }
+.video-label{font-size:15px;font-weight:700;color:var(--gray-800);margin-bottom:6px}
+.video-sub{font-size:12px;color:var(--gray-400);line-height:1.6}
 
 /* ─── AUDIT LOSS + PAIN POINTS ─── */
 #audit-loss{background:var(--gray-50)}
@@ -671,6 +722,8 @@ hr{border:none;border-top:1px solid var(--gray-100)}
   h2{font-size:28px;letter-spacing:-.5px}
   .hero-h1{font-size:clamp(34px,7vw,48px);letter-spacing:-1px}
   .hero-sub{font-size:15px}
+  .hero-column-visual{margin-top:32px}
+  .hero-cover-badges{grid-template-columns:1fr;gap:10px}
   /* Mockup: hide sidebar, show only conversations */
   .mockup-tag{display:none}
   .mockup-body{grid-template-columns:1fr}
@@ -719,6 +772,10 @@ hr{border:none;border-top:1px solid var(--gray-100)}
   .hero-actions{flex-direction:column;align-items:stretch}
   .btn-hero{justify-content:center;padding:13px;font-size:14px}
   .hero-note{font-size:12px}
+  .hero-column-visual{margin-top:24px;gap:12px}
+  .hero-cover-image{aspect-ratio:auto}
+  .hero-cover-badge{padding:14px 16px}
+  .hero-cover-badge strong{font-size:20px}
   .hero-mockup{display:none}
   /* Logos */
   .logos-label{padding:0 var(--side);font-size:12px}
@@ -857,13 +914,13 @@ hr{border:none;border-top:1px solid var(--gray-100)}
     Bot Bán Hàng
   </a>
   <nav>
-    <a href="#features">Tính năng</a>
-    <a href="#stats">Hiệu quả</a>
-    <a href="#target">Đối tượng</a>
-    <a href="#testimonials">Khách hàng</a>
+    <a href="#features"></a>
+    <a href="#stats"></a>
+    <a href="#target"></a>
+    <a href="#testimonials"></a>
   </nav>
   <div class="nav-actions">
-    <a href="#cta-section" class="btn-cta">Trải nghiệm hệ thống ngay </a>
+    <a href="#cta-section" class="btn-cta">Demo & Dùng thử AI miễn phí →</a>
   </div>
 </header>
 
@@ -871,175 +928,56 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 <section id="hero">
   <div class="hero-eyebrow">
     <span class="live-dot"></span>
-    Tăng 200% hiệu quả chăm sóc khách hàng và tối ưu hóa quy trình
+    Tối ưu quy trình bán hàng và chăm sóc khách bằng AI
   </div>
-  <h1 class="hero-h1"><span class="accent">80% khách hàng</span> rời đi nếu bạn trả lời chậm quá 5 phút</h1>
-  <p class="hero-sub">Năm 2026: Chậm 1 giây = mất 1 khách. AI Chatbot tự trả lời – chốt đơn – xin số điện thoại trong 0.1s. Quản trị doanh nghiệp không điểm mù.</p>
+  <h1 class="hero-h1"><span class="accent">Hệ thống AI Chatbot</span> giúp bạn trả lời khách hàng tự động 100% <br/> </h1>
+  <p class="hero-sub">80% Khách hàng rời đi nếu bạn trả lời chậm quá 5 phút</p>
   <div class="hero-actions">
     <a href="#cta-section" class="btn-hero">
       <svg viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-.5L8 2z" fill="white"/></svg>
-      Trải nghiệm hệ thống ngay →
+      Demo & Dùng thử AI miễn phí
     </a>
   </div>
   <p class="hero-note">
-    <span class="hero-urgency">Chỉ còn 10 vị trí tư vấn trực tiếp</span>
-    &nbsp;&nbsp;🔥 Hơn 233 người đang xem trang này
+    <span class="hero-urgency">Chỉ còn 10 suất tư vấn 1-1 chiến lược AI trực tiếp
+</span>
+    &nbsp;&nbsp;🔥 5000+ chủ doanh nghiệp đang xem và đăng ký trải nghiệm
   </p>
-  <div class="hero-mockup fu">
-    <div class="mockup-tag left">
-      <div class="tag-icon" style="background:#E8F5FF;color:#0068FF;font-size:10px">Za</div>
-      Omnichannel in one place
+
+  <div class="hero-column-visual">
+    <div class="hero-cover-frame">
+      <img class="hero-cover-image" src="./cover-4_12.webp" alt="AI chatbot hỗ trợ bán hàng và chăm sóc khách hàng">
     </div>
-    <div class="mockup-tag right">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect width="16" height="16" rx="4" fill="#FF5722"/><path d="M4 8h8M8 4v8" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-      Integration business widget
-    </div>
-    <div class="mockup-tag right2">
-      <div class="tag-icon" style="background:#FFF3F0;font-size:12px">🤖</div>
-      Custom business brand
-    </div>
-    <div class="mockup-window">
-      <div class="mockup-bar">
-        <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
-        <div class="mockup-url">app.botbanhang.vn · Inbox</div>
+    <div class="hero-cover-badges">
+      <div class="hero-cover-badge">
+        <strong>24/7</strong>
+        <span>Luôn sẵn sàng phản hồi khách hàng mà không cần chờ nhân sự online.</span>
       </div>
-      <div class="mockup-body">
-        <div class="mockup-sidebar">
-          <div class="sidebar-logo">
-            <div class="sidebar-logo-icon"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" fill="white"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <span class="sidebar-logo-text">Bot Bán Hàng</span>
-          </div>
-          <div class="sidebar-channel active"><div class="sidebar-channel-icon ch-fb">f</div>Facebook<span class="sidebar-badge">12</span></div>
-          <div class="sidebar-channel"><div class="sidebar-channel-icon ch-ig">ig</div>Instagram<span class="sidebar-badge">5</span></div>
-          <div class="sidebar-channel"><div class="sidebar-channel-icon ch-zalo">Z</div>Zalo OA</div>
-          <div class="sidebar-channel"><div class="sidebar-channel-icon ch-wa">W</div>Whatsapp</div>
-          <div class="sidebar-channel"><div class="sidebar-channel-icon ch-tiktok">T</div>TikTok<span class="sidebar-badge">3</span></div>
-          <div class="sidebar-channel"><div class="sidebar-channel-icon ch-shop">S</div>Shopee</div>
-        </div>
-        <div class="mockup-main">
-          <div class="mockup-topbar">
-            <span class="mockup-title">Hội thoại — Hôm nay</span>
-            <div class="mockup-tabs">
-              <div class="mockup-tab active">Tất cả</div>
-              <div class="mockup-tab">Chưa đọc</div>
-              <div class="mockup-tab">Bot đang xử lý</div>
-            </div>
-          </div>
-          <div class="mockup-conversations">
-            <div class="conv-item active">
-              <div class="conv-avatar" style="background:#FF7043">N</div>
-              <div class="conv-info"><div class="conv-name">Nguyễn Thị Mai</div><div class="conv-msg">Bot: Đã xác nhận đơn hàng #2847 ✓</div></div>
-              <div class="conv-time">0:12</div>
-            </div>
-            <div class="conv-item">
-              <div class="conv-avatar" style="background:#2196F3">T</div>
-              <div class="conv-info"><div class="conv-name">Trần Quốc Hùng</div><div class="conv-msg">Cho hỏi còn hàng màu đen không ạ?</div></div>
-              <div class="conv-time">1:34</div><div class="conv-unread"></div>
-            </div>
-            <div class="conv-item">
-              <div class="conv-avatar" style="background:#4CAF50">L</div>
-              <div class="conv-info"><div class="conv-name">Lê Bảo Châu</div><div class="conv-msg">Bot: Đặt lịch thành công 14:00 thứ 6</div></div>
-              <div class="conv-time">2:05</div>
-            </div>
-            <div class="conv-item">
-              <div class="conv-avatar" style="background:#9C27B0">P</div>
-              <div class="conv-info"><div class="conv-name">Phạm Minh Tuấn</div><div class="conv-msg">Giá son lì Velvet #07 bao nhiêu vậy?</div></div>
-              <div class="conv-time">3:20</div><div class="conv-unread"></div>
-            </div>
-            <div class="conv-item">
-              <div class="conv-avatar" style="background:#FF5722">V</div>
-              <div class="conv-info"><div class="conv-name">Võ Thanh Hà</div><div class="conv-msg">Bot: Cảm ơn chị đã tin tưởng! ❤️</div></div>
-              <div class="conv-time">4:18</div>
-            </div>
-          </div>
-        </div>
+      <div class="hero-cover-badge">
+        <strong>&lt; 5s</strong>
+        <span>Tốc độ phản hồi gần như tức thì để giữ chân khách ngay từ tin nhắn đầu tiên.</span>
+      </div>
+      <div class="hero-cover-badge">
+        <strong>100%</strong>
+        <span>Tự động hóa phần lớn câu hỏi lặp lại, giúp đội sale tập trung chốt đơn.</span>
       </div>
     </div>
   </div>
+
 </section>
+
+
 
 <!-- PARTNER LOGOS -->
 <div id="logos">
   <div class="logos-label">Trên 50.000++ khách hàng tin dùng</div>
   <div class="logos-marquee-wrap">
-    <div class="logos-marquee">
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#E60012">VIETTEL</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="8" fill="#E60012">POST</text><line x1="4" y1="39" x2="80" y2="39" stroke="#E60012" stroke-width="1.5"/><text x="4" y="46" font-family="Arial,sans-serif" font-size="5.5" fill="#E60012">Mạng chuyển phát nhanh rộng nhất</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="8" y="34" font-family="Arial,sans-serif" font-weight="900" font-size="30" fill="#00B14F">Grab</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 130 48" width="130" height="48"><text x="6" y="30" font-family="Georgia,serif" font-weight="400" font-size="16" fill="#8B6914" letter-spacing="1">ngoc</text><text x="52" y="30" font-family="Georgia,serif" font-style="italic" font-size="16" fill="#C4961A">dung</text><text x="6" y="42" font-family="Arial,sans-serif" font-size="7" fill="#9B7B20" letter-spacing="2">BEAUTY CENTER</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#006EB7">Pepsi</text><text x="68" y="28" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#E31837">co</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="32" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#1A1A1A" letter-spacing="2">BI LUXURY</text><text x="4" y="43" font-family="Arial,sans-serif" font-size="7" fill="#555" letter-spacing="3">ALL FOR MEN</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="#1A1A1A" letter-spacing="3">TORANO</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><circle cx="22" cy="24" r="20" fill="#C8102E"/><text x="22" y="20" font-family="Arial Black,sans-serif" font-weight="900" font-size="9" fill="white" text-anchor="middle">PIZZA</text><text x="22" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="9" fill="white" text-anchor="middle">HOME</text><text x="60" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="14" fill="#C8102E">Pizza</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="24" fill="#1A1A1A">20AGAIN</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 80 48" width="80" height="48"><text x="4" y="36" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="#1A1A1A">360</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 90 48" width="90" height="48"><text x="4" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">Vin</text><text x="46" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#1A6FBF">ID</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">VN</text><text x="42" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#004B9B">PAY</text><text x="4" y="40" font-family="Arial,sans-serif" font-size="7.5" fill="#555">Simplifying the life</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 130 48" width="130" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#1A1A1A" letter-spacing="-1">TECHFEST</text><text x="4" y="42" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="#1A1A1A" letter-spacing="4">VIETNAM</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="32" font-family="Arial Black,sans-serif" font-weight="900" font-size="26" fill="#00A550" text-anchor="middle">Yo<tspan fill="#006633">Fresh</tspan></text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#FF0090">Hi</text><text x="34" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#005BAC">PP</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><circle cx="20" cy="24" r="18" fill="#1A1A1A"/><text x="20" y="21" font-family="Arial,sans-serif" font-weight="700" font-size="7" fill="#C89B3C" text-anchor="middle">CHA GO</text><text x="20" y="30" font-family="Arial,sans-serif" font-size="5.5" fill="#C89B3C" text-anchor="middle">TEA &amp; CAFÉ</text><text x="48" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#1A1A1A">Cha Go</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="30" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="22" fill="#C89B3C">saffran</text><text x="4" y="43" font-family="Arial,sans-serif" font-size="7" fill="#888" letter-spacing="2">VIETNAM</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="22" font-family="Arial,sans-serif" font-weight="900" font-size="12" fill="#00A550">Cốc</text><text x="4" y="36" font-family="Arial,sans-serif" font-weight="900" font-size="12" fill="#00A550">Cốc</text><circle cx="55" cy="22" r="16" fill="#00A550" opacity=".15"/><text x="55" y="27" font-family="Arial Black,sans-serif" font-size="10" fill="#00A550" text-anchor="middle">c</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="18" fill="#1A1A1A" letter-spacing="1">ARISTINO</text><text x="4" y="41" font-family="Arial,sans-serif" font-size="10" fill="#888">®</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><circle cx="22" cy="24" r="20" fill="#E31837"/><text x="22" y="27" font-family="Arial Black,sans-serif" font-weight="900" font-size="7.5" fill="white" text-anchor="middle">DẦM SEN</text><text x="50" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="10" fill="#E31837">Đầm Sen</text><text x="50" y="36" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="#1A1A1A">WATER PARK</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 130 48" width="130" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#E31837">BIBO MART</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="7" fill="#555">Hệ thống cửa hàng Mẹ &amp; Bé</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="24" font-family="Arial Black,sans-serif" font-weight="900" font-size="18" fill="#006EB7" text-anchor="middle">VOSO</text><text x="50" y="38" font-family="Arial,sans-serif" font-size="12" fill="#006EB7" text-anchor="middle">.vn</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#00A550">VTC</text><text x="52" y="22" font-family="Arial,sans-serif" font-weight="700" font-size="10" fill="#1A1A1A">online</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="7" fill="#00A550">Cuộc sống tươi đẹp</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#006EB7">OCEAN</text><text x="80" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#E31837">EDU</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="33" font-family="Arial,sans-serif" font-weight="900" font-size="24" fill="#E31837">Anlene</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="26" fill="#1A1A1A">yody</text><text x="4" y="44" font-family="Arial,sans-serif" font-size="7" fill="#888">look good · feel good</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#8B1A1A" text-anchor="middle">SAKUKO</text><text x="50" y="40" font-family="Arial,sans-serif" font-size="7" fill="#888" text-anchor="middle">JAPANESE STORE</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#009245">Vin</text><text x="36" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#E31837">Mart</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="8" fill="#E8A000">★ VinMart</text></svg></div>
-      <!-- Duplicate set for seamless loop -->
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="13" fill="#E60012">VIETTEL</text><text x="4" y="36" font-family="Arial,sans-serif" font-size="8" fill="#E60012">POST</text><line x1="4" y1="39" x2="80" y2="39" stroke="#E60012" stroke-width="1.5"/></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="8" y="34" font-family="Arial,sans-serif" font-weight="900" font-size="30" fill="#00B14F">Grab</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#006EB7">Pepsi</text><text x="68" y="28" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#E31837">co</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="#1A1A1A" letter-spacing="3">TORANO</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 90 48" width="90" height="48"><text x="4" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">Vin</text><text x="46" y="30" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#1A6FBF">ID</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#E31837">VN</text><text x="42" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#004B9B">PAY</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="50" y="32" font-family="Arial Black,sans-serif" font-weight="900" font-size="26" fill="#00A550" text-anchor="middle">Yo<tspan fill="#006633">Fresh</tspan></text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#FF0090">Hi</text><text x="34" y="28" font-family="Impact,Arial Black,sans-serif" font-weight="900" font-size="24" fill="#005BAC">PP</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="18" fill="#1A1A1A">ARISTINO</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 110 48" width="110" height="48"><text x="4" y="33" font-family="Arial,sans-serif" font-weight="900" font-size="24" fill="#E31837">Anlene</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 100 48" width="100" height="48"><text x="4" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="26" fill="#1A1A1A">yody</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#E31837">BIBO MART</text></svg></div>
-      <div class="logo-item"><svg viewBox="0 0 120 48" width="120" height="48"><text x="4" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#006EB7">OCEAN</text><text x="80" y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="16" fill="#E31837">EDU</text></svg></div>
-    </div>
+    <div class="logos-marquee" id="logos-marquee-track"></div>
   </div>
 </div>
 
 <hr>
 
-<!-- BẢNG KIỂM TOÁN TỔN THẤT -->
-<section id="audit-loss" style="background:var(--gray-50)">
-  <div class="section-eyebrow fu">Bảng kiểm toán tổn thất</div>
-  <h2 class="fu fu-d1">Con số biết nói</h2>
-  <p class="section-desc fu fu-d2">Đây là những gì đang xảy ra mỗi ngày tại hàng nghìn doanh nghiệp — kể cả của bạn.</p>
-  <div class="audit-loss-grid fu">
-    <div class="al-card">
-      <div class="al-pct">80%</div>
-      <div class="al-title">Ngân sách lãng phí</div>
-      <div class="al-desc">Chậm phản hồi 5 phút là dâng khách cho đối thủ. AI phản hồi trong 0.1 giây để giữ chân khách ngay lập tức.</div>
-    </div>
-    <div class="al-card">
-      <div class="al-pct al-green">100%</div>
-      <div class="al-title">Soi sáng "vùng tối"</div>
-      <div class="al-desc">Loại bỏ tình trạng "mù" thông tin. AI kiểm soát nội dung tư vấn, đảm bảo quy trình luôn chuẩn xác.</div>
-    </div>
-    <div class="al-card">
-      <div class="al-pct">70%</div>
-      <div class="al-title">Quỹ lương tối ưu</div>
-      <div class="al-desc">Thay vì đội ngũ đông đảo, chỉ cần nhân sự tinh hoa kết hợp AI để xử lý khối lượng việc gấp 100 lần.</div>
-    </div>
-    <div class="al-card">
-      <div class="al-pct al-green">0%</div>
-      <div class="al-title">Bảo mật tài sản tuyệt đối</div>
-      <div class="al-desc">Chấm dứt nỗi lo nhân viên nghỉ việc mang theo data. Dữ liệu khách hàng nằm an toàn trong hệ thống.</div>
-    </div>
-  </div>
-</section>
-
-<hr>
 
 <!-- CHẤT VẤN NHÀ QUẢN TRỊ -->
 <section id="pain-points" style="background:var(--white)">
@@ -1051,208 +989,75 @@ hr{border:none;border-top:1px solid var(--gray-100)}
       <div class="pain-pt-icon">
         <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#FF5722" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#FF5722" stroke-width="2" stroke-linecap="round"/></svg>
       </div>
-      <div class="pain-pt-title">Áp lực trực chiến 24/7</div>
-      <div class="pain-pt-desc">Phải giám sát nhân viên liên tục, lo sợ kịch bản tư vấn bị sai lệch làm mất khách hàng.</div>
+      <div class="pain-pt-title">Mất khách vì phản hồi chậm & thiếu nhất quán</div>
+      <div class="pain-pt-desc">Chỉ cần một nhân sự tư vấn sai hoặc phản hồi chậm, doanh nghiệp có thể mất lead vào tay đối thủ.</div>
     </div>
     <div class="pain-pt-card">
       <div class="pain-pt-icon">
         <svg viewBox="0 0 24 24" fill="none"><path d="M3 17l4-6 4 3.5 4-7 4 5" stroke="#FF5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="pain-pt-title">Doanh số trồi sụt thất thường</div>
-      <div class="pain-pt-desc">Doanh số phụ thuộc vào cảm xúc và thái độ của đội ngũ Telesale mỗi ngày.</div>
+      <div class="pain-pt-title">Doanh số phụ thuộc vào “phong độ” đội sale</div>
+      <div class="pain-pt-desc">Kết quả kinh doanh lên xuống theo từng cá nhân khiến doanh nghiệp khó scale bền vững</div>
     </div>
     <div class="pain-pt-card">
       <div class="pain-pt-icon">
         <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M3 10h18M8 6V4m8 2V4" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
-      <div class="pain-pt-title">Nguy cơ mất sạch data</div>
-      <div class="pain-pt-desc">Dữ liệu khách hàng — tài sản quý giá nhất — bị thất thoát khi có sự thay đổi nhân sự.</div>
+      <div class="pain-pt-title">Data khách hàng không thực sự thuộc về doanh nghiệp</div>
+      <div class="pain-pt-desc">Khi dữ liệu nằm rải rác trên tài khoản cá nhân, rủi ro thất thoát luôn tồn tại</div>
     </div>
   </div>
   <div class="pain-cta fu">
     <a href="#cta-section" class="btn-hero" style="display:inline-flex">
       <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Tìm giải pháp ở đây
+      Demo & Dùng thử AI miễn phí
     </a>
   </div>
 </section>
-
 <hr>
 
 <!-- FEATURES TABS -->
-<section id="features">
-  <div class="section-eyebrow fu">Tính năng nổi bật</div>
-  <h2 class="fu fu-d1">Các tính năng được phát triển dựa trên AI</h2>
-  <p class="section-desc fu fu-d2">Từ bot bán hàng đến hậu kiểm tự động — mọi công cụ bạn cần để vận hành doanh nghiệp mà không cần có mặt 24/7.</p>
-  <div class="features-tabs-row fu fu-d2">
-    <button class="ftab active" data-tab="bot">
-      <svg viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 13c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      Nhân viên AI
-    </button>
-    <button class="ftab" data-tab="omni">
-      <svg viewBox="0 0 15 15" fill="none"><rect x="1" y="1" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="9" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
-      Đa kênh
-    </button>
-    <button class="ftab" data-tab="security">
-      <svg viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5L2 4v4.5C2 11.5 4.5 14 7.5 14S13 11.5 13 8.5V4L7.5 1.5z" stroke="currentColor" stroke-width="1.5"/></svg>
-      Bảo mật data
-    </button>
-    <button class="ftab" data-tab="audit">
-      <svg viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 7.5l2 2 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Hậu kiểm AI
-    </button>
-    <button class="ftab" data-tab="report">
-      <svg viewBox="0 0 15 15" fill="none"><path d="M2 12l3-4 3 2.5 3-5 2 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Báo cáo
-    </button>
-  </div>
 
-  <div id="tab-omni" class="ftab-panel">
-    <div class="ftab-text">
-      <h3>Omnichannel — Tất cả kênh trong một nơi</h3>
-      <p>Quản lý toàn bộ tin nhắn từ Facebook, Zalo, Instagram, TikTok, Shopee trong một giao diện duy nhất.</p>
-      <div class="ftab-points">
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text"><strong>6+ kênh nhắn tin</strong> kết nối trực tiếp</div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Không cần chuyển tab, <strong>tiết kiệm 70% thời gian</strong></div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phân loại hội thoại tự động theo <strong>trạng thái &amp; ưu tiên</strong></div></div>
+<!-- VIDEO DEMOS -->
+<section id="video-demos">
+  <div class="section-eyebrow fu">Video Demo</div>
+  <h2 class="fu fu-d1">Xem AI hoạt động thực tế</h2>
+  <p class="section-desc fu fu-d2">Xem trực tiếp cách Bot Bán Hàng tự động tư vấn, chốt đơn và bảo mật data trong thực tế.</p>
+  <div class="video-grid fu">
+    <div class="video-card">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/iZQLU2QXKSM"
+          title="Video demo Bot Ban Hang 1"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
+      <!-- <div class="video-meta">
+        <div class="video-label">Video 1 — Demo Bot Bán Hàng</div>
+        <div class="video-sub">Quy trình AI hỗ trợ tư vấn và tương tác khách hàng trong thực tế.</div>
+      </div> -->
     </div>
-    <div class="ftab-mockup">
-      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px">KÊNH KẾT NỐI</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-fb" style="width:24px;height:24px;border-radius:6px">f</div><span style="font-size:13px;font-weight:600;flex:1">Facebook</span><span style="font-size:11px;font-weight:700;color:var(--orange);background:var(--orange-pale);padding:2px 8px;border-radius:10px">24 tin nhắn</span></div>
-        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-zalo" style="width:24px;height:24px;border-radius:6px">Z</div><span style="font-size:13px;font-weight:600;flex:1">Zalo OA</span><span style="font-size:11px;font-weight:700;color:var(--green);background:rgba(0,185,107,0.1);padding:2px 8px;border-radius:10px">Online</span></div>
-        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-ig" style="width:24px;height:24px;border-radius:6px">ig</div><span style="font-size:13px;font-weight:600;flex:1">Instagram</span><span style="font-size:11px;font-weight:700;color:var(--orange);background:var(--orange-pale);padding:2px 8px;border-radius:10px">8 tin nhắn</span></div>
-        <div style="display:flex;align-items:center;gap:10px;background:white;padding:10px 14px;border-radius:8px;border:1px solid var(--gray-100)"><div class="sidebar-channel-icon ch-tiktok" style="width:24px;height:24px;border-radius:6px">T</div><span style="font-size:13px;font-weight:600;flex:1">TikTok</span><span style="font-size:11px;font-weight:700;color:var(--green);background:rgba(0,185,107,0.1);padding:2px 8px;border-radius:10px">Online</span></div>
+    <div class="video-card">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/yblvX2tMCIg"
+          title="Video demo Bot Ban Hang 2"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
-    </div>
-  </div>
-
-  <div id="tab-bot" class="ftab-panel active">
-    <div class="ftab-text">
-      <h3>AI tự chat, chốt đơn, xin số trong 0.1 giây</h3>
-      <p>Bot Bán Hàng tự tạo nội dung tư vấn sắc sảo, chạm đúng tâm lý khách hàng. Không cần nhân sự thường trực.</p>
-      <div class="ftab-points">
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phản hồi tự động <strong>trong 0.1 giây</strong>, 24/7</div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text"><strong>Tự chốt đơn và xin số điện thoại</strong> khách hàng</div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Kịch bản tư vấn <strong>theo ngành hàng</strong> của bạn</div></div>
-      </div>
-    </div>
-    <div class="ftab-mockup">
-      <div class="chat-row"><div class="chat-av user-av">K</div><div class="chat-bubble-ui user">Cho hỏi son lì màu đất nào phù hợp da ngăm không ạ?</div></div>
-      <div class="chat-row right"><div class="chat-bubble-ui bot">Dạ chào chị! Da ngăm hợp tone đất ấm: Caramel Nude hoặc Berry Rose ạ. Chị tìm son lì hay bóng?</div><div class="chat-av bot-av">AI</div></div>
-      <div class="chat-row"><div class="chat-av user-av">K</div><div class="chat-bubble-ui user">Son lì ạ, dưới 300k</div></div>
-      <div class="chat-row right"><div class="chat-bubble-ui bot">Em có Son Lì Velvet #07 Terracotta — 249k, bán chạy nhất tháng! Cho em giữ 1 hộp không ạ? 🧡</div><div class="chat-av bot-av">AI</div></div>
-      <div class="chat-row right"><div class="chat-bubble-ui success">Đặt hàng thành công! Cho em xin số điện thoại xác nhận nhé chị ✓</div><div class="chat-av bot-av" style="background:var(--green)">AI</div></div>
-      <div class="chat-speed-tag">⚡ Phản hồi trong 0.1 giây</div>
-    </div>
-  </div>
-
-  <div id="tab-security" class="ftab-panel">
-    <div class="ftab-text">
-      <h3>Ẩn số điện thoại — Bảo mật data tuyệt đối</h3>
-      <p>Sales tư vấn và chốt đơn "điên cuồng" nhưng hoàn toàn không thấy số điện thoại khách hàng. Chấm dứt nỗi lo nhân viên nghỉ việc mang theo data quý giá.</p>
-      <div class="ftab-points">
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text"><strong>Số điện thoại ẩn</strong> hoàn toàn với nhân viên</div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Nhân viên nghỉ việc — <strong>data vẫn nguyên vẹn</strong></div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phân quyền truy cập <strong>theo vai trò</strong> chi tiết</div></div>
-      </div>
-    </div>
-    <div class="ftab-mockup">
-      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:12px">KHÁCH HÀNG — BẢO MẬT</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="background:white;border-radius:8px;padding:12px 14px;border:1px solid var(--gray-100)"><div style="font-size:12px;color:var(--gray-400);margin-bottom:4px">Số điện thoại</div><div style="font-size:14px;font-weight:700;color:var(--gray-900);display:flex;align-items:center;gap:8px"><span style="letter-spacing:2px">090 •••• ••78</span><span style="font-size:10px;background:var(--orange-pale);color:var(--orange);padding:2px 8px;border-radius:6px;font-weight:700">Ẩn với sales</span></div></div>
-        <div style="background:white;border-radius:8px;padding:12px 14px;border:1px solid var(--gray-100)"><div style="font-size:12px;color:var(--gray-400);margin-bottom:4px">Ghi chú nội bộ</div><div style="font-size:13px;font-weight:600;color:var(--gray-900)">Nguyễn Thị Mai — VIP khách</div></div>
-        <div style="background:rgba(0,185,107,0.06);border-radius:8px;padding:10px 14px;border:1px solid rgba(0,185,107,0.15);display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L3 4.5v4C3 11 5 14 8 14s5-3 5-5.5v-4L8 2z" fill="rgba(0,185,107,0.2)" stroke="#00B96B" stroke-width="1.2"/></svg><span style="font-size:12px;font-weight:600;color:var(--green)">Data an toàn trong hệ thống</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="tab-audit" class="ftab-panel">
-    <div class="ftab-text">
-      <h3>Hậu kiểm tự động — Báo lỗi Telesale ngay lập tức</h3>
-      <p>AI tự động soi lỗi tư vấn, báo cáo tức thì, kiểm soát 100% chất lượng hội thoại. Lãnh đạo biết ngay khi có sai phạm — không cần trực chiến 24/7.</p>
-      <div class="ftab-points">
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">AI kiểm soát <strong>100% nội dung hội thoại</strong></div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Báo cáo lỗi <strong>tức thì qua thông báo</strong> cho quản lý</div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Không cần <strong>ngồi trực 24/7</strong> để giám sát</div></div>
-      </div>
-    </div>
-    <div class="ftab-mockup">
-      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:12px">BÁO CÁO CHẤT LƯỢNG HÔM NAY</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="background:white;border-radius:8px;padding:10px 14px;border:1px solid var(--gray-100);display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div><span style="font-size:13px;font-weight:600;flex:1">Nguyễn Sales A</span><span style="font-size:12px;color:var(--green);font-weight:700">98% chuẩn xác</span></div>
-        <div style="background:rgba(255,87,34,0.06);border-radius:8px;padding:10px 14px;border:1px solid rgba(255,87,34,0.15);display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:50%;background:var(--orange)"></div><span style="font-size:13px;font-weight:600;flex:1">Trần Sales B</span><span style="font-size:12px;color:var(--orange);font-weight:700">⚠ Báo giá sai 2 lần</span></div>
-        <div style="background:white;border-radius:8px;padding:10px 14px;border:1px solid var(--gray-100);display:flex;align-items:center;gap:10px"><div style="width:8px;height:8px;border-radius:50%;background:var(--green)"></div><span style="font-size:13px;font-weight:600;flex:1">Lê Sales C</span><span style="font-size:12px;color:var(--green);font-weight:700">96% chuẩn xác</span></div>
-        <div style="background:rgba(0,185,107,0.06);border-radius:8px;padding:8px 14px;border:1px solid rgba(0,185,107,0.15);font-size:12px;color:var(--green);font-weight:600">✓ 847 hội thoại kiểm tra hôm nay</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="tab-report" class="ftab-panel">
-    <div class="ftab-text">
-      <h3>Báo cáo thông minh — Quyết định dựa trên dữ liệu</h3>
-      <p>Dashboard real-time giúp lãnh đạo nắm toàn bộ tình hình mà không cần ngồi trực.</p>
-      <div class="ftab-points">
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Dashboard <strong>real-time</strong> cập nhật liên tục</div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Phân tích <strong>hiệu suất từng nhân viên</strong></div></div>
-        <div class="ftab-point"><div class="ftab-point-icon"><svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5L4 7.5L10 1" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ftab-point-text">Xuất báo cáo <strong>PDF/Excel</strong> tự động</div></div>
-      </div>
-    </div>
-    <div class="ftab-mockup">
-      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:12px">THÁNG NÀY</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Tổng hội thoại</div><div style="font-size:24px;font-weight:800;color:var(--gray-900);letter-spacing:-1px">24,831</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ 32%</div></div>
-        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Tỷ lệ chốt đơn</div><div style="font-size:24px;font-weight:800;color:var(--orange);letter-spacing:-1px">68%</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ 21%</div></div>
-        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Lead mới</div><div style="font-size:24px;font-weight:800;color:var(--gray-900);letter-spacing:-1px">3,241</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ 18%</div></div>
-        <div style="background:white;border-radius:8px;padding:14px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400);margin-bottom:6px">Phản hồi TB</div><div style="font-size:24px;font-weight:800;color:var(--green);letter-spacing:-1px">0.1s</div><div style="font-size:11px;color:var(--green);font-weight:600">↓ 99%</div></div>
-      </div>
+      <!-- <div class="video-meta">
+        <div class="video-label">Video 2 — Demo Bảo mật Data</div>
+        <div class="video-sub">Minh họa thêm về vận hành, kiểm soát dữ liệu và trải nghiệm dùng thực tế.</div>
+      </div> -->
     </div>
   </div>
 </section>
-
-
-<hr>
-
-<!-- STATS -->
-<div id="stats">
-  <div class="stats-grid">
-    <div class="stat-item fu"><div class="stat-number" data-target="300" data-prefix="+" data-suffix="%">+300%</div><div class="stat-label">Hiệu suất vận hành</div><div class="stat-desc">Hệ thống xử lý hàng vạn inbox/cuộc gọi cùng lúc, không trôi lead, không sót khách</div></div>
-    <div class="stat-item fu fu-d1"><div class="stat-number" data-target="70" data-prefix="-" data-suffix="%">-70%</div><div class="stat-label">Chi phí nhân sự</div><div class="stat-desc">Loại bỏ tác vụ lặp lại, tập trung nhân sự tinh hoa</div></div>
-    <div class="stat-item fu fu-d2"><div class="stat-number" data-target="3" data-prefix="×">×3</div><div class="stat-label">Tỷ lệ chuyển đổi</div><div class="stat-desc">Phản hồi trong 0.1 giây – Chốt đơn ngay thời điểm khách hàng có nhu cầu cao nhất</div></div>
-    <div class="stat-item fu fu-d3"><div class="stat-number">1,200+</div><div class="stat-label">Doanh nghiệp tin dùng</div><div class="stat-desc">Quy trình minh bạch, tự động báo cáo lỗi Sales. Lãnh đạo tập trung chiến lược vĩ mô</div></div>
-  </div>
-</div>
-
-<hr>
-
-<!-- AI FIRST -->
-<section id="ai-first">
-  <div class="section-eyebrow fu">Siêu tính năng AI – Vũ khí độc quyền</div>
-  <h2 class="fu fu-d1">AI tự chat – Ẩn số điện thoại –<br>Báo lỗi Telesale</h2>
-  <p class="section-desc fu fu-d2">Tối ưu kịch bản chớp mắt, hậu kiểm tự động 100%, bảo mật dữ liệu tuyệt đối — mọi công cụ bạn cần để vận hành doanh nghiệp mà không cần có mặt 24/7.</p>
-  <div class="twocol fu">
-    <div class="feature-list">
-      <div class="feature-row"><div class="feature-row-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="3.5" stroke="#FF5722" stroke-width="1.5"/><path d="M3 16c0-3 2.5-5 6-5s6 2 6 5" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="feature-row-title">Chăm sóc khách hàng tự động</div><div class="feature-row-desc">Bot tư vấn 24/7, không nghỉ lễ, không cần training lại từ đầu.</div></div></div>
-      <div class="feature-row"><div class="feature-row-icon"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#FF5722" stroke-width="1.5"/><path d="M6 9l2.5 2.5 4-4" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feature-row-title">Tối ưu hiệu suất làm việc</div><div class="feature-row-desc">AI xử lý 80% câu hỏi lặp lại, nhân viên tập trung vào việc sáng tạo giá trị.</div></div></div>
-      <div class="feature-row"><div class="feature-row-icon"><svg viewBox="0 0 18 18" fill="none"><path d="M3 13l3-4 3 2.5 3-5 3 3.5" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="feature-row-title">Báo cáo lãnh đạo thông minh</div><div class="feature-row-desc">Tự động tổng hợp dữ liệu, phân tích xu hướng và đề xuất hành động tối ưu.</div></div></div>
-    </div>
-    <div class="visual-card">
-      <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:14px">HIỆU SUẤT HÔM NAY</div>
-      <div class="dashboard-mini-grid" style="margin-bottom:14px">
-        <div style="background:var(--white);border-radius:10px;padding:16px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400)">Tin nhắn xử lý</div><div style="font-size:28px;font-weight:800;color:var(--gray-900);letter-spacing:-1px;line-height:1.1;margin:4px 0">4,823</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ +28%</div></div>
-        <div style="background:var(--white);border-radius:10px;padding:16px;border:1px solid var(--gray-100)"><div style="font-size:11px;color:var(--gray-400)">Đơn chốt bởi AI</div><div style="font-size:28px;font-weight:800;color:var(--orange);letter-spacing:-1px;line-height:1.1;margin:4px 0">312</div><div style="font-size:11px;color:var(--green);font-weight:600">↑ +41%</div></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:12px;font-weight:600;color:var(--gray-700)">Bot xử lý</span><span style="font-size:12px;font-weight:700;color:var(--orange)">82%</span></div><div style="height:6px;background:var(--gray-100);border-radius:3px"><div style="height:6px;background:var(--orange);border-radius:3px;width:82%"></div></div></div>
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:12px;font-weight:600;color:var(--gray-700)">Tỷ lệ hài lòng</span><span style="font-size:12px;font-weight:700;color:var(--green)">96%</span></div><div style="height:6px;background:var(--gray-100);border-radius:3px"><div style="height:6px;background:var(--green);border-radius:3px;width:96%"></div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr>
-
 <!-- BEFORE AFTER -->
 <section id="before-after" style="background:var(--gray-50)">
   <div class="section-eyebrow fu">Trước &amp; Sau khi có AI</div>
@@ -1278,40 +1083,17 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 
 <hr>
 
-<!-- VIDEO DEMOS -->
-<section id="video-demos">
-  <div class="section-eyebrow fu">Video Demo</div>
-  <h2 class="fu fu-d1">Xem AI hoạt động thực tế</h2>
-  <p class="section-desc fu fu-d2">Xem trực tiếp cách Bot Bán Hàng tự động tư vấn, chốt đơn và bảo mật data trong thực tế.</p>
-  <div class="video-grid fu">
-    <div class="video-card">
-      <div class="video-frame">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/1LizApvyujA"
-          title="Video 1 - Demo Bot Ban Hang"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="video-label">Video 1 — Demo Bot Bán Hàng</div>
-      <!-- <div class="video-sub">Video demo YouTube da duoc cap nhat.</div> -->
-    </div>
-    <div class="video-card">
-      <div class="video-frame">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/Zr3R6YZQVzM"
-          title="Video 2 - Demo Bao mat Data"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="video-label">Video 2 — Demo Bảo mật Data</div>
-      <!-- <div class="video-sub">Video demo YouTube da duoc cap nhat.</div> -->
-    </div>
+<hr>
+<section id="target" style="background:var(--gray-50)">
+  <div class="section-eyebrow fu">Đối tượng phù hợp</div>
+  <h2 class="fu fu-d1">AI bán hàng của Bot Bán Hàng được tối ưu theo từng ngành nghề và mô hình kinh doanh</h2>
+  <p class="section-desc fu fu-d2">Giải pháp được thiết kế riêng cho các doanh nghiệp SME Việt Nam đang muốn bứt phá — kiểm soát hệ thống chính xác mà không cần có mặt 24/7.</p>
+  <div class="target-grid-new fu">
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFE8DC,#FFD4BC)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2C6 2 4 4 4 7c0 4 5 9 5 9s5-5 5-9c0-3-2-5-5-5z" stroke="#FF5722" stroke-width="1.5" fill="none"/><circle cx="9" cy="7" r="2" stroke="#FF5722" stroke-width="1.5"/></svg></div><div class="target-title-new">Spa &amp; Thẩm mỹ viện</div><div class="target-text-new">Tự động đặt lịch, phân loại nhu cầu và giữ chân khách hàng tức thì.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF0E8,#FFE0CC)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M5 2l1 4H3l2 12h10l2-12h-3l1-4z" stroke="#FF5722" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div><div class="target-title-new">Thời trang</div><div class="target-text-new">Xử lý hàng nghìn inbox khi chạy Ads; chốt đơn trong 0.1 giây.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFE8DC,#FFDDD0)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><rect x="6" y="2" width="6" height="14" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M7 4h4M7 7h4M7 10h4" stroke="#FF5722" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="target-title-new">Mỹ phẩm</div><div class="target-text-new">Quản lý đại lý và CTV hiệu quả; bảo mật tuyệt đối data khách hàng.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF8F0,#FFE8D5)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M2 9L9 3l7 6" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 8v7a1 1 0 001 1h3v-4h4v4h3a1 1 0 001-1V8" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="target-title-new">Giáo dục &amp; Đào tạo</div><div class="target-text-new">Chuẩn hóa quy trình; nhân viên mới chuyên nghiệp chỉ sau 3 ngày.</div></div></div>
+    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF3EE,#FFE4D6)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="5" width="14" height="10" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M6 5V4a2 2 0 014 0v1M7 10h4" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="target-title-new">Gia dụng</div><div class="target-text-new">Kiểm soát chính xác, tốc độ cao mà không cần có mặt 24/7.</div></div></div>
   </div>
 </section>
 
@@ -1320,169 +1102,38 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 <!-- PROCESS -->
 <section id="process">
   <div class="section-eyebrow fu">Chứng minh hiệu quả</div>
-  <h2 class="fu fu-d1">Triển khai trong 3 ngày,<br>hiệu quả ngay lập tức</h2>
-  <p class="section-desc fu fu-d2">Không cần kỹ thuật, không cần đào tạo dài hạn — đội ngũ chúng tôi setup toàn bộ cho bạn.</p>
+  <h2 class="fu fu-d1">Triển khai nhanh chóng — vận hành dễ dàng<br></h2>
+  <p class="section-desc fu fu-d2">Doanh nghiệp có thể bắt đầu sử dụng hệ thống AI chỉ trong vài ngày mà không cần đội ngũ kỹ thuật riêng</p>
   <div class="process-grid fu">
-    <div class="proc-step"><div class="proc-num">01</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="proc-title">Tư vấn &amp; Phân tích</div><div class="proc-text">Chuyên gia phân tích quy trình bán hàng và xác định điểm tối ưu hóa.</div></div>
-    <div class="proc-step active"><div class="proc-num">02</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#FF5722" stroke-width="1.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="proc-title">Cấu hình hệ thống</div><div class="proc-text">Setup kịch bản AI, kết nối fanpage/Zalo, cài đặt bảo mật data trong 24 giờ.</div></div>
-    <div class="proc-step active"><div class="proc-num">03</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M7 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2h-2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="proc-title">Kiểm thử &amp; Tinh chỉnh</div><div class="proc-text">Chạy thử nghiệm, tinh chỉnh kịch bản theo ngành hàng cụ thể.</div></div>
-    <div class="proc-step"><div class="proc-num">04</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="proc-title">Vận hành &amp; Bứt phá</div><div class="proc-text">Hệ thống chạy 24/7, báo cáo real-time, hỗ trợ kỹ thuật liên tục.</div></div>
+    <div class="proc-step"><div class="proc-num">01</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="proc-title">Tư vấn & Phân tích quy trình</div><div class="proc-text">Đội ngũ chuyên gia phân tích quy trình bán hàng, hành vi khách hàng và các điểm cần tự động hóa</div></div>
+    <div class="proc-step active"><div class="proc-num">02</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#FF5722" stroke-width="1.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="proc-title">Cấu hình & Kết nối hệ thống</div><div class="proc-text">Thiết lập AI Chatbot, kết nối Facebook/Zalo/Website và cấu hình phân quyền, bảo mật dữ liệu</div></div>
+    <div class="proc-step active"><div class="proc-num">03</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M7 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2h-2" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="proc-title">Kiểm thử & Tối ưu kịch bản</div><div class="proc-text">Chạy thử nghiệm thực tế và tinh chỉnh nội dung tư vấn theo ngành hàng, sản phẩm và hành vi khách hàng</div></div>
+    <div class="proc-step"><div class="proc-num">04</div><div class="proc-step-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="proc-title">Vận hành & Đồng hành liên tục</div><div class="proc-text">Hệ thống hoạt động 24/7 cùng đội ngũ hỗ trợ kỹ thuật, theo dõi và tối ưu trong quá trình sử dụng.</div></div>
   </div>
 </section>
 
 <hr>
 
-<!-- TARGET -->
-<section id="target" style="background:var(--gray-50)">
-  <div class="section-eyebrow fu">Đối tượng phù hợp</div>
-  <h2 class="fu fu-d1">Ai cần chuyển đổi sang Hybrid Sales?</h2>
-  <p class="section-desc fu fu-d2">Giải pháp được thiết kế riêng cho các doanh nghiệp SME Việt Nam đang muốn bứt phá — kiểm soát hệ thống chính xác mà không cần có mặt 24/7.</p>
-  <div class="target-grid-new fu">
-    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFE8DC,#FFD4BC)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2C6 2 4 4 4 7c0 4 5 9 5 9s5-5 5-9c0-3-2-5-5-5z" stroke="#FF5722" stroke-width="1.5" fill="none"/><circle cx="9" cy="7" r="2" stroke="#FF5722" stroke-width="1.5"/></svg></div><div class="target-title-new">Spa &amp; Thẩm mỹ viện</div><div class="target-text-new">Tự động đặt lịch, phân loại nhu cầu và giữ chân khách hàng tức thì.</div></div></div>
-    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF0E8,#FFE0CC)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M5 2l1 4H3l2 12h10l2-12h-3l1-4z" stroke="#FF5722" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div><div class="target-title-new">Shop Thời trang</div><div class="target-text-new">Xử lý hàng nghìn inbox khi Livestream/Ads; chốt đơn trong 0.1 giây.</div></div></div>
-    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFE8DC,#FFDDD0)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><rect x="6" y="2" width="6" height="14" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M7 4h4M7 7h4M7 10h4" stroke="#FF5722" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="target-title-new">Hệ thống Mỹ phẩm</div><div class="target-text-new">Quản lý đại lý và CTV hiệu quả; bảo mật tuyệt đối data khách hàng.</div></div></div>
-    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF8F0,#FFE8D5)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><path d="M2 9L9 3l7 6" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 8v7a1 1 0 001 1h3v-4h4v4h3a1 1 0 001-1V8" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="target-title-new">Gia dụng &amp; Đời sống</div><div class="target-text-new">Chuẩn hóa quy trình; nhân viên mới chuyên nghiệp chỉ sau 3 ngày.</div></div></div>
-    <div class="target-card-new"><div class="target-img" style="background:linear-gradient(135deg,#FFF3EE,#FFE4D6)"></div><div class="target-body"><div class="target-icon-new"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="5" width="14" height="10" rx="2" stroke="#FF5722" stroke-width="1.5"/><path d="M6 5V4a2 2 0 014 0v1M7 10h4" stroke="#FF5722" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="target-title-new">Doanh nghiệp Online SME</div><div class="target-text-new">Kiểm soát chính xác, tốc độ cao mà không cần có mặt 24/7.</div></div></div>
-  </div>
-</section>
-
-<hr>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-eyebrow fu">Câu chuyện thành công</div>
-  <h2 class="fu fu-d1">Họ đã làm được — bạn thì sao?</h2>
-  <p class="section-desc fu fu-d2">Những kết quả thực tế từ các chủ doanh nghiệp đã tin tưởng và triển khai hệ thống.</p>
-  <div class="testi-grid-new fu">
-    <div class="testi-card-new">
-      <div class="testi-stars"><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg></div>
-      <div class="testi-quote-new">"Từ khi áp dụng Bot Bán Hàng, hệ thống tự động trả lời và chốt đơn, mình cắt giảm được 60% chi phí nhân sự mà doanh số vẫn tăng đều. AI không đòi tăng lương, không nghỉ phép, và quan trọng nhất là làm việc chính xác 24/7."</div>
-      <div class="testi-result">✓ Giảm 60% chi phí nhân sự</div>
-      <div class="testi-author-new"><div class="testi-av-new">M</div><div><div class="testi-name-new">Chị Mai</div><div class="testi-role-new">Chủ chuỗi thời trang thiết kế</div></div></div>
-    </div>
-    <div class="testi-card-new">
-      <div class="testi-stars"><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg></div>
-      <div class="testi-quote-new">"Nỗi sợ lớn nhất của dân bán Mỹ phẩm là nhân sự nghỉ việc mang theo toàn bộ danh sách khách hàng sang đối thủ — đó là bài học xương máu của tôi. Giờ đây với hệ thống ẩn số điện thoại, nhân viên vẫn tư vấn nhiệt tình nhưng data vẫn nằm an toàn tuyệt đối. Tôi tập trung hoàn toàn vào mở rộng quy mô."</div>
-      <div class="testi-result">✓ 0% rủi ro mất data</div>
-      <div class="testi-author-new"><div class="testi-av-new">H</div><div><div class="testi-name-new">Anh Hoàng</div><div class="testi-role-new">CEO hệ thống phân phối Mỹ phẩm</div></div></div>
-    </div>
-    <div class="testi-card-new">
-      <div class="testi-stars"><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg><svg class="star" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L7 9.3l-3.2 1.7.6-3.6L1.8 4.8l3.6-.5L7 1z"/></svg></div>
-      <div class="testi-quote-new">"Làm ngành Spa &amp; Clinic, cảm xúc của khách là quan trọng nhất. Tính năng phát hiện cảm xúc của hệ thống đã thay đổi hoàn toàn cách tôi quản lý. Chỉ cần nhìn vào báo cáo, tôi biết ngay khách nào đang không hài lòng để xử lý kịp thời, không đợi đến khi họ 'một đi không trở lại'. Tỷ lệ khách quay lại tăng 40% nhờ sự tinh tế này."</div>
-      <div class="testi-result">✓ Tăng 40% khách quay lại</div>
-      <div class="testi-author-new"><div class="testi-av-new">L</div><div><div class="testi-name-new">Chị Lan</div><div class="testi-role-new">Giám đốc hệ thống Spa &amp; Clinic</div></div></div>
-    </div>
-  </div>
-</section>
 
-
-<hr>
-
-<!-- PAIN → SOLUTION -->
-<section id="pain-solution">
-  <div class="section-eyebrow fu">Vấn đề thực tế</div>
-  <h2 class="fu fu-d1">Muốn ứng dụng AI nhưng đang gặp vấn đề?</h2>
-  <p class="section-desc fu fu-d2">Hầu hết doanh nghiệp SME đều gặp phải những rào cản này khi bắt đầu với AI — và chúng tôi ở đây để giải quyết từng điểm một.</p>
-
-  <div class="ps-grid fu">
-
-    <!-- PAIN CARD -->
-    <div class="ps-card pain-card-new">
-      <div class="ps-card-tag tag-pain">
-        <svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#D63030" stroke-width="1.5"/><path d="M6 3.5v3M6 8.5v.5" stroke="#D63030" stroke-width="1.5" stroke-linecap="round"/></svg>
-        Nhiều doanh nghiệp đang gặp phải
-      </div>
-      <div class="ps-title">Có AI nhưng vẫn chưa bán được hàng</div>
-      <div class="ps-sub">Tự mua tool AI về nhưng không biết cách làm cho nó thực sự hoạt động với ngành của mình.</div>
-      <div class="ps-list">
-        <div class="ps-item">
-          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <div class="ps-item-text">Muốn dùng AI nhưng <strong>không biết bắt đầu từ đâu</strong></div>
-        </div>
-        <div class="ps-item">
-          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <div class="ps-item-text">Đã dùng AI nhưng <strong>trả lời chưa hiệu quả, thiếu thực tế</strong></div>
-        </div>
-        <div class="ps-item">
-          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <div class="ps-item-text">AI <strong>không hiểu sản phẩm</strong>, tư vấn sai hoặc không chốt được khách</div>
-        </div>
-        <div class="ps-item">
-          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <div class="ps-item-text">Mất nhiều thời gian setup nhưng <strong>hiệu quả thấp</strong></div>
-        </div>
-        <div class="ps-item">
-          <div class="ps-item-icon x-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2L2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <div class="ps-item-text"><strong>Không có đội ngũ kỹ thuật</strong> để tối ưu và vận hành</div>
-        </div>
-      </div>
-      <div class="ps-result pain-result">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 3v3.5M8 11h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        Kết quả: Tốn chi phí nhưng AI vẫn chưa hỗ trợ được bán hàng thực tế.
-      </div>
-    </div>
-
-    <!-- SOLUTION CARD -->
-    <div class="ps-card solution-card">
-      <div class="ps-card-tag tag-sol">
-        <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Giải pháp của chúng tôi
-      </div>
-      <div class="ps-title">Chúng tôi không chỉ cung cấp công cụ AI</div>
-      <div class="ps-sub">Mà trực tiếp đồng hành — từ huấn luyện đến vận hành — để AI thực sự hoạt động với doanh nghiệp của bạn.</div>
-      <div class="ps-list">
-        <div class="ps-item">
-          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="ps-item-text"><strong>Huấn luyện AI</strong> theo đúng sản phẩm, ngành hàng và văn phong doanh nghiệp</div>
-        </div>
-        <div class="ps-item">
-          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="ps-item-text"><strong>Setup quy trình thực tế</strong> cho bán hàng và chăm sóc khách hàng</div>
-        </div>
-        <div class="ps-item">
-          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="ps-item-text"><strong>Test, tối ưu và đồng hành</strong> trong suốt quá trình triển khai</div>
-        </div>
-        <div class="ps-item">
-          <div class="ps-item-icon check-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="ps-item-text"><strong>Hỗ trợ vận hành</strong> kể cả khi không có chuyên môn kỹ thuật</div>
-        </div>
-      </div>
-      <div class="ps-result sol-result">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-.5L8 2z" fill="currentColor" opacity=".3"/><path d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        Giúp doanh nghiệp ứng dụng AI hiệu quả, thực tế và dễ sử dụng hơn.
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<hr>
 
 <!-- CTA -->
 <section id="cta-section">
   <div class="cta-box fu">
     <div class="section-eyebrow" style="justify-content:center">Box Đăng ký chiến lược</div>
-    <h2 style="margin-bottom:10px">Đừng để <span style="color:var(--orange)">mất khách</span><br>vào tay đối thủ</h2>
-    <p class="section-desc" style="margin:0 auto 40px">Điền thông tin để nhận demo bảo mật data tuyệt đối — hoàn toàn miễn phí. Chỉ còn <strong style="color:var(--orange)">10 vị trí</strong> được tư vấn trực tiếp bởi chuyên gia.</p>
+    <h2 style="margin-bottom:10px">Đăng ký <span style="color:var(--orange)">Demo &</span><br>dùng thử miễn phí</h2>
+    <p class="section-desc" style="margin:0 auto 40px">Điền thông tin để nhận tư vấn miễn phí cùng demo thực tế theo ngành hàng của doanh nghiệp bạn<strong style="color:var(--orange)"></strong></p>
     <div class="cta-form-new">
       <div class="form-group"><label class="form-label-new">Họ và tên</label><input type="text" class="form-input-new" placeholder="Nhập họ và tên của bạn"></div>
       <div class="form-group"><label class="form-label-new">Số điện thoại</label><input type="tel" class="form-input-new" placeholder="Nhập số điện thoại"></div>
       <div class="form-group"><label class="form-label-new">Lĩnh vực kinh doanh</label><input type="text" class="form-input-new" placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..."></div>
-      <div class="form-group">
-        <label class="form-label-new">Số lượng tin nhắn / ngày</label>
-        <div class="radio-row">
-          <div class="radio-pill" onclick="pickRadio(this)">Dưới 10 tin</div>
-          <div class="radio-pill" onclick="pickRadio(this)">10 – 50 tin</div>
-          <div class="radio-pill" onclick="pickRadio(this)">50 – 100 tin</div>
-          <div class="radio-pill active" onclick="pickRadio(this)">Trên 100 tin</div>
-        </div>
-      </div>
+     
       <button class="btn-submit">
         <svg viewBox="0 0 16 16" fill="none"><path d="M8 2c0 0-4 3-4 6a4 4 0 008 0C12 5 8 2 8 2z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12v3M6.5 15h3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-        NHẬN DEMO BẢO MẬT DATA TUYỆT ĐỐI 🚀
+        DEMO & DÙNG THỬ MIỄN PHÍ 🚀
       </button>
-      <p style="text-align:center;font-size:12px;color:var(--gray-400)">Chỉ còn <strong style="color:var(--orange)">10 vị trí</strong> tư vấn trực tiếp bởi chuyên gia</p>
+      <p style="text-align:center;font-size:12px;color:var(--gray-400)">Chỉ còn <strong style="color:var(--orange)">10 suất tư vấn 1-1 chiến lược AI trực tiếp</strong></p>
     </div>
   </div>
 </section>
@@ -1509,7 +1160,6 @@ hr{border:none;border-top:1px solid var(--gray-100)}
       <div class="footer-col-title">Công ty</div>
       <ul class="footer-links"><li><a href="#">Giới thiệu</a></li><li><a href="#">Blog</a></li><li><a href="#">Tuyển dụng</a></li><li><a href="#">Nhà đầu tư</a></li></ul>
     </div>
-    
   </div>
   <div class="footer-bottom">
     <span>© 2026 Bot Bán Hàng Vietnam JSC. All rights reserved.</span>
@@ -1523,6 +1173,55 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 </footer>
 
 <script>
+function renderPartnerLogos() {
+  var track = document.getElementById('logos-marquee-track');
+  if (!track) return;
+
+  var partnerLogos = [
+    'Logo/20 again.png',
+    'Logo/360.png',
+    'Logo/anlene.png',
+    'Logo/aristino.png',
+    'Logo/aten.png',
+    'Logo/bi lux.png',
+    'Logo/bibo mart.png',
+    'Logo/chago.png',
+    'Logo/cocacola.png',
+    'Logo/govi.png',
+    'Logo/Grab.png',
+    'Logo/hipp.png',
+    'Logo/jolo english.png',
+    'Logo/ND.png',
+    'Logo/ocean edu.png',
+    'Logo/passio.png',
+    'Logo/pepsico.png',
+    'Logo/royal tea.png',
+    'Logo/Saffron VIETNAM.png',
+    'Logo/sakuko.png',
+    'Logo/techfest.png',
+    'Logo/torano.png',
+    'Logo/Vbee.png',
+    'Logo/viettel post.png',
+    'Logo/vinid.png',
+    'Logo/VTC.png',
+    'Logo/vnpay.png',
+    'Logo/vỏ sò viettel.png',
+    'Logo/yody.png',
+    'Logo/yofresh.png',
+    'Logo/Bộ KH và CN.png',
+    'Logo/Bệnh viện Hoàn Mỹ.png',
+    'Logo/cốc cốc.png',
+    'Logo/đầm sen.png',
+    'Logo/trống đồng palace.png'
+  ];
+
+  var duplicated = partnerLogos.concat(partnerLogos);
+  track.innerHTML = duplicated.map(function(path) {
+    var label = path.split('/').pop().replace(/\.[^.]+$/, '');
+    return '<div class="logo-item"><img src="' + encodeURI('./' + path) + '" alt="' + label + '" loading="lazy"></div>';
+  }).join('');
+}
+
 function switchTab(id, btn) {
   // Hide all panels
   document.querySelectorAll('.ftab-panel').forEach(function(p) {
@@ -1547,6 +1246,7 @@ function switchTab(id, btn) {
 
 // Attach click handlers directly to each tab button (most reliable on iOS)
 document.addEventListener('DOMContentLoaded', function() {
+  renderPartnerLogos();
   document.querySelectorAll('.ftab[data-tab]').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1590,14 +1290,11 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fu').forEach(el => io.observe(el));
 </script>
-<div
-  class="zalo-chat-widget"
-  data-oaid="1591257820328477563"
-  data-welcome-message="Xin chào"
-  data-autopopup="0"
-  data-width=""
-  data-height=""
-></div>
-<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+<script src="https://chatbox-embed-sdk.botbanhang.vn/dist/sdk.min.js"></script>
+<script>
+  BBH.init({
+    page_id: '388339911461476',
+  })
+</script>
 </body>
 </html>
