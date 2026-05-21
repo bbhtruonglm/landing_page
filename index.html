@@ -201,12 +201,15 @@
       }
       .hero-h1 {
         font-family: var(--font-head);
-        font-size: clamp(40px, 5.5vw, 72px);
+        font-size: clamp(28px, 3.6vw, 48px);
         font-weight: 800;
-        line-height: 1.1;
-        letter-spacing: -2px;
+        line-height: 1.12;
+        letter-spacing: -1.4px;
         margin-bottom: 16px;
         color: var(--gray-900);
+        max-width: 920px;
+        margin-left: auto;
+        margin-right: auto;
       }
       .hero-h1 .accent {
         color: var(--orange);
@@ -718,7 +721,7 @@
 
       /* ─── SHARED SECTION ─── */
       section {
-        padding: 96px var(--side);
+        padding: 80px var(--side);
       }
       .section-eyebrow {
         font-size: 12px;
@@ -767,7 +770,7 @@
         --feature-visual-border: rgba(255, 233, 222, 0.82);
         --feature-visual-bg: #fff0e8;
         background: var(--white);
-        padding: 96px 0;
+        padding: 80px 0;
         overflow: hidden;
       }
       .features-tabs-row {
@@ -887,11 +890,11 @@
         font-weight: 700;
       }
       .features-shell {
-        margin-top: 36px;
+        margin-top: 28px;
       }
       .features-head {
         text-align: center;
-        margin-bottom: 26px;
+        margin-bottom: 22px;
         padding: 0 var(--side);
       }
       .features-head h2 {
@@ -903,7 +906,7 @@
       }
       .features-tabs-row {
         display: grid;
-        grid-template-columns: repeat(11, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 6px;
         border-bottom: 1px solid var(--gray-200);
         margin-bottom: 0;
@@ -1952,7 +1955,7 @@
       /* ─── FINAL CTA ─── */
       #cta-section {
         background: var(--white);
-        padding: 96px var(--side);
+        padding: 80px var(--side);
         text-align: center;
       }
       .cta-box {
@@ -2297,7 +2300,7 @@
           letter-spacing: -0.5px;
         }
         #features {
-          padding: 72px 0;
+          padding: 60px 0;
         }
         .features-tabs-row {
           grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -2355,7 +2358,7 @@
           max-width: 100%;
         }
         .hero-h1 {
-          font-size: clamp(34px, 7vw, 48px);
+          font-size: clamp(24px, 4.8vw, 34px);
           letter-spacing: -1px;
         }
         .hero-sub {
@@ -2458,22 +2461,22 @@
           --side: 5%;
         }
         section {
-          padding: 32px var(--side);
+          padding: 28px var(--side);
         }
         #hero {
           padding: 80px var(--side) 28px;
         }
         #features {
-          padding: 36px 0 88px;
+          padding: 32px 0 82px;
         }
         #logos {
           padding: 20px 0;
         }
         #stats {
-          padding: 32px var(--side);
+          padding: 28px var(--side);
         }
         #cta-section {
-          padding: 32px var(--side);
+          padding: 28px var(--side);
         }
         /* Typography */
         h2 {
@@ -2499,7 +2502,7 @@
         }
         /* Hero */
         .hero-h1 {
-          font-size: clamp(28px, 9vw, 38px);
+          font-size: clamp(20px, 6.4vw, 28px);
           letter-spacing: -1px;
           margin-bottom: 12px;
         }
@@ -2994,8 +2997,8 @@
         Tối ưu quy trình bán hàng và chăm sóc khách hàng bằng AI
       </div>
       <h1 class="hero-h1">
-        <span class="accent">Hệ thống AI Chatbot</span> giúp bạn bán hàng tự
-        động 100% như nhân viên thật <br />
+        <span class="accent">Hệ thống AI Chatbot</span> giúp bạn<br />
+        bán hàng tự động 100% như nhân viên thật
       </h1>
       <p class="hero-sub">
         AI hiểu sản phẩm, tư vấn theo kịch bản và hỗ trợ chốt khách tự động đa
@@ -3078,18 +3081,6 @@
           </button>
           <button
             class="ftab"
-            data-tab="orders"
-            onclick="switchTab('orders', this)"
-          >
-            <img
-              src="./Features_Icons/shopping-bag.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>Đơn hàng</span>
-          </button>
-          <button
-            class="ftab"
             data-tab="quickreply"
             onclick="switchTab('quickreply', this)"
           >
@@ -3099,14 +3090,6 @@
               aria-hidden="true"
             />
             <span>Trả lời nhanh</span>
-          </button>
-          <button
-            class="ftab"
-            data-tab="slowreply"
-            onclick="switchTab('slowreply', this)"
-          >
-            <img src="./Features_Icons/clock.svg" alt="" aria-hidden="true" />
-            <span>Phản hồi chậm</span>
           </button>
           <button
             class="ftab"
@@ -3122,26 +3105,6 @@
           </button>
           <button
             class="ftab"
-            data-tab="media"
-            onclick="switchTab('media', this)"
-          >
-            <img src="./Features_Icons/photo.svg" alt="" aria-hidden="true" />
-            <span>Media sang chữ</span>
-          </button>
-          <button
-            class="ftab"
-            data-tab="translate"
-            onclick="switchTab('translate', this)"
-          >
-            <img
-              src="./Features_Icons/language.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>Dịch văn bản</span>
-          </button>
-          <button
-            class="ftab"
             data-tab="report"
             onclick="switchTab('report', this)"
           >
@@ -3151,18 +3114,6 @@
               aria-hidden="true"
             />
             <span>Báo cáo</span>
-          </button>
-          <button
-            class="ftab"
-            data-tab="integrations"
-            onclick="switchTab('integrations', this)"
-          >
-            <img
-              src="./Features_Icons/squares-plus.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>Tích hợp</span>
           </button>
         </div>
 
@@ -3345,59 +3296,6 @@
               </div>
             </div>
 
-            <div
-              id="tab-orders"
-              class="ftab-panel feature-panel feature-panel-reverse"
-            >
-              <div class="feature-copy">
-                <h3>Đơn hàng</h3>
-                <p>
-                  Theo dõi trạng thái đơn, cập nhật luồng xử lý và đồng bộ vận
-                  hành bán hàng liền mạch trong một giao diện.
-                </p>
-                <div class="feature-bullets">
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M6 8h12l-1 11H7L6 8zM9 8V6a3 3 0 116 0v2"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Quản lý tiến trình đơn hàng theo thời gian thực
-                    </div>
-                  </div>
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M7 12l3 3 7-7"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Giúp sale và vận hành phối hợp chính xác hơn
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="feature-visual">
-                <img
-                  src="./Features/image_order.webp"
-                  alt="Tính năng quản lý đơn hàng"
-                />
-              </div>
-            </div>
-
             <div id="tab-quickreply" class="ftab-panel feature-panel">
               <div class="feature-copy">
                 <h3>Trả lời nhanh</h3>
@@ -3442,70 +3340,6 @@
                 <img
                   src="./Features/image_command.webp"
                   alt="Tính năng trả lời nhanh"
-                />
-              </div>
-            </div>
-
-            <div
-              id="tab-slowreply"
-              class="ftab-panel feature-panel feature-panel-reverse"
-            >
-              <div class="feature-copy">
-                <h3>Phản hồi chậm</h3>
-                <p>
-                  Phát hiện hội thoại bị bỏ quên hoặc phản hồi quá muộn để quản
-                  lý kịp thời can thiệp và giữ chân khách.
-                </p>
-                <div class="feature-bullets">
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="8"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        />
-                        <path
-                          d="M12 8v4l2 2"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Cảnh báo hội thoại chậm phản hồi theo ngưỡng thiết lập
-                    </div>
-                  </div>
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M12 9v4M12 17h.01"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                        />
-                        <path
-                          d="M10.3 4.3L2.7 18a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 4.3a2 2 0 00-3.4 0z"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Không để trôi lead trong giờ cao điểm hoặc ngoài giờ
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="feature-visual">
-                <img
-                  src="./Features/image_slow_response.webp"
-                  alt="Tính năng phát hiện phản hồi chậm"
                 />
               </div>
             </div>
@@ -3571,117 +3405,6 @@
             </div>
 
             <div
-              id="tab-media"
-              class="ftab-panel feature-panel feature-panel-reverse"
-            >
-              <div class="feature-copy">
-                <h3>Media sang chữ</h3>
-                <p>
-                  Chuyển đổi hình ảnh, ghi âm hoặc video thành nội dung văn bản
-                  để AI và nhân viên xử lý nhanh hơn.
-                </p>
-                <div class="feature-bullets">
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <rect
-                          x="4"
-                          y="5"
-                          width="16"
-                          height="12"
-                          rx="2"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        />
-                        <path
-                          d="M10 9l4 2.5-4 2.5V9z"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Trích xuất nội dung từ media để không bỏ lỡ thông tin quan
-                      trọng
-                    </div>
-                  </div>
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M6 18h12M8 14V8M12 14V6M16 14v-3"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Phục vụ audit, tìm kiếm và đào tạo nội bộ dễ dàng hơn
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="feature-visual">
-                <img
-                  src="./Features/image_media_to_text.webp"
-                  alt="Tính năng media sang chữ"
-                />
-              </div>
-            </div>
-
-            <div id="tab-translate" class="ftab-panel feature-panel">
-              <div class="feature-copy">
-                <h3>Dịch văn bản</h3>
-                <p>
-                  Hỗ trợ dịch nhanh nội dung hội thoại, giúp doanh nghiệp phục
-                  vụ khách hàng đa ngôn ngữ linh hoạt hơn.
-                </p>
-                <div class="feature-bullets">
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M4 6h9M8.5 6c0 5-2 8-5 10M8 10c1.2 1.8 2.8 3.4 4.8 4.5M15 6l5 12M17 12h6"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Dịch nội dung ngay trong giao diện làm việc
-                    </div>
-                  </div>
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M7 12l3 3 7-7"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Giữ trải nghiệm tư vấn nhất quán với khách quốc tế
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="feature-visual">
-                <img
-                  src="./Features/image_translate.webp"
-                  alt="Tính năng dịch văn bản"
-                />
-              </div>
-            </div>
-
-            <div
               id="tab-report"
               class="ftab-panel feature-panel feature-panel-reverse"
             >
@@ -3738,62 +3461,6 @@
               </div>
             </div>
 
-            <div id="tab-integrations" class="ftab-panel feature-panel">
-              <div class="feature-copy">
-                <h3>Tích hợp</h3>
-                <p>
-                  Tích hợp liền mạch dữ liệu doanh nghiệp trên Retion và mở rộng
-                  khả năng vận hành ngay trong màn hình chat.
-                </p>
-                <div class="feature-bullets">
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M9 12l3 3 3-3M12 15V5"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <rect
-                          x="4"
-                          y="17"
-                          width="16"
-                          height="3"
-                          rx="1.5"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">Tài liệu tích hợp API</div>
-                  </div>
-                  <div class="feature-bullet">
-                    <div class="feature-bullet-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M8 8h8M8 16h8M12 4v16M4 12h16"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                        />
-                      </svg>
-                    </div>
-                    <div class="feature-bullet-text">
-                      Tạo ứng dụng riêng của doanh nghiệp ngay trong màn hình
-                      Chat
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="feature-visual">
-                <img
-                  src="./Features/image_app_integration.webp"
-                  alt="Tính năng tích hợp"
-                />
-              </div>
-            </div>
           </div>
           <button
             class="feature-nav next"
