@@ -207,9 +207,15 @@
         letter-spacing: -1.4px;
         margin-bottom: 16px;
         color: var(--gray-900);
-        max-width: 920px;
+        max-width: 1180px;
         margin-left: auto;
         margin-right: auto;
+      }
+      .hero-h1-line {
+        display: block;
+      }
+      .hero-h1-line-nowrap {
+        white-space: nowrap;
       }
       .hero-h1 .accent {
         color: var(--orange);
@@ -2361,6 +2367,9 @@
           font-size: clamp(24px, 4.8vw, 34px);
           letter-spacing: -1px;
         }
+        .hero-h1-line-nowrap {
+          white-space: normal;
+        }
         .hero-sub {
           font-size: 15px;
         }
@@ -2505,6 +2514,9 @@
           font-size: clamp(20px, 6.4vw, 28px);
           letter-spacing: -1px;
           margin-bottom: 12px;
+        }
+        .hero-h1-line-nowrap {
+          white-space: normal;
         }
         .hero-sub {
           font-size: 14px;
@@ -2997,8 +3009,12 @@
         Tối ưu quy trình bán hàng và chăm sóc khách hàng bằng AI
       </div>
       <h1 class="hero-h1">
-        <span class="accent">Hệ thống AI Chatbot</span> giúp bạn<br />
-        bán hàng tự động 100% như nhân viên thật
+        <span class="hero-h1-line hero-h1-line-nowrap">
+          <span class="accent">Hệ thống AI Chatbot</span> giúp bạn
+        </span>
+        <span class="hero-h1-line hero-h1-line-nowrap">
+          bán hàng tự động 100% như nhân viên thật
+        </span>
       </h1>
       <p class="hero-sub">
         AI hiểu sản phẩm, tư vấn theo kịch bản và hỗ trợ chốt khách tự động đa
