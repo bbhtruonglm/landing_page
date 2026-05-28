@@ -53,7 +53,7 @@
       }
 
       .thankyou-shell {
-        width: min(100%, 760px);
+        width: min(100%, 960px);
         background: var(--card);
         border: 1px solid var(--line);
         border-radius: 28px;
@@ -97,7 +97,7 @@
       h1 {
         margin: 22px 0 14px;
         font-family: "Plus Jakarta Sans", sans-serif;
-        font-size: clamp(34px, 5vw, 52px);
+        font-size: clamp(34px, 4.2vw, 48px);
         line-height: 1.05;
         letter-spacing: -0.04em;
       }
@@ -178,6 +178,12 @@
 
       .btn:hover {
         transform: translateY(-1px);
+      }
+
+      @media (min-width: 1100px) {
+        h1 {
+          white-space: nowrap;
+        }
       }
 
       @media (max-width: 640px) {
