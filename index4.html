@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5346F34X');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bot Bán Hàng – Cách mạng hóa hỗ trợ khách hàng với AI</title>
@@ -1284,7 +1291,10 @@ hr{border:none;border-top:1px solid var(--gray-100)}
 </style>
 </head>
 <body>
-<noscript id="gtm-noscript-anchor"></noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5346F34X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- HEADER -->
 <header>
@@ -2099,22 +2109,20 @@ if (leadFormFrame) {
     leadForm.reset();
 
     if (leadFormStatus) {
-      //leadFormStatus.textContent = 'Đã gửi thành công. Dữ liệu đã được lưu vào Google Sheet.';
-      leadFormStatus.textContent = 'Đã gửi thành công.'
+      leadFormStatus.textContent = 'Đang chuyển sang trang cảm ơn...'
       leadFormStatus.classList.add('show');
     }
 
-    openThankyouModal();
-
     if (submitButton) submitButton.disabled = false;
     leadFormSubmitted = false;
+    window.location.assign('/camon');
   });
 }
 </script>
 <script src="https://chatbox-embed-sdk.botbanhang.vn/dist/sdk.min.js"></script>
 <script>
   BBH.init({
-    page_id: '4aa9fb0c619f42bc94240a4d441ba654',
+    page_id: '981154372895213',
   })
 </script>
 </body>

@@ -4676,22 +4676,20 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
           leadForm.reset();
 
           if (leadFormStatus) {
-            //leadFormStatus.textContent = 'Đã gửi thành công. Dữ liệu đã được lưu vào Google Sheet.';
-            leadFormStatus.textContent = "Đã gửi thành công.";
+            leadFormStatus.textContent = "Đang chuyển sang trang cảm ơn...";
             leadFormStatus.classList.add("show");
           }
 
-          openThankyouModal();
-
           if (submitButton) submitButton.disabled = false;
           leadFormSubmitted = false;
+          window.location.assign("/camon");
         });
       }
     </script>
     <script src="https://chatbox-embed-sdk.botbanhang.vn/dist/sdk.min.js"></script>
     <script>
       BBH.init({
-        page_id: "4aa9fb0c619f42bc94240a4d441ba654",
+        page_id: "981154372895213",
       });
     </script>
   </body>
