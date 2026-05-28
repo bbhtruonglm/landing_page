@@ -109,6 +109,31 @@
         color: var(--muted);
       }
 
+      .actions {
+        margin-top: 28px;
+      }
+
+      .btn-home {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0 24px;
+        border-radius: 14px;
+        background: var(--orange);
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        box-shadow: 0 18px 32px rgba(255, 87, 34, 0.22);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      .btn-home:hover {
+        transform: translateY(-1px);
+        background: var(--orange-light);
+      }
+
       @media (min-width: 1100px) {
         h1 {
           white-space: nowrap;
@@ -144,6 +169,9 @@
         <div class="eyebrow">Đăng ký thành công</div>
         <h1>Cảm ơn bạn đã để lại thông tin.</h1>
         <p>Bot bán hàng sẽ liên hệ lại ngay.</p>
+        <div class="actions">
+          <a class="btn-home" href="/">Quay lại trang chủ</a>
+        </div>
       </div>
     </main>
 
