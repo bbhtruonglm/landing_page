@@ -1960,24 +1960,56 @@
 
       /* ─── FINAL CTA ─── */
       #cta-section {
-        background: var(--white);
-        padding: 80px var(--side);
-        text-align: center;
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(13, 13, 13, 0.56);
+        z-index: 280;
+        overflow-y: auto;
+      }
+      #cta-section.show {
+        display: flex;
+      }
+      .lead-modal-dialog {
+        width: min(100%, 760px);
+        margin: auto;
+        position: relative;
       }
       .cta-box {
-        max-width: 680px;
-        margin: 0 auto;
+        max-width: 100%;
+        margin: 0;
         background: var(--gray-50);
         border-radius: 24px;
         padding: 56px 48px;
         border: 1.5px solid var(--gray-100);
         box-shadow: var(--shadow-lg);
+        position: relative;
       }
       .cta-box h2 {
         margin-bottom: 10px;
+        line-height: 1.18;
       }
       .cta-box .section-desc {
         margin: 0 auto 40px;
+      }
+      .lead-modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border: none;
+        border-radius: 50%;
+        background: var(--white);
+        color: var(--gray-700);
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+        z-index: 1;
       }
       .cta-form-new {
         display: flex;
@@ -2485,7 +2517,8 @@
           padding: 28px var(--side);
         }
         #cta-section {
-          padding: 28px var(--side);
+          align-items: flex-start;
+          padding: 72px 16px 24px;
         }
         /* Typography */
         h2 {
@@ -2909,6 +2942,15 @@
           padding: 24px 16px;
           border-radius: 16px;
         }
+        .lead-modal-dialog {
+          width: 100%;
+        }
+        .lead-modal-close {
+          top: 10px;
+          right: 10px;
+          width: 34px;
+          height: 34px;
+        }
         .cta-form-new {
           gap: 12px;
         }
@@ -2998,7 +3040,9 @@
         <a href="#testimonials"></a>
       </nav>
       <div class="nav-actions">
-        <a href="#cta-section" class="btn-cta">Demo & Dùng thử AI miễn phí</a>
+        <a href="#cta-section" class="btn-cta" data-open-lead-form
+          >Nhận tài liệu &amp; Dùng thử miễn phí</a
+        >
       </div>
     </header>
 
@@ -3021,19 +3065,19 @@
         kênh.
       </p>
       <div class="hero-actions">
-        <a href="#cta-section" class="btn-hero">
+        <a href="#cta-section" class="btn-hero" data-open-lead-form>
           <svg viewBox="0 0 16 16" fill="none">
             <path
               d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-.5L8 2z"
               fill="white"
             />
           </svg>
-          Demo & Dùng thử AI miễn phí
+          Nhận tài liệu &amp; Dùng thử miễn phí
         </a>
       </div>
       <p class="hero-note">
         <span class="hero-urgency"
-          >Chỉ còn 10 suất tư vấn AI chiến lược trực tiếp 1-1
+          >Miễn phí cho 100 doanh nghiệp đăng ký đầu tiên
         </span>
         &nbsp;&nbsp;Hơn 50.000+ chủ doanh nghiệp đã đăng ký tìm hiểu và trải
         nghiệm hệ thống
@@ -3585,7 +3629,12 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
         </div>
       </div>
       <div class="pain-cta fu">
-        <a href="#cta-section" class="btn-hero" style="display: inline-flex">
+        <a
+          href="#cta-section"
+          class="btn-hero"
+          style="display: inline-flex"
+          data-open-lead-form
+        >
           <svg viewBox="0 0 16 16" fill="none">
             <path
               d="M3 8h10M9 4l4 4-4 4"
@@ -3595,7 +3644,7 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
               stroke-linejoin="round"
             />
           </svg>
-          Demo & Dùng thử AI miễn phí
+          Nhận tài liệu &amp; Dùng thử miễn phí
         </a>
       </div>
     </section>
@@ -4186,8 +4235,8 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
         <div class="video-label">Video 2 — Demo Bảo mật Data</div>
         <div class="video-sub">Minh họa thêm về vận hành, kiểm soát dữ liệu và trải nghiệm dùng thực tế.</div>
       </div> -->
+        </div>
       </div>
-
     </section>
 
     <!-- PARTNER LOGOS -->
@@ -4201,112 +4250,125 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
     <hr />
 
     <!-- CTA -->
-    <section id="cta-section">
-      <div class="cta-box fu">
-        <div class="section-eyebrow" style="justify-content: center">
-          Box Đăng ký chiến lược
-        </div>
-        <h2 style="margin-bottom: 10px">
-          Đăng ký <span style="color: var(--orange)">Demo &</span><br />dùng thử
-          miễn phí
-        </h2>
-        <p class="section-desc" style="margin: 0 auto 40px">
-          Điền thông tin để nhận tư vấn miễn phí cùng demo thực tế theo ngành
-          hàng của doanh nghiệp bạn<strong
-            style="color: var(--orange)"
-          ></strong>
-        </p>
-        <form
-          id="lead-form"
-          class="cta-form-new"
-          action="https://docs.google.com/forms/d/e/1FAIpQLScnGSLH6qC9NYtTnaL4aKsgY2XCjgfETqkM_LGI5smCFhbXkg/formResponse"
-          method="POST"
-          target="lead-form-target"
-          accept-charset="UTF-8"
+    <div id="cta-section" aria-hidden="true">
+      <div
+        class="lead-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lead-modal-title"
+      >
+        <button
+          type="button"
+          class="lead-modal-close"
+          id="lead-modal-close"
+          aria-label="Đóng form"
         >
-          <div class="form-group">
-            <label class="form-label-new" for="lead-name">Họ và tên</label
-            ><input
-              id="lead-name"
-              name="entry.2092238618"
-              type="text"
-              class="form-input-new"
-              placeholder="Nhập họ và tên của bạn"
-              required
-            />
+          ×
+        </button>
+        <div class="cta-box">
+          <div class="section-eyebrow" style="justify-content: center">
+            TÀI LIỆU &amp; CÔNG CỤ AI MIỄN PHÍ
           </div>
-          <div class="form-group">
-            <label class="form-label-new" for="lead-phone">Số điện thoại</label
-            ><input
-              id="lead-phone"
-              name="entry.1556369182"
-              type="tel"
-              class="form-input-new"
-              placeholder="Nhập số điện thoại"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-label-new" for="lead-business"
-              >Lĩnh vực kinh doanh</label
-            ><input
-              id="lead-business"
-              name="entry.479301265"
-              type="text"
-              class="form-input-new"
-              placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..."
-              required
-            />
-          </div>
-          <input type="hidden" name="fvv" value="1" />
-          <input
-            type="hidden"
-            name="partialResponse"
-            value='[null,null,"6097880855499910288"]'
-          />
-          <input type="hidden" name="pageHistory" value="0" />
-          <input type="hidden" name="fbzx" value="6097880855499910288" />
-          <input type="hidden" name="submissionTimestamp" value="-1" />
-          <button type="submit" class="btn-submit">
-            <svg viewBox="0 0 16 16" fill="none">
-              <path
-                d="M8 2c0 0-4 3-4 6a4 4 0 008 0C12 5 8 2 8 2z"
-                stroke="white"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8 12v3M6.5 15h3"
-                stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-            </svg>
-            DEMO & DÙNG THỬ MIỄN PHÍ
-          </button>
-          <div
-            id="lead-form-status"
-            class="form-status"
-            role="status"
-            aria-live="polite"
-          ></div>
-          <p
-            style="text-align: center; font-size: 12px; color: var(--gray-400)"
-          >
-            Chỉ còn
-            <strong style="color: var(--orange)"
-              >10 suất tư vấn AI chiến lược trực tiếp 1-1</strong
-            >
+          <h2 id="lead-modal-title" style="margin-bottom: 10px">
+            Nhận bộ tài liệu AI giúp doanh nghiệp tiết kiệm 80% chi phí nhân sự
+          </h2>
+          <p class="section-desc" style="margin: 0 auto 40px">
+            Điền thông tin để nhận ngay bộ tài liệu triển khai AI thực tế, kèm
+            tài khoản dùng thử miễn phí theo ngành nghề của bạn.
           </p>
-        </form>
-        <iframe
-          name="lead-form-target"
-          id="lead-form-target"
-          title="Lead form submit target"
-          style="display: none"
-        ></iframe>
+          <form
+            id="lead-form"
+            class="cta-form-new"
+            action="https://docs.google.com/forms/d/e/1FAIpQLScnGSLH6qC9NYtTnaL4aKsgY2XCjgfETqkM_LGI5smCFhbXkg/formResponse"
+            method="POST"
+            target="lead-form-target"
+            accept-charset="UTF-8"
+          >
+            <div class="form-group">
+              <label class="form-label-new" for="lead-name">Họ và tên</label
+              ><input
+                id="lead-name"
+                name="entry.2092238618"
+                type="text"
+                class="form-input-new"
+                placeholder="Nhập họ và tên của bạn"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label-new" for="lead-phone"
+                >Số điện thoại</label
+              ><input
+                id="lead-phone"
+                name="entry.1556369182"
+                type="tel"
+                class="form-input-new"
+                placeholder="Nhập số điện thoại"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label-new" for="lead-business"
+                >Lĩnh vực kinh doanh</label
+              ><input
+                id="lead-business"
+                name="entry.479301265"
+                type="text"
+                class="form-input-new"
+                placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..."
+                required
+              />
+            </div>
+            <input type="hidden" name="fvv" value="1" />
+            <input
+              type="hidden"
+              name="partialResponse"
+              value='[null,null,"6097880855499910288"]'
+            />
+            <input type="hidden" name="pageHistory" value="0" />
+            <input type="hidden" name="fbzx" value="6097880855499910288" />
+            <input type="hidden" name="submissionTimestamp" value="-1" />
+            <button type="submit" class="btn-submit">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M8 2c0 0-4 3-4 6a4 4 0 008 0C12 5 8 2 8 2z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12v3M6.5 15h3"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              NHẬN TÀI LIỆU &amp; DÙNG THỬ MIỄN PHÍ
+            </button>
+            <div
+              id="lead-form-status"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+            ></div>
+            <p
+              style="text-align: center; font-size: 12px; color: var(--gray-400)"
+            >
+              Miễn phí cho
+              <strong style="color: var(--orange)"
+                >100 doanh nghiệp đăng ký đầu tiên</strong
+              >
+            </p>
+          </form>
+          <iframe
+            name="lead-form-target"
+            id="lead-form-target"
+            title="Lead form submit target"
+            style="display: none"
+          ></iframe>
+        </div>
       </div>
-    </section>
+    </div>
 
     <div id="thankyou-modal" class="thankyou-modal" aria-hidden="true">
       <div
@@ -4338,8 +4400,9 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
           Cảm ơn bạn đã đăng ký
         </h3>
         <p class="thankyou-text">
-          Thông tin của bạn đã được ghi nhận thành công. Đội ngũ Bot Bán Hàng sẽ
-          liên hệ với bạn sớm để tư vấn và demo thực tế.
+          Thông tin của bạn đã được ghi nhận thành công. Bộ tài liệu AI và tài
+          khoản dùng thử sẽ được Bot Bán Hàng gửi tới bạn trong thời gian sớm
+          nhất.
         </p>
         <button type="button" class="thankyou-btn" id="thankyou-confirm">
           Đã hiểu
@@ -4417,13 +4480,15 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
 
       function bindConversionTracking() {
         document
-          .querySelectorAll('a[href="#cta-section"]')
+          .querySelectorAll("[data-open-lead-form]")
           .forEach(function (link) {
-            link.addEventListener("click", function () {
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
               trackConversion("cta_click", {
                 cta_text: (link.textContent || "").trim(),
-                cta_target: "#cta-section",
+                cta_target: "lead_modal",
               });
+              openLeadModal();
             });
           });
 
@@ -4445,6 +4510,8 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
         }
       }
 
+      var leadModal = document.getElementById("cta-section");
+      var leadModalClose = document.getElementById("lead-modal-close");
       var leadForm = document.getElementById("lead-form");
       var leadFormFrame = document.getElementById("lead-form-target");
       var leadFormStatus = document.getElementById("lead-form-status");
@@ -4453,18 +4520,53 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
       var thankyouClose = document.getElementById("thankyou-close");
       var thankyouConfirm = document.getElementById("thankyou-confirm");
 
+      function syncModalBodyState() {
+        var hasOpenModal =
+          (leadModal && leadModal.classList.contains("show")) ||
+          (thankyouModal && thankyouModal.classList.contains("show"));
+
+        document.body.classList.toggle("modal-open", !!hasOpenModal);
+      }
+
+      function openLeadModal() {
+        if (!leadModal) return;
+
+        leadModal.classList.add("show");
+        leadModal.setAttribute("aria-hidden", "false");
+        syncModalBodyState();
+
+        window.setTimeout(function () {
+          var firstInput = document.getElementById("lead-name");
+          if (!firstInput) return;
+
+          try {
+            firstInput.focus({ preventScroll: true });
+          } catch (e) {
+            firstInput.focus();
+          }
+        }, 60);
+      }
+
+      function closeLeadModal() {
+        if (!leadModal) return;
+
+        leadModal.classList.remove("show");
+        leadModal.setAttribute("aria-hidden", "true");
+        syncModalBodyState();
+      }
+
       function openThankyouModal() {
         if (!thankyouModal) return;
         thankyouModal.classList.add("show");
         thankyouModal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
+        syncModalBodyState();
       }
 
       function closeThankyouModal() {
         if (!thankyouModal) return;
         thankyouModal.classList.remove("show");
         thankyouModal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("modal-open");
+        syncModalBodyState();
       }
 
       function renderPartnerLogos() {
@@ -4576,6 +4678,9 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
       document.addEventListener("DOMContentLoaded", function () {
         bindConversionTracking();
         renderPartnerLogos();
+        if (window.location.hash === "#cta-section") {
+          openLeadModal();
+        }
         document.querySelectorAll(".ftab[data-tab]").forEach(function (btn) {
           btn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -4636,6 +4741,16 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
       );
       document.querySelectorAll(".fu").forEach((el) => io.observe(el));
 
+      if (leadModalClose) {
+        leadModalClose.addEventListener("click", closeLeadModal);
+      }
+
+      if (leadModal) {
+        leadModal.addEventListener("click", function (e) {
+          if (e.target === leadModal) closeLeadModal();
+        });
+      }
+
       if (thankyouClose) {
         thankyouClose.addEventListener("click", closeThankyouModal);
       }
@@ -4651,7 +4766,10 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
       }
 
       document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") closeThankyouModal();
+        if (e.key === "Escape") {
+          closeThankyouModal();
+          closeLeadModal();
+        }
       });
 
       if (leadForm) {
