@@ -1960,6 +1960,15 @@
 
       /* ─── FINAL CTA ─── */
       #cta-section {
+        background: var(--white);
+        padding: 80px var(--side);
+        text-align: center;
+      }
+      .cta-section-shell {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      .lead-modal {
         position: fixed;
         inset: 0;
         display: none;
@@ -1970,7 +1979,7 @@
         z-index: 280;
         overflow-y: auto;
       }
-      #cta-section.show {
+      .lead-modal.show {
         display: flex;
       }
       .lead-modal-dialog {
@@ -2517,8 +2526,7 @@
           padding: 28px var(--side);
         }
         #cta-section {
-          align-items: flex-start;
-          padding: 72px 16px 24px;
+          padding: 28px var(--side);
         }
         /* Typography */
         h2 {
@@ -4250,26 +4258,13 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
     <hr />
 
     <!-- CTA -->
-    <div id="cta-section" aria-hidden="true">
-      <div
-        class="lead-modal-dialog"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="lead-modal-title"
-      >
-        <button
-          type="button"
-          class="lead-modal-close"
-          id="lead-modal-close"
-          aria-label="Đóng form"
-        >
-          ×
-        </button>
+    <section id="cta-section">
+      <div class="cta-section-shell fu">
         <div class="cta-box">
           <div class="section-eyebrow" style="justify-content: center">
             TÀI LIỆU &amp; CÔNG CỤ AI MIỄN PHÍ
           </div>
-          <h2 id="lead-modal-title" style="margin-bottom: 10px">
+          <h2 style="margin-bottom: 10px">
             Nhận bộ tài liệu AI giúp doanh nghiệp tiết kiệm 80% chi phí nhân sự
           </h2>
           <p class="section-desc" style="margin: 0 auto 40px">
@@ -4277,17 +4272,17 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
             tài khoản dùng thử miễn phí theo ngành nghề của bạn.
           </p>
           <form
-            id="lead-form"
-            class="cta-form-new"
+            id="lead-form-inline"
+            class="cta-form-new lead-form"
             action="https://docs.google.com/forms/d/e/1FAIpQLScnGSLH6qC9NYtTnaL4aKsgY2XCjgfETqkM_LGI5smCFhbXkg/formResponse"
             method="POST"
-            target="lead-form-target"
+            target="lead-form-inline-target"
             accept-charset="UTF-8"
           >
             <div class="form-group">
-              <label class="form-label-new" for="lead-name">Họ và tên</label
+              <label class="form-label-new" for="lead-name-inline">Họ và tên</label
               ><input
-                id="lead-name"
+                id="lead-name-inline"
                 name="entry.2092238618"
                 type="text"
                 class="form-input-new"
@@ -4296,10 +4291,10 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
               />
             </div>
             <div class="form-group">
-              <label class="form-label-new" for="lead-phone"
+              <label class="form-label-new" for="lead-phone-inline"
                 >Số điện thoại</label
               ><input
-                id="lead-phone"
+                id="lead-phone-inline"
                 name="entry.1556369182"
                 type="tel"
                 class="form-input-new"
@@ -4308,10 +4303,10 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
               />
             </div>
             <div class="form-group">
-              <label class="form-label-new" for="lead-business"
+              <label class="form-label-new" for="lead-business-inline"
                 >Lĩnh vực kinh doanh</label
               ><input
-                id="lead-business"
+                id="lead-business-inline"
                 name="entry.479301265"
                 type="text"
                 class="form-input-new"
@@ -4346,7 +4341,7 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
               NHẬN TÀI LIỆU &amp; DÙNG THỬ MIỄN PHÍ
             </button>
             <div
-              id="lead-form-status"
+              id="lead-form-inline-status"
               class="form-status"
               role="status"
               aria-live="polite"
@@ -4361,8 +4356,128 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
             </p>
           </form>
           <iframe
-            name="lead-form-target"
-            id="lead-form-target"
+            name="lead-form-inline-target"
+            id="lead-form-inline-target"
+            title="Lead form submit target"
+            style="display: none"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <div id="lead-modal" class="lead-modal" aria-hidden="true">
+      <div
+        class="lead-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lead-modal-title"
+      >
+        <button
+          type="button"
+          class="lead-modal-close"
+          id="lead-modal-close"
+          aria-label="Đóng form"
+        >
+          ×
+        </button>
+        <div class="cta-box">
+          <div class="section-eyebrow" style="justify-content: center">
+            TÀI LIỆU &amp; CÔNG CỤ AI MIỄN PHÍ
+          </div>
+          <h2 id="lead-modal-title" style="margin-bottom: 10px">
+            Nhận bộ tài liệu AI giúp doanh nghiệp tiết kiệm 80% chi phí nhân sự
+          </h2>
+          <p class="section-desc" style="margin: 0 auto 40px">
+            Điền thông tin để nhận ngay bộ tài liệu triển khai AI thực tế, kèm
+            tài khoản dùng thử miễn phí theo ngành nghề của bạn.
+          </p>
+          <form
+            id="lead-form-modal"
+            class="cta-form-new lead-form"
+            action="https://docs.google.com/forms/d/e/1FAIpQLScnGSLH6qC9NYtTnaL4aKsgY2XCjgfETqkM_LGI5smCFhbXkg/formResponse"
+            method="POST"
+            target="lead-form-modal-target"
+            accept-charset="UTF-8"
+          >
+            <div class="form-group">
+              <label class="form-label-new" for="lead-name-modal">Họ và tên</label
+              ><input
+                id="lead-name-modal"
+                name="entry.2092238618"
+                type="text"
+                class="form-input-new"
+                placeholder="Nhập họ và tên của bạn"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label-new" for="lead-phone-modal"
+                >Số điện thoại</label
+              ><input
+                id="lead-phone-modal"
+                name="entry.1556369182"
+                type="tel"
+                class="form-input-new"
+                placeholder="Nhập số điện thoại"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label-new" for="lead-business-modal"
+                >Lĩnh vực kinh doanh</label
+              ><input
+                id="lead-business-modal"
+                name="entry.479301265"
+                type="text"
+                class="form-input-new"
+                placeholder="Ví dụ: Spa, Thời trang, Mỹ phẩm..."
+                required
+              />
+            </div>
+            <input type="hidden" name="fvv" value="1" />
+            <input
+              type="hidden"
+              name="partialResponse"
+              value='[null,null,"6097880855499910288"]'
+            />
+            <input type="hidden" name="pageHistory" value="0" />
+            <input type="hidden" name="fbzx" value="6097880855499910288" />
+            <input type="hidden" name="submissionTimestamp" value="-1" />
+            <button type="submit" class="btn-submit">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M8 2c0 0-4 3-4 6a4 4 0 008 0C12 5 8 2 8 2z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12v3M6.5 15h3"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              NHẬN TÀI LIỆU &amp; DÙNG THỬ MIỄN PHÍ
+            </button>
+            <div
+              id="lead-form-modal-status"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+            ></div>
+            <p
+              style="text-align: center; font-size: 12px; color: var(--gray-400)"
+            >
+              Miễn phí cho
+              <strong style="color: var(--orange)"
+                >100 doanh nghiệp đăng ký đầu tiên</strong
+              >
+            </p>
+          </form>
+          <iframe
+            name="lead-form-modal-target"
+            id="lead-form-modal-target"
             title="Lead form submit target"
             style="display: none"
           ></iframe>
@@ -4492,30 +4607,28 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
             });
           });
 
-        var submitBtn = document.querySelector(".btn-submit");
-        if (submitBtn) {
+        document.querySelectorAll(".lead-form").forEach(function (form) {
+          var submitBtn = form.querySelector(".btn-submit");
+          if (!submitBtn) return;
+
           submitBtn.addEventListener("click", function () {
-            var fields = Array.from(
-              document.querySelectorAll(".cta-form-new .form-input-new"),
-            );
+            var fields = Array.from(form.querySelectorAll(".form-input-new"));
             var filledCount = fields.filter(function (input) {
               return input.value && input.value.trim();
             }).length;
 
             trackConversion("generate_lead", {
               form_name: "cta_demo_form",
+              form_variant: form.id,
               filled_fields: filledCount,
             });
           });
-        }
+        });
       }
 
-      var leadModal = document.getElementById("cta-section");
+      var leadModal = document.getElementById("lead-modal");
       var leadModalClose = document.getElementById("lead-modal-close");
-      var leadForm = document.getElementById("lead-form");
-      var leadFormFrame = document.getElementById("lead-form-target");
-      var leadFormStatus = document.getElementById("lead-form-status");
-      var leadFormSubmitted = false;
+      var leadForms = Array.from(document.querySelectorAll(".lead-form"));
       var thankyouModal = document.getElementById("thankyou-modal");
       var thankyouClose = document.getElementById("thankyou-close");
       var thankyouConfirm = document.getElementById("thankyou-confirm");
@@ -4536,7 +4649,7 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
         syncModalBodyState();
 
         window.setTimeout(function () {
-          var firstInput = document.getElementById("lead-name");
+          var firstInput = document.getElementById("lead-name-modal");
           if (!firstInput) return;
 
           try {
@@ -4678,9 +4791,6 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
       document.addEventListener("DOMContentLoaded", function () {
         bindConversionTracking();
         renderPartnerLogos();
-        if (window.location.hash === "#cta-section") {
-          openLeadModal();
-        }
         document.querySelectorAll(".ftab[data-tab]").forEach(function (btn) {
           btn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -4772,37 +4882,41 @@ nhưng liệu bạn có thực sự kiểm soát được đội ngũ tư vấn 
         }
       });
 
-      if (leadForm) {
-        leadForm.addEventListener("submit", function () {
-          var submitButton = leadForm.querySelector(".btn-submit");
+      leadForms.forEach(function (form) {
+        var targetName = form.getAttribute("target");
+        var targetFrame = targetName
+          ? document.getElementById(targetName)
+          : null;
+        var submitButton = form.querySelector(".btn-submit");
+        var formStatus = form.querySelector(".form-status");
+        var formSubmitted = false;
 
-          leadFormSubmitted = true;
+        form.addEventListener("submit", function () {
+          formSubmitted = true;
           if (submitButton) submitButton.disabled = true;
-          if (leadFormStatus) {
-            leadFormStatus.textContent = "Đang gửi thông tin...";
-            leadFormStatus.classList.add("show");
+          if (formStatus) {
+            formStatus.textContent = "Đang gửi thông tin...";
+            formStatus.classList.add("show");
           }
         });
-      }
 
-      if (leadFormFrame) {
-        leadFormFrame.addEventListener("load", function () {
-          if (!leadFormSubmitted || !leadForm) return;
+        if (!targetFrame) return;
 
-          var submitButton = leadForm.querySelector(".btn-submit");
+        targetFrame.addEventListener("load", function () {
+          if (!formSubmitted) return;
 
-          leadForm.reset();
+          form.reset();
 
-          if (leadFormStatus) {
-            leadFormStatus.textContent = "Đang chuyển sang trang cảm ơn...";
-            leadFormStatus.classList.add("show");
+          if (formStatus) {
+            formStatus.textContent = "Đang chuyển sang trang cảm ơn...";
+            formStatus.classList.add("show");
           }
 
           if (submitButton) submitButton.disabled = false;
-          leadFormSubmitted = false;
+          formSubmitted = false;
           window.location.assign("/camon");
         });
-      }
+      });
     </script>
     <script src="https://chatbox-embed-sdk.botbanhang.vn/dist/sdk.min.js"></script>
     <script>
